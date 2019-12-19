@@ -1,0 +1,14 @@
+sktime.contrib.dictionary\_based package
+========================================
+
+.. automodule:: sktime.contrib.dictionary_based
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sktime.contrib.dictionary_based.bop

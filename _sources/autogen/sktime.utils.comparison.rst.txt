@@ -1,0 +1,7 @@
+sktime.utils.comparison module
+==============================
+
+.. automodule:: sktime.utils.comparison
+   :members:
+   :undoc-members:
+   :show-inheritance:

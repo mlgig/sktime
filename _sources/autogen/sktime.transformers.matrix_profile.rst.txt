@@ -1,0 +1,7 @@
+sktime.transformers.matrix\_profile module
+==========================================
+
+.. automodule:: sktime.transformers.matrix_profile
+   :members:
+   :undoc-members:
+   :show-inheritance:

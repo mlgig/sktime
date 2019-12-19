@@ -1,0 +1,7 @@
+sktime.highlevel.tasks module
+=============================
+
+.. automodule:: sktime.highlevel.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:

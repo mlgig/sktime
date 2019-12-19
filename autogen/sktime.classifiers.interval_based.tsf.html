@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.classifiers.interval_based.tsf module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.classifiers.shapelet_based package" href="sktime.classifiers.shapelet_based.html" />
+    <link rel="prev" title="sktime.classifiers.interval_based package" href="sktime.classifiers.interval_based.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.classifiers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sktime.classifiers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.html">sktime.classifiers package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.interval_based.html">sktime.classifiers.interval_based package</a> &raquo;</li>
+        
+      <li>sktime.classifiers.interval_based.tsf module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.classifiers.interval_based.tsf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.classifiers.interval_based.tsf">
+<span id="sktime-classifiers-interval-based-tsf-module"></span><h1>sktime.classifiers.interval_based.tsf module<a class="headerlink" href="#module-sktime.classifiers.interval_based.tsf" title="Permalink to this headline">¶</a></h1>
+<p>Time Series Forest Classifier (TSF).
+Implementation of Deng’s Time Series Forest, with minor changes</p>
+<dl class="class">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.interval_based.tsf.</code><code class="sig-name descname">TimeSeriesForest</code><span class="sig-paren">(</span><em class="sig-param">random_state=None</em>, <em class="sig-param">min_interval=3</em>, <em class="sig-param">n_trees=200</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/interval_based/tsf.html#TimeSeriesForest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ForestClassifier</span></code></p>
+<p>Time-Series Forest Classifier.</p>
+<p>TimeSeriesForest: Implementation of Deng’s Time Series Forest, with minor changes
+&#64;article
+{deng13forest,</p>
+<blockquote>
+<div><dl class="simple">
+<dt>author = {H.Deng and G.Runger and E.Tuv and M.Vladimir},</dt><dd><p>title = {A time series forest for classification and feature extraction},</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>journal = {Information Sciences},
+volume = {239},
+year = {2013}</p>
+<p>Overview: Input n series length m
+for each tree</p>
+<blockquote>
+<div><p>sample sqrt(m) intervals
+find mean, sd and slope for each interval, concatenate to form new data set
+build decision tree on new data set</p>
+</div></blockquote>
+<p>ensemble the trees with averaged probability estimates</p>
+<p>This implementation deviates from the original in minor ways. It samples intervals with replacement and
+does not use the splitting criteria tiny refinement described in deng13forest. This is an intentionally
+stripped down, non configurable version for use as a hive-cote component. For a configurable tree based
+ensemble, see sktime.classifiers.ensemble.TimeSeriesForestClassifier</p>
+<p>TO DO: handle missing values, unequal length series and multivariate problems</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>ensemble size</em><em>, </em><em>optional</em><em> (</em><em>default = 200</em><em>)</em>) – </p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>seed for random</em><em>, </em><em>optional</em><em> (</em><em>default to no seed</em><em>, </em><em>I think!</em><em>)</em>) – </p></li>
+<li><p><strong>min_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>minimum width of an interval</em><em>, </em><em>optional</em><em> (</em><em>default to 3</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.n_classes">
+<code class="sig-name descname">n_classes</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.n_classes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, extracted from the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.num_atts">
+<code class="sig-name descname">num_atts</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.num_atts" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, extracted from the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.n_intervals">
+<code class="sig-name descname">n_intervals</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.n_intervals" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, sqrt(num_atts)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.classifiers">
+<code class="sig-name descname">classifiers</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.classifiers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array of shape = [n_trees] of DecisionTree classifiers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.intervals">
+<code class="sig-name descname">intervals</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.intervals" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array of shape = [n_trees][n_intervals][2] stores indexes of all start and end points for all classifiers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.dim_to_use">
+<code class="sig-name descname">dim_to_use</code><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.dim_to_use" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, the column of the panda passed to use (can be passed a multidimensional problem, but will only use one)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/interval_based/tsf.html#TimeSeriesForest.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a forest of trees from the training set (X, y) using random intervals and summary features
+:param X: The training input samples.  If a Pandas data frame is passed it must have a single column (i.e. univariate</p>
+<blockquote>
+<div><p>classification. RISE has no bespoke method for multivariate classification as yet.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em>  [</em><em>n_instances</em><em>]    </em><em>The class labels.</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.lsq_fit">
+<code class="sig-name descname">lsq_fit</code><span class="sig-paren">(</span><em class="sig-param">Y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/interval_based/tsf.html#TimeSeriesForest.lsq_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.lsq_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the slope for each series (row) of Y
+:param Y:
+:type Y: array of shape = [n_samps, interval_size]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>slope</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of shape = [n_samps]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/interval_based/tsf.html#TimeSeriesForest.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find predictions for all cases in X. Built on top of predict_proba
+:param X:
+:type X: The training input samples. array-like or pandas data frame.
+:param If a Pandas data frame is passed, a check is performed that it only has one column.:
+:param If not, an exception is thrown, since this classifier does not yet have:
+:param multivariate capability.:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>output</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of shape = [n_test_instances]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.interval_based.tsf.TimeSeriesForest.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/interval_based/tsf.html#TimeSeriesForest.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.interval_based.tsf.TimeSeriesForest.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find probability estimates for each class for all cases in X.
+:param X: If a Pandas data frame is passed (sktime format) a check is performed that it only has one column.</p>
+<blockquote>
+<div><p>If not, an exception is thrown, since this classifier does not yet have
+multivariate capability.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variables</strong> (<em>Local</em>) – </p></li>
+<li><p><strong>----------</strong> – </p></li>
+<li><p><strong>n_test_instances</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>number of cases to classify</em>) – </p></li>
+<li><p><strong>series_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>number of attributes in X</em><em>, </em><em>must match _num_atts determined in fit</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array of shape = [n_test_instances, num_classes] of probabilities</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.classifiers.shapelet_based.html" class="btn btn-neutral float-right" title="sktime.classifiers.shapelet_based package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.classifiers.interval_based.html" class="btn btn-neutral float-left" title="sktime.classifiers.interval_based package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

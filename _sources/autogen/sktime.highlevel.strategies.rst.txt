@@ -1,0 +1,7 @@
+sktime.highlevel.strategies module
+==================================
+
+.. automodule:: sktime.highlevel.strategies
+   :members:
+   :undoc-members:
+   :show-inheritance:

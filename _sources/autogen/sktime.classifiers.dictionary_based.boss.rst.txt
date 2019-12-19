@@ -1,0 +1,7 @@
+sktime.classifiers.dictionary\_based.boss module
+================================================
+
+.. automodule:: sktime.classifiers.dictionary_based.boss
+   :members:
+   :undoc-members:
+   :show-inheritance:

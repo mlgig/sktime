@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.shapelets module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.transformers.spectral_based module" href="sktime.transformers.spectral_based.html" />
+    <link rel="prev" title="sktime.transformers.segment module" href="sktime.transformers.segment.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sktime.transformers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.transformers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.transformers.html">sktime.transformers package</a> &raquo;</li>
+        
+      <li>sktime.transformers.shapelets module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.transformers.shapelets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.transformers.shapelets">
+<span id="sktime-transformers-shapelets-module"></span><h1>sktime.transformers.shapelets module<a class="headerlink" href="#module-sktime.transformers.shapelets" title="Permalink to this headline">¶</a></h1>
+<p>shapelet transformers
+transformer from the time domain into the shapelet domain. Standard full transform, a contracted version and
+a randoms sampler</p>
+<dl class="class">
+<dt id="sktime.transformers.shapelets.ShapeletTransform">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.shapelets.</code><code class="sig-name descname">ShapeletTransform</code><span class="sig-paren">(</span><em class="sig-param">min_shapelet_length=3</em>, <em class="sig-param">max_shapelet_length=inf</em>, <em class="sig-param">max_shapelets_to_store_per_class=200</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">verbose=0</em>, <em class="sig-param">remove_self_similar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sktime.transformers.base.html#sktime.transformers.base.BaseTransformer" title="sktime.transformers.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.base.BaseTransformer</span></code></a></p>
+<p>Shapelet Transform.</p>
+<p>Original journal publication:
+&#64;article{hills2014classification,</p>
+<blockquote>
+<div><p>title={Classification of time series by shapelet transformation},
+author={Hills, Jon and Lines, Jason and Baranauskas, Edgaras and Mapp, James and Bagnall, Anthony},
+journal={Data Mining and Knowledge Discovery},
+volume={28},
+number={4},
+pages={851–881},
+year={2014},
+publisher={Springer}</p>
+</div></blockquote>
+<p>}</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min_shapelet_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>lower bound on candidatie shapelet lengths</em><em> (</em><em>default = 3</em><em>)</em>) – </p></li>
+<li><p><strong>max_shapelet_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>upper bound on candidatie shapelet lengths</em><em> (</em><em>default = inf</em><em> or </em><em>series length</em><em>)</em>) – </p></li>
+<li><p><strong>max_shapelets_to_store_per_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>upper bound on number of shapelets to retain from each distinct class</em><em> (</em><em>default = 200</em><em>)</em>) – </p></li>
+<li><p><strong>random_state</strong> (<em>RandomState</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, or </em><em>none: to control reandom state objects for deterministic results</em><em> (</em><em>default = None</em><em>)</em>) – </p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>level of output printed to the console</em><em> (</em><em>for information only</em><em>) </em><em>(</em><em>default = 0</em><em>)</em>) – </p></li>
+<li><p><strong>remove_self_similar</strong> (<em>boolean</em><em>, </em><em>remove overlapping &quot;self-similar&quot; shapelets from the final transform</em><em> (</em><em>default = True</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.predefined_ig_rejection_level">
+<code class="sig-name descname">predefined_ig_rejection_level</code><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.predefined_ig_rejection_level" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, minimum information gain required to keep a shapelet (default = 0.05)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.self.shapelets">
+<code class="sig-prename descclassname">self.</code><code class="sig-name descname">shapelets</code><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.self.shapelets" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list of Shapelet objects, the stored shapelets after a dataest has been processed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.binary_entropy">
+<em class="property">static </em><code class="sig-name descname">binary_entropy</code><span class="sig-paren">(</span><em class="sig-param">num_this_class</em>, <em class="sig-param">num_other_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.binary_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.binary_entropy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.calc_binary_ig">
+<em class="property">static </em><code class="sig-name descname">calc_binary_ig</code><span class="sig-paren">(</span><em class="sig-param">orderline</em>, <em class="sig-param">total_num_this_class</em>, <em class="sig-param">total_num_other_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.calc_binary_ig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.calc_binary_ig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.calc_early_binary_ig">
+<em class="property">static </em><code class="sig-name descname">calc_early_binary_ig</code><span class="sig-paren">(</span><em class="sig-param">orderline</em>, <em class="sig-param">num_this_class_in_orderline</em>, <em class="sig-param">num_other_class_in_orderline</em>, <em class="sig-param">num_to_add_this_class</em>, <em class="sig-param">num_to_add_other_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.calc_early_binary_ig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.calc_early_binary_ig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.euclidean_distance_early_abandon">
+<em class="property">static </em><code class="sig-name descname">euclidean_distance_early_abandon</code><span class="sig-paren">(</span><em class="sig-param">u</em>, <em class="sig-param">v</em>, <em class="sig-param">min_dist</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.euclidean_distance_early_abandon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.euclidean_distance_early_abandon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method to fit the shapelet transform to a specified X and y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas DataFrame</em>) – The training input samples.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – The class values for X</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong> – This estimator</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>FullShapeletTransform</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.fit_transform">
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em>, <em class="sig-param">**fit_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.fit_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits and transforms a given input X and y</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pandas.DataFrame the input data to transform</em>) – </p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em> or </em><em>array like of class values corresponding to the indices in X</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Xt</strong> – The transformed pandas DataFrame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.get_shapelets">
+<code class="sig-name descname">get_shapelets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.get_shapelets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.get_shapelets" title="Permalink to this definition">¶</a></dt>
+<dd><p>An accessor method to return the extracted shapelets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>shapelets</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>a list of Shapelet objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.remove_self_similar_shapelets">
+<em class="property">static </em><code class="sig-name descname">remove_self_similar_shapelets</code><span class="sig-paren">(</span><em class="sig-param">shapelet_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.remove_self_similar_shapelets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.remove_self_similar_shapelets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove self-similar shapelets from an input list. Note: this method assumes
+that shapelets are pre-sorted in descending order of quality (i.e. if two candidates
+are self-similar, the one with the later index will be removed)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shapelet_list</strong> (<em>list of Shapelet objects</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>shapelet_list</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of Shapelet objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">**transform_params</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms X according to the extracted shapelets (self.shapelets)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>pandas DataFrame</em>) – The input dataframe to transform</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – The transformed dataframe in tabular format.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletTransform.zscore">
+<em class="property">static </em><code class="sig-name descname">zscore</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">axis=0</em>, <em class="sig-param">ddof=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletTransform.zscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletTransform.zscore" title="Permalink to this definition">¶</a></dt>
+<dd><p>A static method to return the normalised version of series.  This mirrors the scipy implementation
+with a small difference - rather than allowing /0, the function returns output = np.zeroes(len(input)).
+This is to allow for sensible processing of candidate shapelets/comparison subseries that are a straight
+line. Original version: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.zscore.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.zscore.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>array_like</em>) – An array like object containing the sample data.</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em>) – Axis along which to operate. Default is 0. If None, compute over the whole array a.</p></li>
+<li><p><strong>ddof</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Degrees of freedom correction in the calculation of the standard deviation. Default is 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>zscore</strong> – The z-scores, standardized by mean and standard deviation of input array a.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array_like</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.shapelets.ContractedShapeletTransform">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.shapelets.</code><code class="sig-name descname">ContractedShapeletTransform</code><span class="sig-paren">(</span><em class="sig-param">min_shapelet_length=3</em>, <em class="sig-param">max_shapelet_length=inf</em>, <em class="sig-param">max_shapelets_to_store_per_class=200</em>, <em class="sig-param">time_limit_in_mins=60</em>, <em class="sig-param">num_candidates_to_sample_per_case=20</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">verbose=0</em>, <em class="sig-param">remove_self_similar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ContractedShapeletTransform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ContractedShapeletTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.transformers.shapelets.ShapeletTransform" title="sktime.transformers.shapelets.ShapeletTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.shapelets.ShapeletTransform</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.shapelets.RandomEnumerationShapeletTransform">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.shapelets.</code><code class="sig-name descname">RandomEnumerationShapeletTransform</code><span class="sig-paren">(</span><em class="sig-param">min_shapelet_length=3</em>, <em class="sig-param">max_shapelet_length=inf</em>, <em class="sig-param">max_shapelets_to_store_per_class=200</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">verbose=0</em>, <em class="sig-param">remove_self_similar=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#RandomEnumerationShapeletTransform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.RandomEnumerationShapeletTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.transformers.shapelets.ShapeletTransform" title="sktime.transformers.shapelets.ShapeletTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.shapelets.ShapeletTransform</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.shapelets.Shapelet">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.shapelets.</code><code class="sig-name descname">Shapelet</code><span class="sig-paren">(</span><em class="sig-param">series_id</em>, <em class="sig-param">start_pos</em>, <em class="sig-param">length</em>, <em class="sig-param">info_gain</em>, <em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#Shapelet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.Shapelet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A simple class to model a Shapelet with associated information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The index of the series within the data (X) that was passed to fit.</p></li>
+<li><p><strong>start_pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The starting position of the shapelet within the original series</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The length of the shapelet</p></li>
+<li><p><strong>info_gain</strong> (<em>flaot</em>) – The calculated information gain of this shapelet</p></li>
+<li><p><strong>data</strong> (<em>array-like</em>) – The (z-normalised) data of this shapelet</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.shapelets.ShapeletPQ">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.shapelets.</code><code class="sig-name descname">ShapeletPQ</code><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletPQ.get_array">
+<code class="sig-name descname">get_array</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ.get_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ.get_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletPQ.get_size">
+<code class="sig-name descname">get_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ.get_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ.get_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletPQ.peek">
+<code class="sig-name descname">peek</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ.peek"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ.peek" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletPQ.pop">
+<code class="sig-name descname">pop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.shapelets.ShapeletPQ.push">
+<code class="sig-name descname">push</code><span class="sig-paren">(</span><em class="sig-param">shapelet</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/shapelets.html#ShapeletPQ.push"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.shapelets.ShapeletPQ.push" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.transformers.spectral_based.html" class="btn btn-neutral float-right" title="sktime.transformers.spectral_based module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.transformers.segment.html" class="btn btn-neutral float-left" title="sktime.transformers.segment module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

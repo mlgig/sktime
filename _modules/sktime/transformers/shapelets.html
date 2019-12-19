@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.shapelets &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.shapelets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.shapelets</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot; shapelet transformers</span>
+<span class="sd">transformer from the time domain into the shapelet domain. Standard full transform, a contracted version and</span>
+<span class="sd">a randoms sampler</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Jason Lines&quot;</span><span class="p">,</span> <span class="s2">&quot;David Guijo&quot;</span><span class="p">]</span>
+<span class="n">__all__</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ShapeletTransform&quot;</span><span class="p">,</span><span class="s2">&quot;ContractedShapeletTransform&quot;</span><span class="p">,</span><span class="s2">&quot;RandomEnumerationShapeletTransform&quot;</span><span class="p">,</span><span class="s2">&quot;Shapelet&quot;</span><span class="p">,</span><span class="s2">&quot;ShapeletPQ&quot;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.multiclass</span> <span class="kn">import</span> <span class="n">class_distribution</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.load_data</span> <span class="kn">import</span> <span class="n">load_from_tsfile_to_dataframe</span>
+<span class="kn">import</span> <span class="nn">heapq</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+
+<span class="c1"># TO-DO: thorough testing (some initial testing completed, but passing the code to David to develop</span>
+<span class="c1">#        before everything has been fully verified)</span>
+
+<span class="c1"># TO-DO: in case of unequal length time series, we have two options:</span>
+<span class="c1"># 1) fix the maximum length for the shapelets to the minimum length time series (of train dataset,</span>
+<span class="c1">#      which can also fail if there is a smaller time series in the test set).</span>
+<span class="c1"># 2) use another time series distance measure such as DTW to avoid this, since you can compare unequal</span>
+<span class="c1">#      time series (we lose the early abandon in the distance measurement).</span>
+<span class="c1">#</span>
+<span class="c1"># TO-DO: could cythonise important methods, eg the distance and info gain calculations</span>
+<span class="c1">#</span>
+<span class="c1"># TO-DO: add CI tests, comments, documentation, etc.</span>
+
+<div class="viewcode-block" id="ShapeletTransform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform">[docs]</a><span class="k">class</span> <span class="nc">ShapeletTransform</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Shapelet Transform.</span>
+
+<span class="sd">    Original journal publication:</span>
+<span class="sd">    @article{hills2014classification,</span>
+<span class="sd">      title={Classification of time series by shapelet transformation},</span>
+<span class="sd">      author={Hills, Jon and Lines, Jason and Baranauskas, Edgaras and Mapp, James and Bagnall, Anthony},</span>
+<span class="sd">      journal={Data Mining and Knowledge Discovery},</span>
+<span class="sd">      volume={28},</span>
+<span class="sd">      number={4},</span>
+<span class="sd">      pages={851--881},</span>
+<span class="sd">      year={2014},</span>
+<span class="sd">      publisher={Springer}</span>
+<span class="sd">    }</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min_shapelet_length                 : int, lower bound on candidatie shapelet lengths (default = 3)</span>
+<span class="sd">    max_shapelet_length                 : int, upper bound on candidatie shapelet lengths (default = inf or series length)</span>
+<span class="sd">    max_shapelets_to_store_per_class    : int, upper bound on number of shapelets to retain from each distinct class (default = 200)</span>
+<span class="sd">    random_state                        : RandomState, int, or none: to control reandom state objects for deterministic results (default = None)</span>
+<span class="sd">    verbose                             : int, level of output printed to the console (for information only) (default = 0)</span>
+<span class="sd">    remove_self_similar                 : boolean, remove overlapping &quot;self-similar&quot; shapelets from the final transform (default = True)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    predefined_ig_rejection_level       : float, minimum information gain required to keep a shapelet (default = 0.05)</span>
+<span class="sd">    self.shapelets                      : list of Shapelet objects, the stored shapelets after a dataest has been processed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+             <span class="n">min_shapelet_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+             <span class="n">max_shapelet_length</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+             <span class="n">max_shapelets_to_store_per_class</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+             <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+             <span class="n">remove_self_similar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+             <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_shapelet_length</span> <span class="o">=</span> <span class="n">min_shapelet_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelet_length</span> <span class="o">=</span> <span class="n">max_shapelet_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span> <span class="o">=</span> <span class="n">max_shapelets_to_store_per_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_self_similar</span> <span class="o">=</span> <span class="n">remove_self_similar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">predefined_ig_rejection_level</span> <span class="o">=</span> <span class="mf">0.05</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="ShapeletTransform.fit"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A method to fit the shapelet transform to a specified X and y</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X: pandas DataFrame</span>
+<span class="sd">            The training input samples.</span>
+<span class="sd">        y: array-like or list</span>
+<span class="sd">            The class values for X</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : FullShapeletTransform</span>
+<span class="sd">            This estimator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="n">ContractedShapeletTransform</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error: time limit cannot be equal to or less than 0&quot;</span><span class="p">)</span>
+
+        <span class="n">X_lens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span> <span class="c1"># note, assumes all dimensions of a case are the same length. A shapelet would not be well defined if indices do not match!</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">))]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span> <span class="c1"># may need to pad with nans here for uneq length, look at later</span>
+
+        <span class="n">num_ins</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">distinct_class_vals</span> <span class="o">=</span> <span class="n">class_distribution</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">candidates_evaluated</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="n">RandomEnumerationShapeletTransform</span><span class="p">:</span>
+            <span class="n">num_series_to_visit</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_cases_to_sample</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_series_to_visit</span> <span class="o">=</span> <span class="n">num_ins</span>
+
+        <span class="n">shapelet_heaps_by_class</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">ShapeletPQ</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">distinct_class_vals</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="c1"># Here we establish the order of cases to sample. We need to sample x cases and y shapelets from each (where x = num_cases_to_sample</span>
+        <span class="c1"># and y = num_shapelets_to_sample_per_case). We could simply sample x cases without replacement and y shapelets from each case, but</span>
+        <span class="c1"># the idea is that if we are using a time contract we may extract all y shapelets from each x candidate and still have time remaining.</span>
+        <span class="c1"># Therefore, if we get a list of the indices of the series and shuffle them appropriately, we can go through the list again and extract</span>
+        <span class="c1"># another y shapelets from each series (if we have time).</span>
+
+        <span class="c1"># We also want to ensure that we visit all classes so we will visit in round-robin order. Therefore, the code below extracts the indices</span>
+        <span class="c1"># of all series by class, shuffles the indices for each class independently, and then combines them in alternating order. This results in</span>
+        <span class="c1"># a shuffled list of indices that are in alternating class order (e.g. 1,2,3,1,2,3,1,2,3,1...)</span>
+
+        <span class="k">def</span> <span class="nf">_round_robin</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">):</span>
+            <span class="n">sentinel</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">zip_longest</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="n">sentinel</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">sentinel</span><span class="p">)</span>
+
+        <span class="n">case_ids_by_class</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">distinct_class_vals</span><span class="p">}</span>
+
+        <span class="c1"># if transform is random/contract then shuffle the data initially when determining which cases to visit</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="n">RandomEnumerationShapeletTransform</span> <span class="ow">or</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">is</span> <span class="n">ContractedShapeletTransform</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_class_vals</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">case_ids_by_class</span><span class="p">[</span><span class="n">distinct_class_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+
+        <span class="n">num_train_per_class</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">case_ids_by_class</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">case_ids_by_class</span><span class="p">}</span>
+        <span class="n">round_robin_case_order</span> <span class="o">=</span> <span class="n">_round_robin</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">case_ids_by_class</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+        <span class="n">cases_to_visit</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">round_robin_case_order</span><span class="p">]</span>
+        <span class="c1"># this dictionary will be used to store all possible starting positions and shapelet lengths for a give series length. This</span>
+        <span class="c1"># is because we enumerate all possible candidates and sample without replacement when assessing a series. If we have two series</span>
+        <span class="c1"># of the same length then they will obviously have the same valid shapelet starting positions and lengths (especially in standard</span>
+        <span class="c1"># datasets where all series are equal length) so it makes sense to store the possible candidates and reuse, rather than</span>
+        <span class="c1"># recalculating each time</span>
+
+        <span class="c1"># Initially the dictionary will be empty, and each time a new series length is seen the dict will be updated. Next time that length</span>
+        <span class="c1"># is used the dict will have an entry so can simply reuse</span>
+        <span class="n">possible_candidates_per_series_length</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># a flag to indicate if extraction should stop (contract has ended)</span>
+        <span class="n">time_finished</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># max time calculating a shapelet</span>
+        <span class="c1"># for timing the extraction when contracting</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">time_taken</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">max_time_calc_shapelet</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">time_last_shapelet</span> <span class="o">=</span> <span class="n">time_taken</span><span class="p">()</span>
+
+        <span class="c1"># for every series</span>
+        <span class="n">case_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">case_idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases_to_visit</span><span class="p">):</span>
+
+            <span class="n">series_id</span> <span class="o">=</span> <span class="n">cases_to_visit</span><span class="p">[</span><span class="n">case_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">this_class_val</span> <span class="o">=</span> <span class="n">cases_to_visit</span><span class="p">[</span><span class="n">case_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="c1"># minus 1 to remove this candidate from sums</span>
+            <span class="n">binary_ig_this_class_count</span> <span class="o">=</span> <span class="n">num_train_per_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">binary_ig_other_class_count</span> <span class="o">=</span> <span class="n">num_ins</span><span class="o">-</span><span class="n">binary_ig_this_class_count</span><span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="n">RandomEnumerationShapeletTransform</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;visiting series: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">series_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; (#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">case_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_series_to_visit</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;visiting series: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">series_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; (#&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">case_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+
+            <span class="n">this_series_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">series_id</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="c1"># The bound on possible shapelet lengths will differ series-to-series if using unequal length data.</span>
+            <span class="c1"># However, shapelets cannot be longer than the series, so set to the minimum of the series length</span>
+            <span class="c1"># and max shapelet length (which is inf by default)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelet_length</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">this_shapelet_length_upper_bound</span> <span class="o">=</span> <span class="n">this_series_len</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">this_shapelet_length_upper_bound</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">this_series_len</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelet_length</span><span class="p">)</span>
+
+            <span class="c1"># all possible start and lengths for shapelets within this series (calculates if series length is new, a simple look-up if not)</span>
+            <span class="c1"># enumerate all possible candidate starting positions and lengths.</span>
+
+            <span class="c1"># First, try to reuse if they have been calculated for a series of the same length before.</span>
+            <span class="n">candidate_starts_and_lens</span> <span class="o">=</span> <span class="n">possible_candidates_per_series_length</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">this_series_len</span><span class="p">)</span>
+            <span class="c1"># else calculate them for this series length and store for possible use again</span>
+            <span class="k">if</span> <span class="n">candidate_starts_and_lens</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">candidate_starts_and_lens</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="n">length</span><span class="p">]</span> <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">this_series_len</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_shapelet_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_shapelet_length</span><span class="p">,</span> <span class="n">this_shapelet_length_upper_bound</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">start</span> <span class="o">+</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">this_series_len</span><span class="p">]</span>
+                <span class="n">possible_candidates_per_series_length</span><span class="p">[</span><span class="n">this_series_len</span><span class="p">]</span> <span class="o">=</span> <span class="n">candidate_starts_and_lens</span>
+
+            <span class="c1"># default for full transform</span>
+            <span class="n">candidates_to_visit</span> <span class="o">=</span> <span class="n">candidate_starts_and_lens</span>
+            <span class="n">num_candidates_per_case</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidate_starts_and_lens</span><span class="p">)</span>
+
+            <span class="c1"># limit search otherwise:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;num_candidates_to_sample_per_case&quot;</span><span class="p">):</span>
+                <span class="n">num_candidates_per_case</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_candidates_to_sample_per_case</span><span class="p">,</span> <span class="n">num_candidates_per_case</span><span class="p">)</span>
+                <span class="n">cand_idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidate_starts_and_lens</span><span class="p">))),</span> <span class="n">num_candidates_per_case</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+                <span class="n">candidates_to_visit</span> <span class="o">=</span> <span class="p">[</span><span class="n">candidate_starts_and_lens</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cand_idx</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">candidate_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_candidates_per_case</span><span class="p">):</span>
+
+                <span class="c1"># if shapelet heap for this class is not full yet, set entry criteria to be the predetermined IG threshold</span>
+                <span class="n">ig_cutoff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predefined_ig_rejection_level</span>
+                <span class="c1"># otherwise if we have max shapelets already, set the threshold as the IG of the current &#39;worst&#39; shapelet we have</span>
+                <span class="k">if</span> <span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span><span class="p">:</span>
+                    <span class="n">ig_cutoff</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">.</span><span class="n">peek</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ig_cutoff</span><span class="p">)</span>
+
+                <span class="n">cand_start_pos</span> <span class="o">=</span> <span class="n">candidates_to_visit</span><span class="p">[</span><span class="n">candidate_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">cand_len</span> <span class="o">=</span> <span class="n">candidates_to_visit</span><span class="p">[</span><span class="n">candidate_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="n">candidate</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">series_id</span><span class="p">][:,</span><span class="n">cand_start_pos</span><span class="p">:</span> <span class="n">cand_start_pos</span> <span class="o">+</span> <span class="n">cand_len</span><span class="p">])</span>
+
+                <span class="c1"># now go through all other series and get a distance from the candidate to each</span>
+                <span class="n">orderline</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="c1"># initialise here as copy, decrease the new val each time we evaluate a comparison series</span>
+                <span class="n">num_visited_this_class</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">num_visited_other_class</span> <span class="o">=</span> <span class="mi">0</span>
+
+                <span class="n">candidate_rejected</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="k">for</span> <span class="n">comparison_series_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cases_to_visit</span><span class="p">)):</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="n">cases_to_visit</span><span class="p">[</span><span class="n">comparison_series_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cases_to_visit</span><span class="p">[</span><span class="n">comparison_series_idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;class match sanity test broken&quot;</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">series_id</span><span class="p">:</span>
+                        <span class="c1"># don&#39;t evaluate candidate against own series</span>
+                        <span class="k">continue</span>
+
+                    <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">this_class_val</span><span class="p">:</span>
+                        <span class="n">num_visited_this_class</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="n">binary_class_identifier</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># positive for this class</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">num_visited_other_class</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="n">binary_class_identifier</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># negative for any other class</span>
+
+                    <span class="n">bsf_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+                    <span class="n">start_left</span> <span class="o">=</span> <span class="n">cand_start_pos</span>
+                    <span class="n">start_right</span> <span class="o">=</span> <span class="n">cand_start_pos</span><span class="o">+</span><span class="mi">1</span>
+
+                    <span class="k">if</span> <span class="n">X_lens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">cand_len</span><span class="p">:</span>
+                        <span class="n">start_left</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">start_right</span> <span class="o">=</span> <span class="mi">0</span>
+
+                    <span class="k">for</span> <span class="n">num_cals</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">X_lens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">cand_len</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)))):</span> <span class="c1"># max used to force iteration where series len == candidate len</span>
+                        <span class="k">if</span> <span class="n">start_left</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="n">start_left</span> <span class="o">=</span> <span class="n">X_lens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">cand_len</span>
+
+                        <span class="n">comparison</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="n">start_left</span><span class="p">:</span> <span class="n">start_left</span><span class="o">+</span> <span class="n">cand_len</span><span class="p">])</span>
+                        <span class="n">dist_left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">candidate</span><span class="o">-</span><span class="n">comparison</span><span class="p">)</span>
+                        <span class="n">bsf_dist</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist_left</span><span class="o">*</span><span class="n">dist_left</span><span class="p">,</span> <span class="n">bsf_dist</span><span class="p">)</span>
+
+                        <span class="c1"># for odd lengths</span>
+                        <span class="k">if</span> <span class="n">start_left</span> <span class="o">==</span> <span class="n">start_right</span><span class="p">:</span>
+                            <span class="k">continue</span>
+
+                        <span class="c1"># right</span>
+                        <span class="k">if</span> <span class="n">start_right</span> <span class="o">==</span> <span class="n">X_lens</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">cand_len</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+                            <span class="n">start_right</span> <span class="o">=</span> <span class="mi">0</span>
+                        <span class="n">comparison</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="n">start_right</span><span class="p">:</span> <span class="n">start_right</span> <span class="o">+</span> <span class="n">cand_len</span><span class="p">])</span>
+                        <span class="n">dist_right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">candidate</span><span class="o">-</span><span class="n">comparison</span><span class="p">)</span>
+                        <span class="n">bsf_dist</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist_right</span><span class="o">*</span><span class="n">dist_right</span><span class="p">,</span> <span class="n">bsf_dist</span><span class="p">)</span>
+
+                        <span class="n">start_left</span><span class="o">-=</span><span class="mi">1</span>
+                        <span class="n">start_right</span><span class="o">+=</span><span class="mi">1</span>
+
+                    <span class="n">orderline</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">bsf_dist</span><span class="p">,</span><span class="n">binary_class_identifier</span><span class="p">))</span>
+                    <span class="c1"># sorting required after each add for early IG abandon.</span>
+                    <span class="c1"># timsort should be efficient as array is almost in order - insertion-sort like behaviour in this case.</span>
+                    <span class="c1"># Can&#39;t use heap as need to traverse in order multiple times, not just access root</span>
+                    <span class="n">orderline</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">orderline</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">ig_upper_bound</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">calc_early_binary_ig</span><span class="p">(</span><span class="n">orderline</span><span class="p">,</span> <span class="n">num_visited_this_class</span><span class="p">,</span> <span class="n">num_visited_other_class</span><span class="p">,</span> <span class="n">binary_ig_this_class_count</span><span class="o">-</span><span class="n">num_visited_this_class</span><span class="p">,</span> <span class="n">binary_ig_other_class_count</span><span class="o">-</span><span class="n">num_visited_other_class</span><span class="p">)</span>
+                        <span class="c1"># print(&quot;upper: &quot;+str(ig_upper_bound))</span>
+                        <span class="k">if</span> <span class="n">ig_upper_bound</span> <span class="o">&lt;=</span> <span class="n">ig_cutoff</span><span class="p">:</span>
+                            <span class="n">candidate_rejected</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="k">break</span>
+
+                <span class="n">candidates_evaluated</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">candidates_evaluated</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;candidates evaluated: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">candidates_evaluated</span><span class="p">))</span>
+
+                <span class="c1"># only do if candidate was not rejected</span>
+                <span class="k">if</span> <span class="n">candidate_rejected</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                    <span class="n">final_ig</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">calc_binary_ig</span><span class="p">(</span><span class="n">orderline</span><span class="p">,</span> <span class="n">binary_ig_this_class_count</span><span class="p">,</span> <span class="n">binary_ig_other_class_count</span><span class="p">)</span>
+                    <span class="n">accepted_candidate</span> <span class="o">=</span> <span class="n">Shapelet</span><span class="p">(</span><span class="n">series_id</span><span class="p">,</span> <span class="n">cand_start_pos</span><span class="p">,</span> <span class="n">cand_len</span><span class="p">,</span> <span class="n">final_ig</span><span class="p">,</span> <span class="n">candidate</span><span class="p">)</span>
+
+                    <span class="c1"># add to min heap to store shapelets for this class</span>
+                    <span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">accepted_candidate</span><span class="p">)</span>
+
+                    <span class="c1"># informal, but extra 10% allowance for self similar later</span>
+                    <span class="k">if</span> <span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span><span class="o">*</span><span class="mi">3</span><span class="p">:</span>
+                        <span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">this_class_val</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+                <span class="c1"># Takes into account the use of the MAX shapelet calculation time to not exceed the time_limit (not exact, but likely a good guess).</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;time_limit&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">time_now</span> <span class="o">=</span> <span class="n">time_taken</span><span class="p">()</span>
+                    <span class="n">time_this_shapelet</span> <span class="o">=</span> <span class="p">(</span><span class="n">time_now</span> <span class="o">-</span> <span class="n">time_last_shapelet</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">time_this_shapelet</span> <span class="o">&gt;</span> <span class="n">max_time_calc_shapelet</span><span class="p">:</span>
+                        <span class="n">max_time_calc_shapelet</span> <span class="o">=</span> <span class="n">time_this_shapelet</span>
+                    <span class="n">time_last_shapelet</span> <span class="o">=</span> <span class="n">time_now</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">time_now</span> <span class="o">+</span> <span class="n">max_time_calc_shapelet</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No more time available! It&#39;s been </span><span class="si">{0:02d}</span><span class="s2">:</span><span class="si">{1:02}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time_now</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="nb">int</span><span class="p">((</span><span class="nb">round</span><span class="p">(</span><span class="n">time_now</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time_now</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)))</span>
+                        <span class="n">time_finished</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">candidate_rejected</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Candidate finished. </span><span class="si">{0:02d}</span><span class="s2">:</span><span class="si">{1:02}</span><span class="s2"> remaining&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+                                                                                            <span class="nb">int</span><span class="p">((</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)))</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Candidate rejected. </span><span class="si">{0:02d}</span><span class="s2">:</span><span class="si">{1:02}</span><span class="s2"> remaining&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+                                                                                            <span class="nb">int</span><span class="p">((</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">-</span> <span class="n">time_now</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)))</span>
+
+            <span class="c1"># stopping condition: in case of iterative transform (i.e. num_cases_to_sample have been visited)</span>
+            <span class="c1">#                     in case of contracted transform (i.e. time limit has been reached)</span>
+            <span class="n">case_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">case_idx</span> <span class="o">&gt;=</span> <span class="n">num_series_to_visit</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s1">&#39;time_limit&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">time_finished</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">case_idx</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">case_idx</span> <span class="o">&gt;=</span> <span class="n">num_series_to_visit</span> <span class="ow">or</span> <span class="n">time_finished</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stopping search&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+
+        <span class="c1"># remove self similar here</span>
+        <span class="c1"># for each class value</span>
+        <span class="c1">#       get list of shapelets</span>
+        <span class="c1">#       sort by quality</span>
+        <span class="c1">#       remove self similar</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">class_val</span> <span class="ow">in</span> <span class="n">distinct_class_vals</span><span class="p">:</span>
+            <span class="n">by_class_descending_ig</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">shapelet_heaps_by_class</span><span class="p">[</span><span class="n">class_val</span><span class="p">]</span><span class="o">.</span><span class="n">get_array</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_self_similar</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">by_class_descending_ig</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">by_class_descending_ig</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">remove_self_similar_shapelets</span><span class="p">(</span><span class="n">by_class_descending_ig</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># need to extract shapelets from tuples</span>
+                <span class="n">by_class_descending_ig</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by_class_descending_ig</span><span class="p">]</span>
+
+            <span class="c1"># if we have more than max_shapelet_per_class, trim to that amount here</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by_class_descending_ig</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span><span class="p">:</span>
+                <span class="n">by_class_descending_ig</span> <span class="o">=</span> <span class="n">by_class_descending_ig</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">by_class_descending_ig</span><span class="p">)</span>
+
+        <span class="c1"># final sort so that all shapelets from all classes are in descending order of information gain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">info_gain</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># warn the user if fit did not produce any valid shapelets</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;No valid shapelets were extracted from this dataset and calling the transform method &quot;</span>
+                          <span class="s2">&quot;will raise an Exception. Please re-fit the transform with other data and/or &quot;</span>
+                          <span class="s2">&quot;parameter options.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.remove_self_similar_shapelets"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.remove_self_similar_shapelets">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">remove_self_similar_shapelets</span><span class="p">(</span><span class="n">shapelet_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove self-similar shapelets from an input list. Note: this method assumes</span>
+<span class="sd">        that shapelets are pre-sorted in descending order of quality (i.e. if two candidates</span>
+<span class="sd">        are self-similar, the one with the later index will be removed)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shapelet_list: list of Shapelet objects</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shapelet_list: list of Shapelet objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># IMPORTANT: it is assumed that shapelets are already in descending order of quality. This is preferable in the fit method as removing self-similar</span>
+        <span class="c1"># shapelets may be False so the sort needs to happen there in those cases, and avoids a second redundant sort here if it is set to True</span>
+
+        <span class="k">def</span> <span class="nf">is_self_similar</span><span class="p">(</span><span class="n">shapelet_one</span><span class="p">,</span> <span class="n">shapelet_two</span><span class="p">):</span>
+            <span class="c1"># not self similar if from different series</span>
+            <span class="k">if</span> <span class="n">shapelet_one</span><span class="o">.</span><span class="n">series_id</span> <span class="o">!=</span> <span class="n">shapelet_two</span><span class="o">.</span><span class="n">series_id</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">shapelet_one</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">&gt;=</span> <span class="n">shapelet_two</span><span class="o">.</span><span class="n">start_pos</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">shapelet_one</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">&lt;=</span> <span class="n">shapelet_two</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">+</span> <span class="n">shapelet_two</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">shapelet_two</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">&gt;=</span> <span class="n">shapelet_one</span><span class="o">.</span><span class="n">start_pos</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">shapelet_two</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">&lt;=</span> <span class="n">shapelet_one</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">+</span> <span class="n">shapelet_one</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="c1"># [s][2] will be a tuple with (info_gain,id,Shapelet), so we need to access [2]</span>
+        <span class="n">to_return</span> <span class="o">=</span> <span class="p">[</span><span class="n">shapelet_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>  <span class="c1"># first shapelet must be ok</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">shapelet_list</span><span class="p">)):</span>
+            <span class="n">can_add</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">is_self_similar</span><span class="p">(</span><span class="n">shapelet_list</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">shapelet_list</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="mi">2</span><span class="p">]):</span>
+                    <span class="n">can_add</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="n">can_add</span><span class="p">:</span>
+                <span class="n">to_return</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">shapelet_list</span><span class="p">[</span><span class="n">s</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">to_return</span></div>
+
+    <span class="c1"># transform a set of data into distances to each extracted shapelet</span>
+<div class="viewcode-block" id="ShapeletTransform.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">transform_params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transforms X according to the extracted shapelets (self.shapelets)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pandas DataFrame</span>
+<span class="sd">            The input dataframe to transform</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output : pandas DataFrame</span>
+<span class="sd">            The transformed dataframe in tabular format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;fit has not been called . Please call fit before using the transform method.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No shapelets were extracted in fit that exceeded the minimum information gain threshold. Please retry with other data and/or parameter settings.&quot;</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">))]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span>  <span class="c1"># may need to pad with nans here for uneq length, look at later</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">)</span>
+
+        <span class="c1"># for the i^th series to transform</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+            <span class="n">this_series</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="c1"># get the s^th shapelet</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">)):</span>
+                <span class="c1"># find distance between this series and each shapelet</span>
+                <span class="n">min_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+                <span class="n">this_shapelet_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">length</span>
+
+                <span class="k">for</span> <span class="n">start_pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">this_series</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">this_shapelet_length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="n">comparison</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">this_series</span><span class="p">[:,</span> <span class="n">start_pos</span><span class="p">:</span><span class="n">start_pos</span> <span class="o">+</span> <span class="n">this_shapelet_length</span><span class="p">])</span>
+
+                    <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">comparison</span><span class="p">)</span>
+                    <span class="n">dist</span> <span class="o">=</span> <span class="n">dist</span><span class="o">*</span><span class="n">dist</span>
+                    <span class="n">dist</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">this_shapelet_length</span><span class="o">*</span><span class="n">dist</span>
+                    <span class="n">min_dist</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_dist</span><span class="p">,</span> <span class="n">dist</span><span class="p">)</span>
+
+                    <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_dist</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.fit_transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.fit_transform">[docs]</a>    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fits and transforms a given input X and y</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X: pandas.DataFrame the input data to transform</span>
+<span class="sd">        y: list or array like of class values corresponding to the indices in X</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xt : pandas DataFrame</span>
+<span class="sd">            The transformed pandas DataFrame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Trying to fit but shapelets already exist.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No class values specified - shapelet extraction is supervised and requires Y to build the transform&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.get_shapelets"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.get_shapelets">[docs]</a>    <span class="k">def</span> <span class="nf">get_shapelets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;An accessor method to return the extracted shapelets</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        shapelets: a list of Shapelet objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.binary_entropy"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.binary_entropy">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">binary_entropy</span><span class="p">(</span><span class="n">num_this_class</span><span class="p">,</span> <span class="n">num_other_class</span><span class="p">):</span>
+            <span class="n">ent</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">num_this_class</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ent</span> <span class="o">-=</span> <span class="n">num_this_class</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_this_class</span> <span class="o">+</span> <span class="n">num_other_class</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">num_this_class</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_this_class</span> <span class="o">+</span> <span class="n">num_other_class</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">num_other_class</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">ent</span> <span class="o">-=</span> <span class="n">num_other_class</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_this_class</span> <span class="o">+</span> <span class="n">num_other_class</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">num_other_class</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_this_class</span> <span class="o">+</span> <span class="n">num_other_class</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">ent</span></div>
+
+    <span class="c1"># could cythonise</span>
+<div class="viewcode-block" id="ShapeletTransform.calc_binary_ig"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.calc_binary_ig">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calc_binary_ig</span><span class="p">(</span><span class="n">orderline</span><span class="p">,</span> <span class="n">total_num_this_class</span><span class="p">,</span> <span class="n">total_num_other_class</span><span class="p">):</span>
+        <span class="c1"># def entropy(ent_class_counts, all_class_count):</span>
+
+        <span class="n">initial_ent</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">total_num_this_class</span><span class="p">,</span> <span class="n">total_num_other_class</span><span class="p">)</span>
+        <span class="n">bsf_ig</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">count_this_class</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">count_other_class</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">total_all</span> <span class="o">=</span> <span class="n">total_num_this_class</span><span class="o">+</span><span class="n">total_num_other_class</span>
+
+        <span class="c1"># evaluate each split point</span>
+        <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">orderline</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">next_class</span> <span class="o">=</span> <span class="n">orderline</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># +1 if this class, -1 if other</span>
+            <span class="k">if</span> <span class="n">next_class</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">count_this_class</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_other_class</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># optimistically add this class to left side first and other to right</span>
+            <span class="n">left_prop</span> <span class="o">=</span> <span class="p">(</span><span class="n">split</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_all</span>
+            <span class="n">ent_left</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">count_this_class</span><span class="p">,</span><span class="n">count_other_class</span><span class="p">)</span>
+
+            <span class="n">right_prop</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">left_prop</span> <span class="c1"># because right side must optimistically contain everything else</span>
+            <span class="n">ent_right</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">total_num_this_class</span><span class="o">-</span><span class="n">count_this_class</span><span class="p">,</span><span class="n">total_num_other_class</span><span class="o">-</span><span class="n">count_other_class</span><span class="p">)</span>
+
+            <span class="n">ig</span> <span class="o">=</span> <span class="n">initial_ent</span> <span class="o">-</span> <span class="n">left_prop</span> <span class="o">*</span> <span class="n">ent_left</span> <span class="o">-</span> <span class="n">right_prop</span> <span class="o">*</span> <span class="n">ent_right</span>
+            <span class="n">bsf_ig</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ig</span><span class="p">,</span> <span class="n">bsf_ig</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bsf_ig</span></div>
+
+    <span class="c1"># could cythonise</span>
+<div class="viewcode-block" id="ShapeletTransform.calc_early_binary_ig"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.calc_early_binary_ig">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">calc_early_binary_ig</span><span class="p">(</span><span class="n">orderline</span><span class="p">,</span> <span class="n">num_this_class_in_orderline</span><span class="p">,</span> <span class="n">num_other_class_in_orderline</span><span class="p">,</span> <span class="n">num_to_add_this_class</span><span class="p">,</span> <span class="n">num_to_add_other_class</span><span class="p">):</span>
+        <span class="c1"># def entropy(ent_class_counts, all_class_count):</span>
+
+        <span class="n">initial_ent</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">num_this_class_in_orderline</span><span class="o">+</span><span class="n">num_to_add_this_class</span><span class="p">,</span> <span class="n">num_other_class_in_orderline</span><span class="o">+</span><span class="n">num_to_add_other_class</span><span class="p">)</span>
+        <span class="n">bsf_ig</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># actual observations in orderline</span>
+        <span class="n">count_this_class</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">count_other_class</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">total_all</span> <span class="o">=</span> <span class="n">num_this_class_in_orderline</span><span class="o">+</span><span class="n">num_other_class_in_orderline</span><span class="o">+</span><span class="n">num_to_add_this_class</span><span class="o">+</span><span class="n">num_to_add_other_class</span>
+
+        <span class="c1"># evaluate each split point</span>
+        <span class="k">for</span> <span class="n">split</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">orderline</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">next_class</span> <span class="o">=</span> <span class="n">orderline</span><span class="p">[</span><span class="n">split</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># +1 if this class, -1 if other</span>
+            <span class="k">if</span> <span class="n">next_class</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">count_this_class</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">count_other_class</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># optimistically add this class to left side first and other to right</span>
+            <span class="n">left_prop</span> <span class="o">=</span> <span class="p">(</span><span class="n">split</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">num_to_add_this_class</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_all</span>
+            <span class="n">ent_left</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">count_this_class</span><span class="o">+</span><span class="n">num_to_add_this_class</span><span class="p">,</span><span class="n">count_other_class</span><span class="p">)</span>
+
+            <span class="n">right_prop</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">left_prop</span> <span class="c1"># because right side must optimistically contain everything else</span>
+            <span class="n">ent_right</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">num_this_class_in_orderline</span><span class="o">-</span><span class="n">count_this_class</span><span class="p">,</span><span class="n">num_other_class_in_orderline</span><span class="o">-</span><span class="n">count_other_class</span><span class="o">+</span><span class="n">num_to_add_other_class</span><span class="p">)</span>
+
+            <span class="n">ig</span> <span class="o">=</span> <span class="n">initial_ent</span> <span class="o">-</span> <span class="n">left_prop</span> <span class="o">*</span> <span class="n">ent_left</span> <span class="o">-</span> <span class="n">right_prop</span> <span class="o">*</span> <span class="n">ent_right</span>
+            <span class="n">bsf_ig</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ig</span><span class="p">,</span> <span class="n">bsf_ig</span><span class="p">)</span>
+
+            <span class="c1"># now optimistically add this class to right, other to left</span>
+            <span class="n">left_prop</span> <span class="o">=</span> <span class="p">(</span><span class="n">split</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">num_to_add_other_class</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_all</span>
+            <span class="n">ent_left</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">count_this_class</span><span class="p">,</span><span class="n">count_other_class</span><span class="o">+</span><span class="n">num_to_add_other_class</span><span class="p">)</span>
+
+            <span class="n">right_prop</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">left_prop</span> <span class="c1"># because right side must optimistically contain everything else</span>
+            <span class="n">ent_right</span> <span class="o">=</span> <span class="n">ShapeletTransform</span><span class="o">.</span><span class="n">binary_entropy</span><span class="p">(</span><span class="n">num_this_class_in_orderline</span><span class="o">-</span><span class="n">count_this_class</span><span class="o">+</span><span class="n">num_to_add_this_class</span><span class="p">,</span><span class="n">num_other_class_in_orderline</span><span class="o">-</span><span class="n">count_other_class</span><span class="p">)</span>
+            <span class="n">ig</span> <span class="o">=</span> <span class="n">initial_ent</span> <span class="o">-</span> <span class="n">left_prop</span> <span class="o">*</span> <span class="n">ent_left</span> <span class="o">-</span> <span class="n">right_prop</span> <span class="o">*</span> <span class="n">ent_right</span>
+            <span class="n">bsf_ig</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ig</span><span class="p">,</span> <span class="n">bsf_ig</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bsf_ig</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.zscore"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.zscore">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">zscore</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; A static method to return the normalised version of series.  This mirrors the scipy implementation</span>
+<span class="sd">        with a small difference - rather than allowing /0, the function returns output = np.zeroes(len(input)).</span>
+<span class="sd">        This is to allow for sensible processing of candidate shapelets/comparison subseries that are a straight</span>
+<span class="sd">        line. Original version: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.zscore.html</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        a : array_like</span>
+<span class="sd">            An array like object containing the sample data.</span>
+
+<span class="sd">        axis : int or None, optional</span>
+<span class="sd">            Axis along which to operate. Default is 0. If None, compute over the whole array a.</span>
+
+<span class="sd">        ddof : int, optional</span>
+<span class="sd">            Degrees of freedom correction in the calculation of the standard deviation. Default is 0.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        zscore : array_like</span>
+<span class="sd">            The z-scores, standardized by mean and standard deviation of input array a.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zscored</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+            <span class="c1"># j = np.asanyarray(j)</span>
+            <span class="n">sstd</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="n">ddof</span><span class="p">)</span>
+
+            <span class="c1"># special case - if shapelet is a straight line (i.e. no variance), zscore ver should be np.zeros(len(a))</span>
+            <span class="k">if</span> <span class="n">sstd</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">zscored</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mns</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">axis</span> <span class="ow">and</span> <span class="n">mns</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
+                    <span class="n">zscored</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">j</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">mns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span> <span class="o">/</span>
+                                    <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">sstd</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">zscored</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">mns</span><span class="p">)</span> <span class="o">/</span> <span class="n">sstd</span>
+        <span class="k">return</span> <span class="n">zscored</span></div>
+
+<div class="viewcode-block" id="ShapeletTransform.euclidean_distance_early_abandon"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletTransform.euclidean_distance_early_abandon">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">euclidean_distance_early_abandon</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">min_dist</span><span class="p">):</span>
+        <span class="n">sum_dist</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)):</span>
+                <span class="n">u_v</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">sum_dist</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u_v</span><span class="p">,</span> <span class="n">u_v</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sum_dist</span> <span class="o">&gt;=</span> <span class="n">min_dist</span><span class="p">:</span>
+                    <span class="c1"># The distance is higher, so early abandon.</span>
+                    <span class="k">return</span> <span class="n">min_dist</span>
+        <span class="k">return</span> <span class="n">sum_dist</span></div></div>
+
+
+<div class="viewcode-block" id="ContractedShapeletTransform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ContractedShapeletTransform">[docs]</a><span class="k">class</span> <span class="nc">ContractedShapeletTransform</span><span class="p">(</span><span class="n">ShapeletTransform</span><span class="p">):</span>
+    <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Jason Lines and David Guijo&quot;</span>
+
+    <span class="sd">&quot;&quot;&quot;Contracted Shapelet Transform.</span>
+<span class="sd">    @incollection{bostrom2017binary,</span>
+<span class="sd">      title={Binary shapelet transform for multiclass time series classification},</span>
+<span class="sd">      author={Bostrom, Aaron and Bagnall, Anthony},</span>
+<span class="sd">      booktitle={Transactions on Large-Scale Data-and Knowledge-Centered Systems XXXII},</span>
+<span class="sd">      pages={24--46},</span>
+<span class="sd">      year={2017},</span>
+<span class="sd">      publisher={Springer}</span>
+<span class="sd">    }</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min_shapelet_length                 : int, lower bound on candidatie shapelet lengths (default = 3)</span>
+<span class="sd">    max_shapelet_length                 : int, upper bound on candidatie shapelet lengths (default = inf or series length)</span>
+<span class="sd">    max_shapelets_to_store_per_class    : int, upper bound on number of shapelets to retain from each distinct class (default = 200)</span>
+<span class="sd">    time_limit_in_mins                  : float, the number of minutes allowed for shapelet extraction (default = 60)</span>
+<span class="sd">    num_candidates_to_sample_per_case   : int, number of candidate shapelets to assess per training series before moving on to </span>
+<span class="sd">                                          the next series (default = 20)</span>
+<span class="sd">    random_state                        : RandomState, int, or none: to control reandom state objects for deterministic results (default = None)</span>
+<span class="sd">    verbose                             : int, level of output printed to the console (for information only) (default = 0)</span>
+<span class="sd">    remove_self_similar                 : boolean, remove overlapping &quot;self-similar&quot; shapelets from the final transform (default = True)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    predefined_ig_rejection_level       : float, minimum information gain required to keep a shapelet (default = 0.05)</span>
+<span class="sd">    self.shapelets                      : list of Shapelet objects, the stored shapelets after a dataest has been processed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">min_shapelet_length</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="n">max_shapelet_length</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+            <span class="n">max_shapelets_to_store_per_class</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+            <span class="n">time_limit_in_mins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+            <span class="n">num_candidates_to_sample_per_case</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">random_state</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">remove_self_similar</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_shapelet_length</span> <span class="o">=</span> <span class="n">min_shapelet_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelet_length</span> <span class="o">=</span> <span class="n">max_shapelet_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_shapelets_to_store_per_class</span> <span class="o">=</span> <span class="n">max_shapelets_to_store_per_class</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_candidates_to_sample_per_case</span> <span class="o">=</span> <span class="n">num_candidates_to_sample_per_case</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_limit</span> <span class="o">=</span> <span class="n">time_limit_in_mins</span><span class="o">*</span><span class="mi">60</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_self_similar</span> <span class="o">=</span> <span class="n">remove_self_similar</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">predefined_ig_rejection_level</span> <span class="o">=</span> <span class="mf">0.05</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shapelets</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="RandomEnumerationShapeletTransform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.RandomEnumerationShapeletTransform">[docs]</a><span class="k">class</span> <span class="nc">RandomEnumerationShapeletTransform</span><span class="p">(</span><span class="n">ShapeletTransform</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+    <span class="c1"># to follow</span>
+
+
+<div class="viewcode-block" id="Shapelet"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.Shapelet">[docs]</a><span class="k">class</span> <span class="nc">Shapelet</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A simple class to model a Shapelet with associated information</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series_id: int</span>
+<span class="sd">        The index of the series within the data (X) that was passed to fit.</span>
+<span class="sd">    start_pos: int</span>
+<span class="sd">        The starting position of the shapelet within the original series</span>
+<span class="sd">    length: int</span>
+<span class="sd">        The length of the shapelet</span>
+<span class="sd">    info_gain: flaot</span>
+<span class="sd">        The calculated information gain of this shapelet</span>
+<span class="sd">    data: array-like</span>
+<span class="sd">        The (z-normalised) data of this shapelet</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_id</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">info_gain</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">series_id</span> <span class="o">=</span> <span class="n">series_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info_gain</span> <span class="o">=</span> <span class="n">info_gain</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Series ID: </span><span class="si">{0}</span><span class="s2">, start_pos: </span><span class="si">{1}</span><span class="s2">, length: </span><span class="si">{2}</span><span class="s2">, info_gain: </span><span class="si">{3}</span><span class="s2">, &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">series_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_gain</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ShapeletPQ"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ">[docs]</a><span class="k">class</span> <span class="nc">ShapeletPQ</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="ShapeletPQ.push"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ.push">[docs]</a>    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shapelet</span><span class="p">):</span>
+        <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span> <span class="p">(</span><span class="n">shapelet</span><span class="o">.</span><span class="n">info_gain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">,</span> <span class="n">shapelet</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="ShapeletPQ.pop"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ.pop">[docs]</a>    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ShapeletPQ.peek"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ.peek">[docs]</a>    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ShapeletPQ.get_size"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ShapeletPQ.get_array"><a class="viewcode-back" href="../../../autogen/sktime.transformers.shapelets.html#sktime.transformers.shapelets.ShapeletPQ.get_array">[docs]</a>    <span class="k">def</span> <span class="nf">get_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">write_transformed_data_to_arff</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A simple function to save the transform obtained in arff format</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    transform: array-like</span>
+<span class="sd">        The transform obtained for a dataset</span>
+<span class="sd">    labels: array-like</span>
+<span class="sd">        The labels of the dataset</span>
+<span class="sd">    file_name: string</span>
+<span class="sd">        The directory to save the transform</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create directory in case it doesn&#39;t exists</span>
+    <span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="n">num_shapelets</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">unique_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># Headers</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;@Relation Shapelets&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_shapelets</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;@attribute Shapelet_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; numeric</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;@attribute target {&quot;</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">@data</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># Patterns</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">transform</span><span class="p">):</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]))]</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pattern</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">write_shapelets_to_csv</span><span class="p">(</span><span class="n">shapelets</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">dim_to_use</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A simple function to save the shapelets obtained in csv format</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    shapelets: array-like</span>
+<span class="sd">        The shapelets obtained for a dataset</span>
+<span class="sd">    data: array-like</span>
+<span class="sd">        The original data</span>
+<span class="sd">    time: fload</span>
+<span class="sd">        The time spent obtaining shapelets</span>
+<span class="sd">    file_name: string</span>
+<span class="sd">        The directory to save the set of shapelets</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">dim_to_use</span><span class="p">]</span>
+
+    <span class="n">data_aux</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="n">data_aux</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data_aux</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Create directory in case it doesn&#39;t exists</span>
+    <span class="n">directory</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># Number of shapelets and time extracting</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shapelets</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shapelets</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">info_gain</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">series_id</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">dims</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">start_pos</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_to_use</span><span class="p">)):</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">series_id</span><span class="p">][</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="o">.</span><span class="n">start_pos</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">+</span> <span class="n">j</span><span class="o">.</span><span class="n">length</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

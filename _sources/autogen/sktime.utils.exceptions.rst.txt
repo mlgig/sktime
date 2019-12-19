@@ -1,0 +1,7 @@
+sktime.utils.exceptions module
+==============================
+
+.. automodule:: sktime.utils.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:

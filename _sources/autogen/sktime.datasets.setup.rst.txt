@@ -1,0 +1,7 @@
+sktime.datasets.setup module
+============================
+
+.. automodule:: sktime.datasets.setup
+   :members:
+   :undoc-members:
+   :show-inheritance:

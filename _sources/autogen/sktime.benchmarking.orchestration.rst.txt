@@ -1,0 +1,7 @@
+sktime.benchmarking.orchestration module
+========================================
+
+.. automodule:: sktime.benchmarking.orchestration
+   :members:
+   :undoc-members:
+   :show-inheritance:

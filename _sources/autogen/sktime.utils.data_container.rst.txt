@@ -1,0 +1,7 @@
+sktime.utils.data\_container module
+===================================
+
+.. automodule:: sktime.utils.data_container
+   :members:
+   :undoc-members:
+   :show-inheritance:

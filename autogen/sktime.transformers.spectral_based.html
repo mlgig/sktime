@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.spectral_based module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.transformers.summarise module" href="sktime.transformers.summarise.html" />
+    <link rel="prev" title="sktime.transformers.shapelets module" href="sktime.transformers.shapelets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sktime.transformers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.transformers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.transformers.html">sktime.transformers package</a> &raquo;</li>
+        
+      <li>sktime.transformers.spectral_based module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.transformers.spectral_based.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.transformers.spectral_based">
+<span id="sktime-transformers-spectral-based-module"></span><h1>sktime.transformers.spectral_based module<a class="headerlink" href="#module-sktime.transformers.spectral_based" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">AutoCorrelationFunctionTransformer</code><span class="sig-paren">(</span><em class="sig-param">unbiased=False</em>, <em class="sig-param">acf_type='standard'</em>, <em class="sig-param">nlags=40</em>, <em class="sig-param">method='ywunbiased'</em>, <em class="sig-param">qstat=False</em>, <em class="sig-param">fft=False</em>, <em class="sig-param">alpha=None</em>, <em class="sig-param">missing='none'</em>, <em class="sig-param">check_input=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#AutoCorrelationFunctionTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.transformers.spectral_based.BaseMappedTransformer" title="sktime.transformers.spectral_based.BaseMappedTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.spectral_based.BaseMappedTransformer</span></code></a></p>
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer.get_transform_params">
+<code class="sig-name descname">get_transform_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#AutoCorrelationFunctionTransformer.get_transform_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer.get_transform_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.BaseMappedTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">BaseMappedTransformer</code><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#BaseMappedTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.BaseMappedTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sktime.transformers.base.html#sktime.transformers.base.BaseTransformer" title="sktime.transformers.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.base.BaseTransformer</span></code></a></p>
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.BaseMappedTransformer.configRef">
+<code class="sig-name descname">configRef</code><em class="property"> = &lt;sktime.transformers.spectral_based.FunctionConfigs object&gt;</em><a class="headerlink" href="#sktime.transformers.spectral_based.BaseMappedTransformer.configRef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.BaseMappedTransformer.get_transform_params">
+<code class="sig-name descname">get_transform_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#BaseMappedTransformer.get_transform_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.BaseMappedTransformer.get_transform_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.BaseMappedTransformer.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#BaseMappedTransformer.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.BaseMappedTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.CosineTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">CosineTransformer</code><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#CosineTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.CosineTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sktime.transformers.base.html#sktime.transformers.base.BaseTransformer" title="sktime.transformers.base.BaseTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.base.BaseTransformer</span></code></a></p>
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.CosineTransformer.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#CosineTransformer.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.CosineTransformer.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.DiscreteFourierTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">DiscreteFourierTransformer</code><span class="sig-paren">(</span><em class="sig-param">fourier_type='standard'</em>, <em class="sig-param">axes=None</em>, <em class="sig-param">norm=None</em>, <em class="sig-param">check_input=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#DiscreteFourierTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.DiscreteFourierTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.transformers.spectral_based.BaseMappedTransformer" title="sktime.transformers.spectral_based.BaseMappedTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.spectral_based.BaseMappedTransformer</span></code></a></p>
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.DiscreteFourierTransformer.get_transform_params">
+<code class="sig-name descname">get_transform_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#DiscreteFourierTransformer.get_transform_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.DiscreteFourierTransformer.get_transform_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">FunctionConfigs</code><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#FunctionConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType">
+<em class="property">class </em><code class="sig-name descname">FuncType</code><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#FunctionConfigs.FuncType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.ACF">
+<code class="sig-name descname">ACF</code><em class="property"> = (5,)</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.ACF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT">
+<code class="sig-name descname">DFT</code><em class="property"> = 1</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT_HERMITE">
+<code class="sig-name descname">DFT_HERMITE</code><em class="property"> = (3,)</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT_HERMITE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT_REAL">
+<code class="sig-name descname">DFT_REAL</code><em class="property"> = (2,)</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.DFT_REAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.PACF">
+<code class="sig-name descname">PACF</code><em class="property"> = 6</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.PACF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.FuncType.POWER_SPECTRUM">
+<code class="sig-name descname">POWER_SPECTRUM</code><em class="property"> = (4,)</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.FuncType.POWER_SPECTRUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.constraintTo1D">
+<code class="sig-name descname">constraintTo1D</code><em class="property"> = {&lt;FuncType.POWER_SPECTRUM: (4,)&gt;: True, &lt;FuncType.ACF: (5,)&gt;: True, &lt;FuncType.PACF: 6&gt;: True}</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.constraintTo1D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.indexReturn">
+<code class="sig-name descname">indexReturn</code><em class="property"> = {&lt;FuncType.POWER_SPECTRUM: (4,)&gt;: 0}</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.indexReturn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.transformers.spectral_based.FunctionConfigs.lambdaContainer">
+<code class="sig-name descname">lambdaContainer</code><em class="property"> = {&lt;FuncType.DFT: 1&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;, &lt;FuncType.DFT_REAL: (2,)&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;, &lt;FuncType.DFT_HERMITE: (3,)&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;, &lt;FuncType.POWER_SPECTRUM: (4,)&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;, &lt;FuncType.ACF: (5,)&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;, &lt;FuncType.PACF: 6&gt;: &lt;function FunctionConfigs.&lt;lambda&gt;&gt;}</em><a class="headerlink" href="#sktime.transformers.spectral_based.FunctionConfigs.lambdaContainer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.transformers.spectral_based.PowerSpectrumTransformer">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.transformers.spectral_based.</code><code class="sig-name descname">PowerSpectrumTransformer</code><span class="sig-paren">(</span><em class="sig-param">fs=1.0</em>, <em class="sig-param">window='boxcar'</em>, <em class="sig-param">nfft=None</em>, <em class="sig-param">detrend='constant'</em>, <em class="sig-param">return_onesided=True</em>, <em class="sig-param">scaling='density'</em>, <em class="sig-param">axis=-1</em>, <em class="sig-param">check_input=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#PowerSpectrumTransformer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.PowerSpectrumTransformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.transformers.spectral_based.BaseMappedTransformer" title="sktime.transformers.spectral_based.BaseMappedTransformer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.transformers.spectral_based.BaseMappedTransformer</span></code></a></p>
+<dl class="method">
+<dt id="sktime.transformers.spectral_based.PowerSpectrumTransformer.get_transform_params">
+<code class="sig-name descname">get_transform_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/transformers/spectral_based.html#PowerSpectrumTransformer.get_transform_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.transformers.spectral_based.PowerSpectrumTransformer.get_transform_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.transformers.summarise.html" class="btn btn-neutral float-right" title="sktime.transformers.summarise module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.transformers.shapelets.html" class="btn btn-neutral float-left" title="sktime.transformers.shapelets module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

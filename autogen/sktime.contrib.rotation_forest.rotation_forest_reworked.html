@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.contrib.rotation_forest.rotation_forest_reworked module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.contrib.basic_benchmarking module" href="sktime.contrib.basic_benchmarking.html" />
+    <link rel="prev" title="sktime.contrib.rotation_forest.rotation_forest_dev module" href="sktime.contrib.rotation_forest.rotation_forest_dev.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.contrib.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sktime.contrib.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.contrib.html">sktime.contrib package</a> &raquo;</li>
+        
+          <li><a href="sktime.contrib.rotation_forest.html">sktime.contrib.rotation_forest package</a> &raquo;</li>
+        
+      <li>sktime.contrib.rotation_forest.rotation_forest_reworked module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.contrib.rotation_forest.rotation_forest_reworked.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.contrib.rotation_forest.rotation_forest_reworked">
+<span id="sktime-contrib-rotation-forest-rotation-forest-reworked-module"></span><h1>sktime.contrib.rotation_forest.rotation_forest_reworked module<a class="headerlink" href="#module-sktime.contrib.rotation_forest.rotation_forest_reworked" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.contrib.rotation_forest.rotation_forest_reworked.</code><code class="sig-name descname">RotationForestClassifier</code><span class="sig-paren">(</span><em class="sig-param">n_estimators=200</em>, <em class="sig-param">n_column_subsets=3</em>, <em class="sig-param">p_instance_subset=0.75</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">verbose=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/contrib/rotation_forest/rotation_forest_reworked.html#RotationForestClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ForestClassifier</span></code></p>
+<p>Rotation Forest Classifier</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_estimators</strong> – </p></li>
+<li><p><strong>n_column_subsets</strong> – </p></li>
+<li><p><strong>p_instance_subset</strong> – </p></li>
+<li><p><strong>random_state</strong> – </p></li>
+<li><p><strong>verbose</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>&#64;article{Rodriguez2006,</dt><dd><p>author = {Juan J. Rodriguez and Ludmila I. Kuncheva and Carlos J. Alonso},
+journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+number = {10},
+pages = {1619-1630},
+title = {Rotation Forest: A new classifier ensemble method},
+volume = {28},
+year = {2006},
+ISSN = {0162-8828},
+URL = {<a class="reference external" href="http://doi.ieeecomputersociety.org/10.1109/TPAMI.2006.211">http://doi.ieeecomputersociety.org/10.1109/TPAMI.2006.211</a>}</p>
+</dd>
+</dl>
+<p>}
+&#64;article{bagnall2018rotation,</p>
+<blockquote>
+<div><p>title={Is rotation forest the best classifier for problems with continuous features?},
+author={Bagnall, A and Bostrom, Aaron and Cawley, G and Flynn, Michael and Large, James and Lines, Jason},
+journal={arXiv preprint arXiv:1809.06705},
+year={2018}</p>
+</div></blockquote>
+<p>}</p>
+<p>Java reference implementation:
+<a class="reference external" href="https://github.com/uea-machine-learning/tsml/blob/master/src/main/java/weka/classifiers/meta/RotationForest.java">https://github.com/uea-machine-learning/tsml/blob/master/src/main/java/weka/classifiers/meta/RotationForest.java</a></p>
+<dl class="method">
+<dt id="sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/contrib/rotation_forest/rotation_forest_reworked.html#RotationForestClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a forest of trees from the training set (X, y).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em> or </em><em>sparse matrix of shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – The training input samples. Internally, its dtype will be converted
+to <code class="docutils literal notranslate"><span class="pre">dtype=np.float32</span></code>. If a sparse matrix is provided, it will be
+converted into a sparse <code class="docutils literal notranslate"><span class="pre">csc_matrix</span></code>.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>] or </em><em>[</em><em>n_samples</em><em>, </em><em>n_outputs</em><em>]</em>) – The target values (class labels in classification, real numbers in
+regression).</p></li>
+<li><p><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>] or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – Sample weights. If None, then samples are equally weighted. Splits
+that would create child nodes with net zero or negative weight are
+ignored while searching for a split in each node. In the case of
+classification, splits are also ignored if they would result in any
+single class carrying a negative weight in either child node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/contrib/rotation_forest/rotation_forest_reworked.html#RotationForestClassifier.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.contrib.rotation_forest.rotation_forest_reworked.RotationForestClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict probabilities</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.contrib.basic_benchmarking.html" class="btn btn-neutral float-right" title="sktime.contrib.basic_benchmarking module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.contrib.rotation_forest.rotation_forest_dev.html" class="btn btn-neutral float-left" title="sktime.contrib.rotation_forest.rotation_forest_dev module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

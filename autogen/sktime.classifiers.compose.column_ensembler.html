@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.classifiers.compose.column_ensembler module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.classifiers.compose.ensemble module" href="sktime.classifiers.compose.ensemble.html" />
+    <link rel="prev" title="sktime.classifiers.compose package" href="sktime.classifiers.compose.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.classifiers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sktime.classifiers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.html">sktime.classifiers package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.compose.html">sktime.classifiers.compose package</a> &raquo;</li>
+        
+      <li>sktime.classifiers.compose.column_ensembler module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.classifiers.compose.column_ensembler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.classifiers.compose.column_ensembler">
+<span id="sktime-classifiers-compose-column-ensembler-module"></span><h1>sktime.classifiers.compose.column_ensembler module<a class="headerlink" href="#module-sktime.classifiers.compose.column_ensembler" title="Permalink to this headline">¶</a></h1>
+<p>ColumnEnsembleClassifier: For Multivariate Time Series Classification.
+Builds classifiers on each dimension (column) independently</p>
+<dl class="class">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.compose.column_ensembler.</code><code class="sig-name descname">ColumnEnsembleClassifier</code><span class="sig-paren">(</span><em class="sig-param">estimators</em>, <em class="sig-param">remainder='drop'</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sktime.classifiers.base.html#sktime.classifiers.base.BaseClassifier" title="sktime.classifiers.base.BaseClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.classifiers.base.BaseClassifier</span></code></a></p>
+<p>Applies estimators to columns of an array or pandas DataFrame.</p>
+<p>This estimator allows different columns or column subsets of the input
+to be transformed separately and the features generated by each transformer
+will be ensembled to form a single output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>estimators</strong> (<em>list of tuples</em>) – <p>List of (name, transformer, column(s)) tuples specifying the
+transformer objects to be applied to subsets of the data.</p>
+<dl class="simple">
+<dt>name<span class="classifier">string</span></dt><dd><p>Like in Pipeline and FeatureUnion, this allows the transformer and
+its parameters to be set using <code class="docutils literal notranslate"><span class="pre">set_params</span></code> and searched in grid
+search.</p>
+</dd>
+<dt>Estimator<span class="classifier">estimator or {‘drop’}</span></dt><dd><p>Estimator must support <cite>fit</cite> and <cite>predict_proba</cite>. Special-cased
+strings ‘drop’ and ‘passthrough’ are accepted as well, to
+indicate to drop the columns</p>
+</dd>
+</dl>
+<p>column(s) : string or int, array-like of string or int, slice,                 boolean mask array or callable</p>
+</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>remainder<span class="classifier">{‘drop’, ‘passthrough’} or estimator, default ‘drop’</span></dt><dd><p>By default, only the specified columns in <cite>transformers</cite> are
+transformed and combined in the output, and the non-specified
+columns are dropped. (default of <code class="docutils literal notranslate"><span class="pre">'drop'</span></code>).
+By specifying <code class="docutils literal notranslate"><span class="pre">remainder='passthrough'</span></code>, all remaining columns that
+were not specified in <cite>transformers</cite> will be automatically passed
+through. This subset of columns is concatenated with the output of
+the transformers.
+By setting <code class="docutils literal notranslate"><span class="pre">remainder</span></code> to be an estimator, the remaining
+non-specified columns will use the <code class="docutils literal notranslate"><span class="pre">remainder</span></code> estimator. The
+estimator must support <span class="xref std std-term">fit</span> and <span class="xref std std-term">transform</span>.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">input_checks=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit all estimators, fit the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em> or </em><em>DataFrame of shape</em><em> [</em><em>n_samples</em><em>, </em><em>n_dimensions</em><em>, </em><em>n_length</em><em>]</em>) – Input data, of which specified subsets are used to fit the
+transformers.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>..</em><em>)</em><em>, </em><em>optional</em>) – Targets for supervised learning.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param">deep=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mapping of string to any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">input_checks=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.predict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>panda dataframe</em>) – instances of the dataset</p></li>
+<li><p><strong>input_checks</strong> (<em>boolean</em>) – whether to verify the dataset (e.g. dimensions, etc)</p></li>
+<li><p><strong>----</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>predictions</strong> – array of predictions of each instance (class value)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1d numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">input_checks=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict class probabilities for X in ‘soft’ voting</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.set_params">
+<code class="sig-name descname">set_params</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#ColumnEnsembleClassifier.set_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>Valid parameter keys can be listed with <code class="docutils literal notranslate"><span class="pre">get_params()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>self</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.classifiers.compose.column_ensembler.HomogeneousColumnEnsembleClassifier">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.compose.column_ensembler.</code><code class="sig-name descname">HomogeneousColumnEnsembleClassifier</code><span class="sig-paren">(</span><em class="sig-param">estimator</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#HomogeneousColumnEnsembleClassifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.HomogeneousColumnEnsembleClassifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier" title="sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">sktime.classifiers.compose.column_ensembler.ColumnEnsembleClassifier</span></code></a></p>
+<dl class="method">
+<dt id="sktime.classifiers.compose.column_ensembler.HomogeneousColumnEnsembleClassifier.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">input_checks=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/compose/column_ensembler.html#HomogeneousColumnEnsembleClassifier.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.compose.column_ensembler.HomogeneousColumnEnsembleClassifier.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit all estimators, fit the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em> or </em><em>DataFrame of shape</em><em> [</em><em>n_samples</em><em>, </em><em>n_dimensions</em><em>, </em><em>n_length</em><em>]</em>) – Input data, of which specified subsets are used to fit the
+transformers.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>..</em><em>)</em><em>, </em><em>optional</em>) – Targets for supervised learning.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.classifiers.compose.ensemble.html" class="btn btn-neutral float-right" title="sktime.classifiers.compose.ensemble module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.classifiers.compose.html" class="btn btn-neutral float-left" title="sktime.classifiers.compose package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+sktime.utils.estimator\_checks module
+=====================================
+
+.. automodule:: sktime.utils.estimator_checks
+   :members:
+   :undoc-members:
+   :show-inheritance:

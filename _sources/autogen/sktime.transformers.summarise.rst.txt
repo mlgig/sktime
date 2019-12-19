@@ -1,0 +1,7 @@
+sktime.transformers.summarise module
+====================================
+
+.. automodule:: sktime.transformers.summarise
+   :members:
+   :undoc-members:
+   :show-inheritance:

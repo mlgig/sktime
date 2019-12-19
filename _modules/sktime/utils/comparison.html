@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.utils.comparison &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.utils.comparison</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.utils.comparison</h1><div class="highlight"><pre>
+<span></span><span class="c1"># find the index of the best value in the array</span>
+<div class="viewcode-block" id="arg_bests"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_bests">[docs]</a><span class="k">def</span> <span class="nf">arg_bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">comparison_result</span> <span class="o">=</span> <span class="n">comparator</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">best</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">comparison_result</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">comparison_result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">best</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">indices</span></div>
+
+
+<span class="c1"># pick values from array at given indices</span>
+<div class="viewcode-block" id="pick_from_indices"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.pick_from_indices">[docs]</a><span class="k">def</span> <span class="nf">pick_from_indices</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
+    <span class="n">picked</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+        <span class="n">picked</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">picked</span></div>
+
+
+<span class="c1"># find best values in array</span>
+<div class="viewcode-block" id="bests"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.bests">[docs]</a><span class="k">def</span> <span class="nf">bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">arg_bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pick_from_indices</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span></div>
+
+
+<span class="c1"># find min values in array</span>
+<div class="viewcode-block" id="mins"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.mins">[docs]</a><span class="k">def</span> <span class="nf">mins</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">arg_mins</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pick_from_indices</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span></div>
+
+
+<span class="c1"># find max values in array</span>
+<div class="viewcode-block" id="maxs"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.maxs">[docs]</a><span class="k">def</span> <span class="nf">maxs</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">arg_maxs</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pick_from_indices</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span></div>
+
+
+<span class="c1"># find min value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="min"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.min">[docs]</a><span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">arg_min</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
+
+
+<span class="c1"># find max value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="max"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.max">[docs]</a><span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">arg_max</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
+
+
+<span class="c1"># find best value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="best"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.best">[docs]</a><span class="k">def</span> <span class="nf">best</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">,</span> <span class="n">rand</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rand</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">))</span></div>
+
+
+<span class="c1"># find index of best value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="arg_best"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_best">[docs]</a><span class="k">def</span> <span class="nf">arg_best</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">,</span> <span class="n">rand</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rand</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">arg_bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">comparator</span><span class="p">))</span></div>
+
+
+<span class="c1"># find index of min value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="arg_min"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_min">[docs]</a><span class="k">def</span> <span class="nf">arg_min</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rand</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">arg_mins</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="p">))</span></div>
+
+
+<span class="c1"># find indices of best value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="arg_mins"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_mins">[docs]</a><span class="k">def</span> <span class="nf">arg_mins</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">arg_bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">less_than</span><span class="p">,</span> <span class="n">getter</span><span class="p">))</span></div>
+
+
+<span class="c1"># find index of max value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="arg_max"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_max">[docs]</a><span class="k">def</span> <span class="nf">arg_max</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">rand</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rand</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">arg_maxs</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="p">))</span></div>
+
+
+<span class="c1"># find indices of max value in array, randomly breaking ties</span>
+<div class="viewcode-block" id="arg_maxs"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.arg_maxs">[docs]</a><span class="k">def</span> <span class="nf">arg_maxs</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">arg_bests</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">chain</span><span class="p">(</span><span class="n">more_than</span><span class="p">,</span> <span class="n">getter</span><span class="p">))</span></div>
+
+
+<span class="c1"># obtain a value before using in func</span>
+<div class="viewcode-block" id="chain"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.chain">[docs]</a><span class="k">def</span> <span class="nf">chain</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">getter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">func</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">getter</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">getter</span><span class="p">(</span><span class="n">b</span><span class="p">))</span></div>
+
+
+<span class="c1"># test if a is more than b</span>
+<div class="viewcode-block" id="more_than"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.more_than">[docs]</a><span class="k">def</span> <span class="nf">more_than</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+
+<span class="c1"># test if a is less than b</span>
+<div class="viewcode-block" id="less_than"><a class="viewcode-back" href="../../../autogen/sktime.utils.comparison.html#sktime.utils.comparison.less_than">[docs]</a><span class="k">def</span> <span class="nf">less_than</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+sktime.transformers.spectral\_based module
+==========================================
+
+.. automodule:: sktime.transformers.spectral_based
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+sktime.metrics.forecasting module
+=================================
+
+.. automodule:: sktime.metrics.forecasting
+   :members:
+   :undoc-members:
+   :show-inheritance:

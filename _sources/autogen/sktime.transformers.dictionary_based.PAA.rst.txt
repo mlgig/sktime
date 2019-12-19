@@ -1,0 +1,7 @@
+sktime.transformers.dictionary\_based.PAA module
+================================================
+
+.. automodule:: sktime.transformers.dictionary_based.PAA
+   :members:
+   :undoc-members:
+   :show-inheritance:

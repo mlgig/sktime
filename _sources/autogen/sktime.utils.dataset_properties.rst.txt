@@ -1,0 +1,7 @@
+sktime.utils.dataset\_properties module
+=======================================
+
+.. automodule:: sktime.utils.dataset_properties
+   :members:
+   :undoc-members:
+   :show-inheritance:

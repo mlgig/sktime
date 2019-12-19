@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.dictionary_based.SFA &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.dictionary_based.SFA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.dictionary_based.SFA</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">sktime.transformers.dictionary_based.SAX</span> <span class="kn">import</span> <span class="n">BitWord</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+
+
+<span class="c1"># TO DO: Finish comments</span>
+
+
+<div class="viewcode-block" id="SFA"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA">[docs]</a><span class="k">class</span> <span class="nc">SFA</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Matthew Middlehurst&quot;</span>
+    <span class="sd">&quot;&quot;&quot; SFA Transformer, as described in </span>
+
+<span class="sd">    @inproceedings{schafer2012sfa,</span>
+<span class="sd">      title={SFA: a symbolic fourier approximation and index for similarity search in high dimensional datasets},</span>
+<span class="sd">      author={Sch{\&quot;a}fer, Patrick and H{\&quot;o}gqvist, Mikael},</span>
+<span class="sd">      booktitle={Proceedings of the 15th International Conference on Extending Database Technology},</span>
+<span class="sd">      pages={516--527},</span>
+<span class="sd">      year={2012},</span>
+<span class="sd">      organization={ACM}</span>
+<span class="sd">    }</span>
+
+<span class="sd">    Overview: for each series: </span>
+<span class="sd">        run a sliding window across the series</span>
+<span class="sd">        for each window</span>
+<span class="sd">            shorten the series with DFT</span>
+<span class="sd">            discretise the shortened series into bins set by MFC</span>
+<span class="sd">            form a word from these discrete values     </span>
+<span class="sd">    by default SFA produces a single word per series (window_size=0)</span>
+<span class="sd">    if a window is used, it forms a histogram of counts of words. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        word_length:         int, length of word to shorten window to (using PAA) (default 8)</span>
+<span class="sd">        alphabet_size:       int, number of values to discretise each value to (default to 4)</span>
+<span class="sd">        window_size:         int, size of window for sliding. If 0, uses the whole series (default to 0)</span>
+<span class="sd">        norm:                boolean, whether to mean normalise words by dropping first fourier coefficient</span>
+<span class="sd">        remove_repeat_words: boolean, whether to use numerosity reduction (default False)</span>
+<span class="sd">        save_words:          boolean, whether to save the words generated for each series (default False)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">        words: []</span>
+<span class="sd">        breakpoints: = []</span>
+<span class="sd">        num_insts = 0</span>
+<span class="sd">        num_atts = 0</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">word_length</span><span class="p">,</span>
+                 <span class="n">alphabet_size</span><span class="p">,</span>
+                 <span class="n">window_size</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">norm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">remove_repeat_words</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">save_words</span><span class="o">=</span><span class="kc">False</span>
+                 <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">breakpoints</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">=</span> <span class="n">word_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">=</span> <span class="n">alphabet_size</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
+        <span class="k">if</span> <span class="n">window_size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inverse_sqrt_win_size</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">window_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">norm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_repeat_words</span> <span class="o">=</span> <span class="n">remove_repeat_words</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_words</span> <span class="o">=</span> <span class="n">save_words</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span> <span class="o">=</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="SFA.fit"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate word breakpoints using MCB</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like or sparse matrix of shape = [n_samps, num_atts]</span>
+<span class="sd">            The training input samples.  If a Pandas data frame is passed, the column _dim_to_use is extracted</span>
+<span class="sd">        y : array-like, shape = [n_samples] or [n_samples, n_outputs]</span>
+<span class="sd">            The class labels.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">         &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Alphabet size must be an integer between 2 and 4&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">&gt;</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Word length must be an integer between 1 and 16&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;SFA cannot handle multivariate problems yet&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series &quot;</span>
+                    <span class="s2">&quot;objects (TSF cannot yet handle multivariate problems&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inverse_sqrt_win_size</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">breakpoints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MCB</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="SFA.transform"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;The fit method must be called before calling transform&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;SFA cannot handle multivariate problems yet&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">&quot;Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series &quot;</span>
+                    <span class="s2">&quot;objects (TSF cannot yet handle multivariate problems&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">bags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span><span class="p">):</span>
+            <span class="n">dfts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MFT</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">bag</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">lastWord</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="n">words</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dfts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_word</span><span class="p">(</span><span class="n">dfts</span><span class="p">[</span><span class="n">window</span><span class="p">])</span>
+                <span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+                <span class="n">lastWord</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_to_bag</span><span class="p">(</span><span class="n">bag</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">lastWord</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_words</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+
+            <span class="n">dim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">bag</span><span class="p">))</span>
+
+        <span class="n">bags</span><span class="p">[</span><span class="s1">&#39;dim_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dim</span>
+
+        <span class="k">return</span> <span class="n">bags</span></div>
+
+<div class="viewcode-block" id="SFA.MCB"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.MCB">[docs]</a>    <span class="k">def</span> <span class="nf">MCB</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">        :param X: the training data</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_windows_per_inst</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
+        <span class="n">dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">MCB_DFT</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">num_windows_per_inst</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span><span class="p">)])</span>
+
+        <span class="c1"># dft = np.zeros((self.num_insts, num_windows_per_inst, int((self.word_length / 2) * 2)))</span>
+        <span class="c1">#</span>
+        <span class="c1"># for i in range(self.num_insts):</span>
+        <span class="c1">#     split = np.split(X[i, :], np.linspace(self.window_size, self.window_size * (num_windows_per_inst - 1),</span>
+        <span class="c1">#                                           num_windows_per_inst - 1, dtype=np.int_))</span>
+        <span class="c1">#     split[-1] = X[i, self.num_atts - self.window_size:self.num_atts]</span>
+        <span class="c1">#     dft[i] = np.array([self.discrete_fourier_transform(row) for n, row in enumerate(split)])</span>
+
+        <span class="n">total_num_windows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span> <span class="o">*</span> <span class="n">num_windows_per_inst</span>
+        <span class="n">breakpoints</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">word_length</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_length</span><span class="p">):</span>
+            <span class="n">column</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">dft</span><span class="p">[</span><span class="n">inst</span><span class="p">][</span><span class="n">window</span><span class="p">][</span><span class="n">letter</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+                                       <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_windows_per_inst</span><span class="p">)</span> <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span><span class="p">)]))</span>
+
+            <span class="c1"># column = np.zeros(total_num_windows)</span>
+            <span class="c1">#</span>
+            <span class="c1"># for inst in range(self.num_insts):</span>
+            <span class="c1">#     for window in range(num_windows_per_inst):</span>
+            <span class="c1">#         column[(inst * num_windows_per_inst) + window] = round(dft[inst][window][letter] * 100) / 100</span>
+            <span class="c1">#</span>
+            <span class="c1"># column = np.sort(column)</span>
+
+            <span class="n">bin_index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">target_bin_depth</span> <span class="o">=</span> <span class="n">total_num_windows</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span>
+
+            <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">bin_index</span> <span class="o">+=</span> <span class="n">target_bin_depth</span>
+                <span class="n">breakpoints</span><span class="p">[</span><span class="n">letter</span><span class="p">][</span><span class="n">bp</span><span class="p">]</span> <span class="o">=</span> <span class="n">column</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">bin_index</span><span class="p">)]</span>
+
+            <span class="n">breakpoints</span><span class="p">[</span><span class="n">letter</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
+
+        <span class="k">return</span> <span class="n">breakpoints</span></div>
+
+<div class="viewcode-block" id="SFA.MCB_DFT"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.MCB_DFT">[docs]</a>    <span class="k">def</span> <span class="nf">MCB_DFT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">num_windows_per_inst</span><span class="p">):</span>
+        <span class="c1"># Splits individual time series into windows and returns the DFT for each</span>
+        <span class="n">split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_windows_per_inst</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                                             <span class="n">num_windows_per_inst</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">))</span>
+        <span class="n">split</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">num_atts</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">discrete_fourier_transform</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">split</span><span class="p">)]</span></div>
+
+<div class="viewcode-block" id="SFA.discrete_fourier_transform"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.discrete_fourier_transform">[docs]</a>    <span class="k">def</span> <span class="nf">discrete_fourier_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">normalise</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Performs a discrete fourier transform using standard O(n^2) transform</span>
+<span class="sd">        if self.norm is True, then the first term of the DFT is ignored</span>
+
+<span class="sd">        TO DO: Use a fast fourier transform</span>
+<span class="sd">        Input</span>
+<span class="sd">        -------</span>
+<span class="sd">        X : The training input samples.  array-like or sparse matrix of shape = [n_samps, num_atts]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        1D array of fourier term, real_0,imag_0, real_1, imag_1 etc, length num_atts or</span>
+<span class="sd">        num_atts-2 if if self.norm is True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+        <span class="n">output_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="n">std</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">std</span> <span class="o">=</span> <span class="n">s</span>
+
+        <span class="n">dft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([[</span><span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">length</span><span class="p">),</span>
+                                 <span class="o">-</span><span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="n">length</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">output_length</span><span class="p">)])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+        <span class="c1"># dft = np.zeros(output_length * 2)</span>
+        <span class="c1">#</span>
+        <span class="c1"># for i in range(start, start + output_length):</span>
+        <span class="c1">#     idx = (i - start) * 2</span>
+        <span class="c1">#</span>
+        <span class="c1">#     for n in range(length):</span>
+        <span class="c1">#         dft[idx] += series[n] * math.cos(2 * math.pi * n * i / length)</span>
+        <span class="c1">#         dft[idx + 1] += -series[n] * math.sin(2 * math.pi * n * i / length)</span>
+
+        <span class="k">if</span> <span class="n">normalise</span><span class="p">:</span>
+            <span class="n">dft</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_sqrt_win_size</span> <span class="o">/</span> <span class="n">std</span>
+
+        <span class="k">return</span> <span class="n">dft</span></div>
+
+<div class="viewcode-block" id="SFA.MFT"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.MFT">[docs]</a>    <span class="k">def</span> <span class="nf">MFT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param series:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start_offset</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_length</span> <span class="o">%</span> <span class="mi">2</span>
+
+        <span class="n">phis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">start_offset</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">),</span>
+                          <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">start_offset</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)]</span>
+                         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+        <span class="c1"># phis = np.zeros(length)</span>
+        <span class="c1">#</span>
+        <span class="c1"># for i in range(0, length, 2):</span>
+        <span class="c1">#     half = -(i + start_offset) / 2</span>
+        <span class="c1">#     phis[i] = math.cos(2 * math.pi * half / self.window_size)</span>
+        <span class="c1">#     phis[i + 1] = -math.sin(2 * math.pi * half / self.window_size)</span>
+
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">series</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">stds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_incremental_mean_std</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">end</span><span class="p">,</span> <span class="n">length</span><span class="p">))</span>
+        <span class="n">mft_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">end</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="n">real</span> <span class="o">=</span> <span class="n">mft_data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">series</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">series</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="n">imag</span> <span class="o">=</span> <span class="n">mft_data</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="n">mft_data</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span> <span class="o">*</span> <span class="n">phis</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">imag</span> <span class="o">*</span> <span class="n">phis</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+                    <span class="n">mft_data</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">real</span> <span class="o">*</span> <span class="n">phis</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">phis</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">imag</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mft_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">discrete_fourier_transform</span><span class="p">(</span><span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">],</span> <span class="n">normalise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="n">normalising_factor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">stds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">stds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_sqrt_win_size</span>
+            <span class="n">transformed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mft_data</span> <span class="o">*</span> <span class="n">normalising_factor</span>
+
+        <span class="k">return</span> <span class="n">transformed</span></div>
+
+<div class="viewcode-block" id="SFA.calc_incremental_mean_std"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.calc_incremental_mean_std">[docs]</a>    <span class="k">def</span> <span class="nf">calc_incremental_mean_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+        <span class="n">stds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="n">window</span> <span class="o">=</span> <span class="n">series</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">]</span>
+        <span class="n">series_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+        <span class="n">square_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="n">window</span><span class="p">))</span>
+
+        <span class="c1"># series_sum = 0</span>
+        <span class="c1"># square_sum = 0</span>
+        <span class="c1">#</span>
+        <span class="c1"># for ww in range(self.window_size):</span>
+        <span class="c1">#     series_sum += series[ww]</span>
+        <span class="c1">#     square_sum += series[ww] * series[ww]</span>
+
+        <span class="n">r_window_length</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span>
+        <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">series_sum</span> <span class="o">*</span> <span class="n">r_window_length</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">square_sum</span> <span class="o">*</span> <span class="n">r_window_length</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">stds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="k">if</span> <span class="n">buf</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+            <span class="n">series_sum</span> <span class="o">+=</span> <span class="n">series</span><span class="p">[</span><span class="n">w</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">series</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">means</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">series_sum</span> <span class="o">*</span> <span class="n">r_window_length</span>
+            <span class="n">square_sum</span> <span class="o">+=</span> <span class="n">series</span><span class="p">[</span><span class="n">w</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span><span class="n">w</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">series</span><span class="p">[</span><span class="n">w</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span>
+                <span class="n">w</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">buf</span> <span class="o">=</span> <span class="n">square_sum</span> <span class="o">*</span> <span class="n">r_window_length</span> <span class="o">-</span> <span class="n">means</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">*</span> <span class="n">means</span><span class="p">[</span><span class="n">w</span><span class="p">]</span>
+            <span class="n">stds</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="k">if</span> <span class="n">buf</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">stds</span></div>
+
+<div class="viewcode-block" id="SFA.create_word"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.create_word">[docs]</a>    <span class="k">def</span> <span class="nf">create_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dft</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">BitWord</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_length</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">bp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alphabet_size</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">dft</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakpoints</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">bp</span><span class="p">]:</span>
+                    <span class="n">word</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">bp</span><span class="p">)</span>
+                    <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">word</span></div>
+
+<div class="viewcode-block" id="SFA.shorten_bags"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.shorten_bags">[docs]</a>    <span class="k">def</span> <span class="nf">shorten_bags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_len</span><span class="p">):</span>
+        <span class="n">new_bags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_insts</span><span class="p">):</span>
+            <span class="n">bag</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">last_word</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                <span class="n">new_word</span> <span class="o">=</span> <span class="n">BitWord</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="n">word</span><span class="o">.</span><span class="n">word</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">word</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+                <span class="n">new_word</span><span class="o">.</span><span class="n">shorten</span><span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="n">word_len</span><span class="p">)</span>
+                <span class="n">last_word</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_to_bag</span><span class="p">(</span><span class="n">bag</span><span class="p">,</span> <span class="n">new_word</span><span class="p">,</span> <span class="n">last_word</span><span class="p">)</span>
+
+            <span class="n">dim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">bag</span><span class="p">))</span>
+
+        <span class="n">new_bags</span><span class="p">[</span><span class="s1">&#39;dim_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="n">dim</span>
+
+        <span class="k">return</span> <span class="n">new_bags</span></div>
+
+<div class="viewcode-block" id="SFA.add_to_bag"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.SFA.html#sktime.transformers.dictionary_based.SFA.SFA.add_to_bag">[docs]</a>    <span class="k">def</span> <span class="nf">add_to_bag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bag</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">last_word</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_repeat_words</span> <span class="ow">and</span> <span class="n">word</span><span class="o">.</span><span class="n">word</span> <span class="o">==</span> <span class="n">last_word</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">last_word</span>
+
+        <span class="n">bag</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">bag</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="o">.</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="c1"># if word.word in bag:</span>
+        <span class="c1">#     bag[word.word] += 1</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     bag[word.word] = 1</span>
+
+        <span class="k">return</span> <span class="n">word</span><span class="o">.</span><span class="n">word</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

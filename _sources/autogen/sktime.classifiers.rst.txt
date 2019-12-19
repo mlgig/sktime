@@ -1,0 +1,26 @@
+sktime.classifiers package
+==========================
+
+.. automodule:: sktime.classifiers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   sktime.classifiers.compose
+   sktime.classifiers.dictionary_based
+   sktime.classifiers.distance_based
+   sktime.classifiers.frequency_based
+   sktime.classifiers.interval_based
+   sktime.classifiers.shapelet_based
+
+Submodules
+----------
+
+.. toctree::
+
+   sktime.classifiers.base

@@ -1,0 +1,7 @@
+sktime.transformers.dictionary\_based.SFA module
+================================================
+
+.. automodule:: sktime.transformers.dictionary_based.SFA
+   :members:
+   :undoc-members:
+   :show-inheritance:

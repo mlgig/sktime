@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.dictionary_based.PAA &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.dictionary_based.PAA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.dictionary_based.PAA</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.load_data</span> <span class="kn">import</span> <span class="n">load_from_tsfile_to_dataframe</span> <span class="k">as</span> <span class="n">load_ts</span>
+
+
+<div class="viewcode-block" id="PAA"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.PAA.html#sktime.transformers.dictionary_based.PAA.PAA">[docs]</a><span class="k">class</span> <span class="nc">PAA</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Matthew Middlehurst&quot;</span>
+    <span class="sd">&quot;&quot;&quot; (PAA) Piecewise Aggregate Approximation Transformer, as described in </span>
+<span class="sd"> Eamonn Keogh, Kaushik Chakrabarti, Michael Pazzani, and Sharad Mehrotra. </span>
+<span class="sd"> Dimensionality reduction for fast similarity search in large time series databases. </span>
+<span class="sd"> Knowledge and information Systems, 3(3), 263-286, 2001.  </span>
+<span class="sd"> For each series reduce the dimensionality to num_intervals, where each value is the mean of values in </span>
+<span class="sd"> the interval. </span>
+<span class="sd">TO DO: pythonise it to make it more efficient. Maybe check vs this version</span>
+<span class="sd">        http://vigne.sh/posts/piecewise-aggregate-approx/</span>
+<span class="sd">Could have: Tune the interval size in fit somehow?</span>
+<span class="sd">        </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_intervals   : int, dimension of the transformed data (default 8)</span>
+
+<span class="sd">         &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">num_intervals</span><span class="o">=</span><span class="mi">8</span>
+                 <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_intervals</span> <span class="o">=</span> <span class="n">num_intervals</span>
+
+<div class="viewcode-block" id="PAA.set_num_intervals"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.PAA.html#sktime.transformers.dictionary_based.PAA.PAA.set_num_intervals">[docs]</a>    <span class="k">def</span> <span class="nf">set_num_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_intervals</span> <span class="o">=</span> <span class="n">n</span></div>
+
+<div class="viewcode-block" id="PAA.transform"><a class="viewcode-back" href="../../../../autogen/sktime.transformers.dictionary_based.PAA.html#sktime.transformers.dictionary_based.PAA.PAA.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like or sparse matrix of shape = [n_samples, num_atts]</span>
+<span class="sd">            The training input samples.  If a Pandas data frame is passed, the column 0 is extracted</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dims: Pandas data frame with first dimension in column zero</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;TSF cannot handle multivariate problems yet&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects (TSF cannot yet handle multivariate problems&quot;</span><span class="p">)</span>
+        <span class="n">num_atts</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">num_insts</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_insts</span><span class="p">):</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">current_frame</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">current_frame_size</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">frame_length</span> <span class="o">=</span> <span class="n">num_atts</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_intervals</span>
+            <span class="n">frame_sum</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_atts</span><span class="p">):</span>
+                <span class="n">remaining</span> <span class="o">=</span> <span class="n">frame_length</span> <span class="o">-</span> <span class="n">current_frame_size</span>
+
+                <span class="k">if</span> <span class="n">remaining</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">frame_sum</span> <span class="o">+=</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+                    <span class="n">current_frame_size</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">frame_sum</span> <span class="o">+=</span> <span class="n">remaining</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+                    <span class="n">current_frame_size</span> <span class="o">+=</span> <span class="n">remaining</span>
+
+                <span class="k">if</span> <span class="n">current_frame_size</span> <span class="o">==</span> <span class="n">frame_length</span><span class="p">:</span>
+                    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame_sum</span> <span class="o">/</span> <span class="n">frame_length</span><span class="p">)</span>
+                    <span class="n">current_frame</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="n">frame_sum</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">remaining</span><span class="p">)</span> <span class="o">*</span> <span class="n">series</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+                    <span class="n">current_frame_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">remaining</span><span class="p">)</span>
+
+            <span class="c1"># if the last frame was lost due to double imprecision</span>
+            <span class="k">if</span> <span class="n">current_frame</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_intervals</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame_sum</span> <span class="o">/</span> <span class="n">frame_length</span><span class="p">)</span>
+
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">frames</span><span class="p">))</span>
+
+        <span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="k">return</span> <span class="n">dims</span></div></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">testPath</span><span class="o">=</span><span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">ajb</span><span class="se">\\</span><span class="s2">Dropbox</span><span class="se">\\</span><span class="s2">Data</span><span class="se">\\</span><span class="s2">TSCProblems</span><span class="se">\\</span><span class="s2">Chinatown</span><span class="se">\\</span><span class="s2">Chinatown_TRAIN.ts&quot;</span>
+    <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span> <span class="o">=</span>  <span class="n">load_ts</span><span class="p">(</span><span class="n">testPath</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correctness testing for PAA using Chinatown&quot;</span><span class="p">)</span>
+<span class="c1">#    print(&quot;First case used for testing&quot;)</span>
+<span class="c1">#    print(train_x.iloc[0,0])</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">PAA</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test 1: num intervals =1, result should be series mean&quot;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">set_num_intervals</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">x2</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Correct mean case 1: =  561.875&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transform mean case 1: =&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test 2: num intervals = series length, series should be unchanged&quot;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">set_num_intervals</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">x2</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before transform: =&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">train_x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">train_x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After transform: =&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test 3: Integer interval length (length%num intervals =0). num intervals = 6 (gives length =4). &quot;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">set_num_intervals</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected output: = 365.25,36.75,293.5,1202.25,994,479.5&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual output: =&quot;</span><span class="p">)</span>
+    <span class="n">x2</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test 4: Non-integer interval length. num intervals = 5 (gives length =4.8). &quot;</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">set_num_intervals</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Expected output: for series[0][0][0] = 313.54&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual output: =&quot;</span><span class="p">)</span>
+    <span class="n">x2</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

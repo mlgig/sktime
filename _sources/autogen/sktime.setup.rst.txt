@@ -1,0 +1,7 @@
+sktime.setup module
+===================
+
+.. automodule:: sktime.setup
+   :members:
+   :undoc-members:
+   :show-inheritance:

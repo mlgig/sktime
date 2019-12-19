@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.utils.time_series module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.model_selection module" href="sktime.model_selection.html" />
+    <link rel="prev" title="sktime.utils.seasonality module" href="sktime.utils.seasonality.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="sktime.utils.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.utils.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.utils.html">sktime.utils package</a> &raquo;</li>
+        
+      <li>sktime.utils.time_series module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.utils.time_series.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.utils.time_series">
+<span id="sktime-utils-time-series-module"></span><h1>sktime.utils.time_series module<a class="headerlink" href="#module-sktime.utils.time_series" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sktime.utils.time_series.RollingWindowSplit">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">RollingWindowSplit</code><span class="sig-paren">(</span><em class="sig-param">window_length=None</em>, <em class="sig-param">fh=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#RollingWindowSplit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.RollingWindowSplit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Rolling window iterator that allows to split time series index into two windows,
+one containing observations used as feature data and one containing observations used as
+target data to be predicted. The target window has the length of the given forecasting horizon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>window_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default is sqrt of time series length</em><em>)</em>) – Length of rolling window</p></li>
+<li><p><strong>fh</strong> (<em>array-like</em><em>  or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>(</em><em>default=None</em><em>)</em>) – Single step ahead or array of steps ahead to forecast.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="sktime.utils.time_series.RollingWindowSplit.get_n_splits">
+<code class="sig-name descname">get_n_splits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#RollingWindowSplit.get_n_splits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.RollingWindowSplit.get_n_splits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of splits.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.utils.time_series.RollingWindowSplit.get_window_length">
+<code class="sig-name descname">get_window_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#RollingWindowSplit.get_window_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.RollingWindowSplit.get_window_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the window length.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.utils.time_series.RollingWindowSplit.split">
+<code class="sig-name descname">split</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#RollingWindowSplit.split"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.RollingWindowSplit.split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Split data using rolling window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>ndarray</em>) – 1-dimensional array of time series index to split.</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>features</strong> (<em>ndarray</em>) – The indices of the feature window</p></li>
+<li><p><strong>targets</strong> (<em>ndarray</em>) – The indices of the target window</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.utils.time_series.add_trend">
+<code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">add_trend</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">coefs</em>, <em class="sig-param">time_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#add_trend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.add_trend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add trend to array for given fitted coefficients along axis 0 or 1, inverse function to <cite>remove_trend()</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>, </em><em>n_obs</em><em>]</em>) – Time series data, each sample is treated separately</p></li>
+<li><p><strong>coefs</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>, </em><em>order + 1</em><em>]</em>) – fitted coefficients of polynomial order for each sample, one column means order zero, two columns mean order 1
+(linear), three columns mean order 2 (quadratic), etc</p></li>
+<li><p><strong>time_index</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_obs</em><em>]</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Time series index for which to add the trend components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xt</strong> – The series with added trend.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#sktime.utils.time_series.fit_trend" title="sktime.utils.time_series.fit_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_trend()</span></code></a>, <a class="reference internal" href="#sktime.utils.time_series.remove_trend" title="sktime.utils.time_series.remove_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_trend()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.utils.time_series.fit_trend">
+<code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">fit_trend</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">order=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#fit_trend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.fit_trend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit linear regression with polynomial terms of given order</p>
+<blockquote>
+<div><p>x : array_like, shape=[n_samples, n_obs]
+Time series data, each sample is fitted separately</p>
+</div></blockquote>
+<dl class="simple">
+<dt>order<span class="classifier">int</span></dt><dd><p>The polynomial order of the trend, zero is constant (mean), one is
+linear trend, two is quadratic trend, and so on.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>coefs</strong> – Fitted coefficients of polynomial order for each sample, one column means order zero, two columns mean order 1
+(linear), three columns mean order 2 (quadratic), etc</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ndarray, shape=[n_samples, order + 1]</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#sktime.utils.time_series.add_trend" title="sktime.utils.time_series.add_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_trend()</span></code></a>, <a class="reference internal" href="#sktime.utils.time_series.remove_trend" title="sktime.utils.time_series.remove_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_trend()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.utils.time_series.remove_trend">
+<code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">remove_trend</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">coefs</em>, <em class="sig-param">time_index=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#remove_trend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.remove_trend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove trend from an array with a trend of given order along axis 0 or 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array_like</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>, </em><em>n_obs</em><em>]</em>) – Time series data, each sample is de-trended separately</p></li>
+<li><p><strong>coefs</strong> (<em>ndarray</em><em>, </em><em>shape=</em><em>[</em><em>n_samples</em><em>, </em><em>order + 1</em><em>]</em>) – Fitted coefficients for each sample, single column means order zero, two columns mean order 1
+(linear), three columns mean order 2 (quadratic), etc</p></li>
+<li><p><strong>time_index</strong> (<em>array-like</em><em>, </em><em>shape=</em><em>[</em><em>n_obs</em><em>]</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Time series index for which to add the trend components</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xt</strong> – The de-trended series is the residual of the linear regression of the
+data on the trend of given order.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#sktime.utils.time_series.fit_trend" title="sktime.utils.time_series.fit_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_trend()</span></code></a>, <a class="reference internal" href="#sktime.utils.time_series.add_trend" title="sktime.utils.time_series.add_trend"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_trend()</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p>Adapted from statsmodels (0.9.0), see
+<a class="reference external" href="https://www.statsmodels.org/dev/_modules/statsmodels/tsa/tsatools.html#detrend">https://www.statsmodels.org/dev/_modules/statsmodels/tsa/tsatools.html#detrend</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.utils.time_series.split_into_tabular_train_test">
+<code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">split_into_tabular_train_test</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">window_length=None</em>, <em class="sig-param">fh=None</em>, <em class="sig-param">test_size=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#split_into_tabular_train_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.split_into_tabular_train_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to split single time series into tabular train and
+test sets using rolling window approach</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.utils.time_series.time_series_slope">
+<code class="sig-prename descclassname">sktime.utils.time_series.</code><code class="sig-name descname">time_series_slope</code><span class="sig-paren">(</span><em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/utils/time_series.html#time_series_slope"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.utils.time_series.time_series_slope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute slope of time series (y) using ordinary least squares.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>array_like</em>) – Time-series.</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Axis along which the time-series slope is computed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>slope</strong> – Slope of time-series.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.model_selection.html" class="btn btn-neutral float-right" title="sktime.model_selection module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.utils.seasonality.html" class="btn btn-neutral float-left" title="sktime.utils.seasonality module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

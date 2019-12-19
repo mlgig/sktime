@@ -1,0 +1,7 @@
+sktime.classifiers.shapelet\_based.stc module
+=============================================
+
+.. automodule:: sktime.classifiers.shapelet_based.stc
+   :members:
+   :undoc-members:
+   :show-inheritance:

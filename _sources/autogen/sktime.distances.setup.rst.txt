@@ -1,0 +1,7 @@
+sktime.distances.setup module
+=============================
+
+.. automodule:: sktime.distances.setup
+   :members:
+   :undoc-members:
+   :show-inheritance:

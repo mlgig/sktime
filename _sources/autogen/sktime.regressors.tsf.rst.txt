@@ -1,0 +1,7 @@
+sktime.regressors.tsf module
+============================
+
+.. automodule:: sktime.regressors.tsf
+   :members:
+   :undoc-members:
+   :show-inheritance:

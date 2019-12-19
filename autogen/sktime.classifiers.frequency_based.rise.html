@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.classifiers.frequency_based.rise module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.classifiers.interval_based package" href="sktime.classifiers.interval_based.html" />
+    <link rel="prev" title="sktime.classifiers.frequency_based package" href="sktime.classifiers.frequency_based.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.classifiers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sktime.classifiers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.html">sktime.classifiers package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.frequency_based.html">sktime.classifiers.frequency_based package</a> &raquo;</li>
+        
+      <li>sktime.classifiers.frequency_based.rise module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.classifiers.frequency_based.rise.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.classifiers.frequency_based.rise">
+<span id="sktime-classifiers-frequency-based-rise-module"></span><h1>sktime.classifiers.frequency_based.rise module<a class="headerlink" href="#module-sktime.classifiers.frequency_based.rise" title="Permalink to this headline">¶</a></h1>
+<p>Random Interval Spectral Forest (RISE).
+Implementation of Deng’s Time Series Forest, with minor changes</p>
+<dl class="class">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.frequency_based.rise.</code><code class="sig-name descname">RandomIntervalSpectralForest</code><span class="sig-paren">(</span><em class="sig-param">n_trees=200</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">min_interval=16</em>, <em class="sig-param">acf_lag=100</em>, <em class="sig-param">acf_min_values=4</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#RandomIntervalSpectralForest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.ensemble.forest.ForestClassifier</span></code></p>
+<p>Random Interval Spectral Forest (RISE).</p>
+<p>Random Interval Spectral Forest: stripped down implementation of RISE from Lines 2018:
+&#64;article
+{lines17hive-cote,</p>
+<blockquote>
+<div><dl class="simple">
+<dt>author = {J. Lines, S. Taylor and A. Bagnall},</dt><dd><p>title = {Time Series Classification with HIVE-COTE: The Hierarchical Vote Collective of Transformation-Based Ensembles},</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>journal = {ACM Transactions on Knowledge and Data Engineering},
+volume = {12},
+number= {5},
+year = {2018}</p>
+<p>Overview: Input n series length m
+for each tree</p>
+<blockquote>
+<div><p>sample a random intervals
+take the ACF and PS over this interval, and concatenate features
+build tree on new features</p>
+</div></blockquote>
+<p>ensemble the trees through averaging probabilities.
+Need to have a minimum interval for each tree
+This is from the python github.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_trees</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>ensemble size</em><em>, </em><em>optional</em><em> (</em><em>default = 200</em><em>)</em>) – </p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>seed for random</em><em>, </em><em>integer</em><em>, </em><em>optional</em><em> (</em><em>default to no seed</em><em>)</em>) – </p></li>
+<li><p><strong>min_interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>minimum width of an interval</em><em>, </em><em>optional</em><em> (</em><em>default = 16</em><em>)</em>) – </p></li>
+<li><p><strong>acf_lag</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>maximum number of autocorellation terms to use</em><em> (</em><em>default =100</em><em>)</em>) – </p></li>
+<li><p><strong>acf_min_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>never use fewer than this number of terms to fnd a correlation</em><em> (</em><em>default =4</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.n_classes">
+<code class="sig-name descname">n_classes</code><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.n_classes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a>, extracted from the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.classifiers">
+<code class="sig-name descname">classifiers</code><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.classifiers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array of shape = [n_trees] of DecisionTree classifiers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.intervals">
+<code class="sig-name descname">intervals</code><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.intervals" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array of shape = [n_trees][2] stores indexes of  start and end points for all classifiers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">TO DO</code></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>handle missing values, unequal length series and multivariate problems</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">sample_weight=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#RandomIntervalSpectralForest.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a forest of trees from the training set (X, y) using random intervals and spectral features
+:param X: The training input samples.  If a Pandas data frame is passed it must have a single column (i.e. univariate</p>
+<blockquote>
+<div><p>classification. RISE has no bespoke method for multivariate classification as yet.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em>  [</em><em>n_instances</em><em>]    </em><em>The class labels.</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#RandomIntervalSpectralForest.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find predictions for all cases in X. Built on top of predict_proba
+:param X:
+:type X: array-like or sparse matrix of shape = [n_instances, n_columns] or a data frame.
+:param If a Pandas data frame is passed,:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>output</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of shape = [n_instances]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#RandomIntervalSpectralForest.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.RandomIntervalSpectralForest.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find probability estimates for each class for all cases in X.
+:param X: The training input samples.  If a Pandas data frame is passed,
+:type X: array-like or sparse matrix of shape = [n_instances, n_columns]
+:param Local variables:
+:param ———-:
+:param n_samps:
+:type n_samps: int, number of cases to classify
+:param n_columns:
+:type n_columns: int, number of attributes in X, must match _num_atts determined in fit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>output</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of shape = [n_instances, n_classes] of probabilities</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.classifiers.frequency_based.rise.acf">
+<code class="sig-prename descclassname">sktime.classifiers.frequency_based.rise.</code><code class="sig-name descname">acf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">max_lag</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#acf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.acf" title="Permalink to this definition">¶</a></dt>
+<dd><p>autocorrelation function transform, currently calculated using standard stats method.
+We could use inverse of power spectrum, especially given we already have found it, worth testing for speed and correctness
+HOWEVER, for long series, it may not give much benefit, as we do not use that many ACF terms</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>array-like shape =</em><em> [</em><em>interval_width</em><em>]</em>) – </p></li>
+<li><p><strong>max_lag</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>number of ACF terms to find</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>y</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like shape = [max_lag]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.classifiers.frequency_based.rise.matrix_acf">
+<code class="sig-prename descclassname">sktime.classifiers.frequency_based.rise.</code><code class="sig-name descname">matrix_acf</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">num_cases</em>, <em class="sig-param">max_lag</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#matrix_acf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.matrix_acf" title="Permalink to this definition">¶</a></dt>
+<dd><p>autocorrelation function transform, currently calculated using standard stats method.
+We could use inverse of power spectrum, especially given we already have found it, worth testing for speed and correctness
+HOWEVER, for long series, it may not give much benefit, as we do not use that many ACF terms</p>
+<blockquote>
+<div><p>Parameters</p>
+</div></blockquote>
+<p>x : array-like shape = [num_cases, interval_width]
+max_lag: int, number of ACF terms to find</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>y</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array-like shape = [num_cases,max_lag]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.classifiers.frequency_based.rise.ps">
+<code class="sig-prename descclassname">sktime.classifiers.frequency_based.rise.</code><code class="sig-name descname">ps</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/frequency_based/rise.html#ps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.frequency_based.rise.ps" title="Permalink to this definition">¶</a></dt>
+<dd><p>power spectrum transform, currently calculated using np function.
+It would be worth looking at ff implementation, see difference in speed to java
+:param x:
+:type x: array-like shape = [interval_width]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>y</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array-like shape = [len(x)/2]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.classifiers.interval_based.html" class="btn btn-neutral float-right" title="sktime.classifiers.interval_based package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.classifiers.frequency_based.html" class="btn btn-neutral float-left" title="sktime.classifiers.frequency_based package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

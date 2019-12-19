@@ -1,0 +1,7 @@
+sktime.forecasters.compose module
+=================================
+
+.. automodule:: sktime.forecasters.compose
+   :members:
+   :undoc-members:
+   :show-inheritance:

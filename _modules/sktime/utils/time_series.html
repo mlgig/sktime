@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.utils.time_series &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.utils.time_series</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.utils.time_series</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
+
+<span class="kn">from</span> <span class="nn">sktime.utils.validation.forecasting</span> <span class="kn">import</span> <span class="n">validate_fh</span><span class="p">,</span> <span class="n">validate_time_index</span>
+
+
+<div class="viewcode-block" id="time_series_slope"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.time_series_slope">[docs]</a><span class="k">def</span> <span class="nf">time_series_slope</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Compute slope of time series (y) using ordinary least squares.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : array_like</span>
+<span class="sd">        Time-series.</span>
+<span class="sd">    axis : int</span>
+<span class="sd">        Axis along which the time-series slope is computed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    slope : float</span>
+<span class="sd">        Slope of time-series.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <span class="n">len_series</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">len_series</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">len_series</span><span class="p">)</span>  <span class="c1"># time index</span>
+        <span class="n">x_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">len_series</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># faster than x.mean()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_mean</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_mean</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RollingWindowSplit"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.RollingWindowSplit">[docs]</a><span class="k">class</span> <span class="nc">RollingWindowSplit</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Rolling window iterator that allows to split time series index into two windows,</span>
+<span class="sd">    one containing observations used as feature data and one containing observations used as</span>
+<span class="sd">    target data to be predicted. The target window has the length of the given forecasting horizon.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    window_length : int, optional (default is sqrt of time series length)</span>
+<span class="sd">        Length of rolling window</span>
+<span class="sd">    fh : array-like  or int, optional, (default=None)</span>
+<span class="sd">        Single step ahead or array of steps ahead to forecast.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># TODO input checks</span>
+        <span class="k">if</span> <span class="n">window_length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">window_length</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Window length must be an integer, but found: {type(window_length)}&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_length</span> <span class="o">=</span> <span class="n">window_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fh</span> <span class="o">=</span> <span class="n">validate_fh</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+        <span class="c1"># Attributes updated in split</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_splits_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="RollingWindowSplit.split"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.RollingWindowSplit.split">[docs]</a>    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Split data using rolling window.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : ndarray</span>
+<span class="sd">            1-dimensional array of time series index to split.</span>
+
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        features : ndarray</span>
+<span class="sd">            The indices of the feature window</span>
+<span class="sd">        targets : ndarray</span>
+<span class="sd">            The indices of the target window</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Input checks.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Passed data has to be 1-d numpy array, but found data of type: {type(data)} with &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{data.ndim}</span><span class="s2"> dimensions&quot;</span><span class="p">)</span>
+
+        <span class="n">n_obs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">max_fh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># furthest step ahead, assume fh is sorted</span>
+
+        <span class="c1"># Set default window length to sqrt of series length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_obs</span><span class="p">))</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_length</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_length</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span> <span class="o">+</span> <span class="n">max_fh</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">n_obs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Window length and forecast horizon cannot be longer than data&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Iterate over windows</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">n_obs</span> <span class="o">-</span> <span class="n">max_fh</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_splits_</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+
+        <span class="k">for</span> <span class="n">window</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">window</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span><span class="p">:</span><span class="n">window</span><span class="p">]</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">window</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">fh</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="n">features</span><span class="p">,</span> <span class="n">targets</span></div>
+
+<div class="viewcode-block" id="RollingWindowSplit.get_n_splits"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.RollingWindowSplit.get_n_splits">[docs]</a>    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return number of splits.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_splits_</span></div>
+
+<div class="viewcode-block" id="RollingWindowSplit.get_window_length"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.RollingWindowSplit.get_window_length">[docs]</a>    <span class="k">def</span> <span class="nf">get_window_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the window length.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_length_</span></div></div>
+
+
+<div class="viewcode-block" id="fit_trend"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.fit_trend">[docs]</a><span class="k">def</span> <span class="nf">fit_trend</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fit linear regression with polynomial terms of given order</span>
+
+<span class="sd">        x : array_like, shape=[n_samples, n_obs]</span>
+<span class="sd">        Time series data, each sample is fitted separately</span>
+<span class="sd">    order : int</span>
+<span class="sd">        The polynomial order of the trend, zero is constant (mean), one is</span>
+<span class="sd">        linear trend, two is quadratic trend, and so on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    coefs : ndarray, shape=[n_samples, order + 1]</span>
+<span class="sd">        Fitted coefficients of polynomial order for each sample, one column means order zero, two columns mean order 1</span>
+<span class="sd">        (linear), three columns mean order 2 (quadratic), etc</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    -------</span>
+<span class="sd">    add_trend</span>
+<span class="sd">    remove_trend</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">coefs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n_obs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_obs</span><span class="p">)</span>
+        <span class="n">poly_terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># linear least squares fitting using numpy&#39;s optimised routine, assuming samples in columns</span>
+        <span class="c1"># coefs = np.linalg.pinv(poly_terms).dot(x.T).T</span>
+        <span class="n">coefs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">poly_terms</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># returning fitted coefficients in expected format with samples in rows</span>
+        <span class="n">coefs</span> <span class="o">=</span> <span class="n">coefs</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">coefs</span></div>
+
+
+<div class="viewcode-block" id="remove_trend"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.remove_trend">[docs]</a><span class="k">def</span> <span class="nf">remove_trend</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Remove trend from an array with a trend of given order along axis 0 or 1</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like, shape=[n_samples, n_obs]</span>
+<span class="sd">        Time series data, each sample is de-trended separately</span>
+<span class="sd">    coefs : ndarray, shape=[n_samples, order + 1]</span>
+<span class="sd">        Fitted coefficients for each sample, single column means order zero, two columns mean order 1</span>
+<span class="sd">        (linear), three columns mean order 2 (quadratic), etc</span>
+<span class="sd">    time_index : array-like, shape=[n_obs], optional (default=None)</span>
+<span class="sd">        Time series index for which to add the trend components</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xt : ndarray</span>
+<span class="sd">        The de-trended series is the residual of the linear regression of the</span>
+<span class="sd">        data on the trend of given order.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    fit_trend</span>
+<span class="sd">    add_trend</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Adapted from statsmodels (0.9.0), see</span>
+<span class="sd">    https://www.statsmodels.org/dev/_modules/statsmodels/tsa/tsatools.html#detrend</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># infer order from shape of given coefficients</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">coefs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c1"># special case, remove mean</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">coefs</span>
+        <span class="k">return</span> <span class="n">xt</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">time_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># if no time index is given, create range index</span>
+            <span class="n">n_obs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">time_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_obs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># validate given time index</span>
+            <span class="n">time_index</span> <span class="o">=</span> <span class="n">validate_time_index</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Length of passed index does not match length of passed x&#39;</span><span class="p">)</span>
+
+        <span class="n">poly_terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">time_index</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">poly_terms</span><span class="p">,</span> <span class="n">coefs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">xt</span></div>
+
+
+<div class="viewcode-block" id="add_trend"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.add_trend">[docs]</a><span class="k">def</span> <span class="nf">add_trend</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">coefs</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add trend to array for given fitted coefficients along axis 0 or 1, inverse function to `remove_trend()`</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array_like, shape=[n_samples, n_obs]</span>
+<span class="sd">        Time series data, each sample is treated separately</span>
+<span class="sd">    coefs : array-like, shape=[n_samples, order + 1]</span>
+<span class="sd">        fitted coefficients of polynomial order for each sample, one column means order zero, two columns mean order 1</span>
+<span class="sd">        (linear), three columns mean order 2 (quadratic), etc</span>
+<span class="sd">    time_index : array-like, shape=[n_obs], optional (default=None)</span>
+<span class="sd">        Time series index for which to add the trend components</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    xt : ndarray</span>
+<span class="sd">        The series with added trend.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    -------</span>
+<span class="sd">    fit_trend</span>
+<span class="sd">    remove_trend</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1">#  infer order from shape of given coefficients</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">coefs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="c1"># special case, add mean</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">coefs</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">time_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_obs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">time_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_obs</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># validate given time index</span>
+            <span class="n">time_index</span> <span class="o">=</span> <span class="n">validate_time_index</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span> <span class="o">==</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Length of passed index does not match length of passed x&#39;</span><span class="p">)</span>
+
+        <span class="n">poly_terms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">time_index</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">poly_terms</span><span class="p">,</span> <span class="n">coefs</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="k">return</span> <span class="n">xt</span></div>
+
+
+<div class="viewcode-block" id="split_into_tabular_train_test"><a class="viewcode-back" href="../../../autogen/sktime.utils.time_series.html#sktime.utils.time_series.split_into_tabular_train_test">[docs]</a><span class="k">def</span> <span class="nf">split_into_tabular_train_test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fh</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to split single time series into tabular train and</span>
+<span class="sd">    test sets using rolling window approach&quot;&quot;&quot;</span>
+
+    <span class="c1"># validate forecasting horizon</span>
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">validate_fh</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+
+    <span class="c1"># get time series index</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="c1"># set up rolling window iterator</span>
+    <span class="n">rw</span> <span class="o">=</span> <span class="n">RollingWindowSplit</span><span class="p">(</span><span class="n">window_length</span><span class="o">=</span><span class="n">window_length</span><span class="p">,</span> <span class="n">fh</span><span class="o">=</span><span class="n">fh</span><span class="p">)</span>
+
+    <span class="c1"># slice time series into windows</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">rw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+        <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="nb">input</span><span class="p">]</span>
+        <span class="n">yt</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">output</span><span class="p">]</span>
+        <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xt</span><span class="p">)</span>
+        <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yt</span><span class="p">)</span>
+
+    <span class="c1"># stack windows into tabular array</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span>
+
+    <span class="c1"># split into train and test set</span>
+    <span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="n">test_size</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="n">test_size</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="n">test_size</span><span class="p">:,</span> <span class="p">:]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">test_size</span><span class="p">:,</span> <span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span></div>
+
+
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

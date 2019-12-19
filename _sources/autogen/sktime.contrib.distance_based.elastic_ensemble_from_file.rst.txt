@@ -1,0 +1,7 @@
+sktime.contrib.distance\_based.elastic\_ensemble\_from\_file module
+===================================================================
+
+.. automodule:: sktime.contrib.distance_based.elastic_ensemble_from_file
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+sktime.distances.mpdist module
+==============================
+
+.. automodule:: sktime.distances.mpdist
+   :members:
+   :undoc-members:
+   :show-inheritance:

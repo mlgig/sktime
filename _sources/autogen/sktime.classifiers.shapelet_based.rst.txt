@@ -1,0 +1,14 @@
+sktime.classifiers.shapelet\_based package
+==========================================
+
+.. automodule:: sktime.classifiers.shapelet_based
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sktime.classifiers.shapelet_based.stc

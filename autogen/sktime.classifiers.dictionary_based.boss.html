@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.classifiers.dictionary_based.boss module &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="sktime.classifiers.distance_based package" href="sktime.classifiers.distance_based.html" />
+    <link rel="prev" title="sktime.classifiers.dictionary_based package" href="sktime.classifiers.dictionary_based.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="sktime.html">sktime package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sktime.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sktime.benchmarking.html">sktime.benchmarking package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="sktime.classifiers.html">sktime.classifiers package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="sktime.classifiers.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sktime.classifiers.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.contrib.html">sktime.contrib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.datasets.html">sktime.datasets package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.distances.html">sktime.distances package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.forecasters.html">sktime.forecasters package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.highlevel.html">sktime.highlevel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.metrics.html">sktime.metrics package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.regressors.html">sktime.regressors package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.transformers.html">sktime.transformers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sktime.utils.html">sktime.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sktime.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sktime.html">sktime package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.html">sktime.classifiers package</a> &raquo;</li>
+        
+          <li><a href="sktime.classifiers.dictionary_based.html">sktime.classifiers.dictionary_based package</a> &raquo;</li>
+        
+      <li>sktime.classifiers.dictionary_based.boss module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/autogen/sktime.classifiers.dictionary_based.boss.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-sktime.classifiers.dictionary_based.boss">
+<span id="sktime-classifiers-dictionary-based-boss-module"></span><h1>sktime.classifiers.dictionary_based.boss module<a class="headerlink" href="#module-sktime.classifiers.dictionary_based.boss" title="Permalink to this headline">¶</a></h1>
+<p>BOSS classifiers
+dictionary based BOSS classifiers based on SFA transform. Contains a single BOSS and a BOSS ensemble</p>
+<dl class="class">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.dictionary_based.boss.</code><code class="sig-name descname">BOSSEnsemble</code><span class="sig-paren">(</span><em class="sig-param">randomised_ensemble=False</em>, <em class="sig-param">n_parameter_samples=250</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">threshold=0.92</em>, <em class="sig-param">max_ensemble_size=None</em>, <em class="sig-param">max_win_len_prop=1</em>, <em class="sig-param">time_limit=0</em>, <em class="sig-param">word_lengths=None</em>, <em class="sig-param">alphabet_size=4</em>, <em class="sig-param">min_window=10</em>, <em class="sig-param">norm_options=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
+<p>Bag of SFA Symbols (BOSS)</p>
+<p>Bag of SFA Symbols Ensemble: implementation of BOSS from Schafer:
+&#64;article
+{schafer15boss,</p>
+<blockquote>
+<div><dl class="simple">
+<dt>author = {Patrick Schäfer,</dt><dd><p>title = {The BOSS is concerned with time series classification in the presence of noise},
+journal = {Data Mining and Knowledge Discovery},
+volume = {29},
+number= {6},
+year = {2015}</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>}
+Overview: Input n series length m
+BOSS performs a gird search over a set of parameter values, evaluating each with a LOOCV. If then retains
+all ensemble members within 92% of the best. There are three primary parameters:</p>
+<blockquote>
+<div><p>alpha: alphabet size
+w: window length
+l: word length.</p>
+</div></blockquote>
+<p>for any combination, a single BOSS slides a window length w along the series. The w length window is shortened to
+an l length word through taking a Fourier transform and keeping the first l/2 complex coefficients. These l
+coefficents are then discretised into alpha possible values, to form a word length l. A histogram of words for each
+series is formed and stored. fit involves finding n histograms.</p>
+<p>predict uses 1 nearest neighbour with a bespoke distance function.</p>
+<p>For the Java version, see
+<a class="reference external" href="https://github.com/uea-machine-learning/tsml/blob/master/src/main/java/timeseriesweka/classifiers/dictionary_based/BOSS.java">https://github.com/uea-machine-learning/tsml/blob/master/src/main/java/timeseriesweka/classifiers/dictionary_based/BOSS.java</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>randomised_ensemble</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>turns the option to just randomise the ensemble members rather than cross validate</em><em> (</em><em>default=False</em><em>)</em>) – </p></li>
+<li><p><strong>n_parameter_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>if search is randomised</em><em>, </em><em>number of parameter combos to try</em>) – </p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>seed for random</em><em>, </em><em>integer</em><em>, </em><em>optional</em><em> (</em><em>default to no seed</em><em>)</em>) – </p></li>
+<li><p><strong>threshold</strong> (<em>double</em><em> [</em><em>0</em><em>,</em><em>1</em><em>]</em><em> retain all classifiers within threshold% of the best one</em><em>, </em><em>optional</em><em> (</em><em>default =0.92</em><em>)</em>) – </p></li>
+<li><p><strong>max_ensemble_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>retain a maximum number of classifiers</em><em>, </em><em>even if within threshold</em><em>, </em><em>optional</em><em> (</em><em>default = 500</em><em>)</em>) – </p></li>
+<li><p><strong>alphabet_size</strong> (<em>range of alphabet size to search for</em><em> (</em><em>default</em><em>, </em><em>a single value a=4</em><em>)</em><em>,</em>) – </p></li>
+<li><p><strong>max_win_len_prop</strong> (<em>maximum window length as a proportion of series length</em><em> (</em><em>default =1</em><em>)</em>) – </p></li>
+<li><p><strong>time_limit</strong> (<em>time contract to limit build time in minutes</em><em> (</em><em>default=0</em><em>, </em><em>no limit</em><em>)</em>) – </p></li>
+<li><p><strong>word_lengths</strong> (<em>search range for word lengths</em><em> (</em><em>default =</em><em>[</em><em>16</em><em>, </em><em>14</em><em>, </em><em>12</em><em>, </em><em>10</em><em>, </em><em>8</em><em>]</em><em>)</em>) – </p></li>
+<li><p><strong>alphabet_size</strong> – </p></li>
+<li><p><strong>min_window</strong> (<em>minimum window size</em><em>, </em><em>(</em><em>default=10</em><em>)</em><em>,</em>) – </p></li>
+<li><p><strong>norm_options</strong> (<em>search space for normalise</em><em>, </em><em>not normalise</em><em> (</em><em>default</em><em> [</em><em>True</em><em>, </em><em>False</em><em>]</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_classes">
+<code class="sig-name descname">n_classes</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_classes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>extracted from the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_instances">
+<code class="sig-name descname">n_instances</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_instances" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>extracted from the data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_classifiers">
+<code class="sig-name descname">n_classifiers</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.n_classifiers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The final number of classifiers used (&lt;=max_ensemble_size)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.series_length">
+<code class="sig-name descname">series_length</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.series_length" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>length of all series (assumed equal)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.classifiers">
+<code class="sig-name descname">classifiers</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.classifiers" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>array of DecisionTree classifiers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.weights">
+<code class="sig-name descname">weights</code><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.weights" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>weight of each classifier in the ensemble</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.find_ensemble_train_acc">
+<code class="sig-name descname">find_ensemble_train_acc</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.find_ensemble_train_acc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.find_ensemble_train_acc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.fit" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Build an ensemble of BOSS classifiers from the training set (X, y), either through randomising over the para</dt><dd><p>space to make a fixed size ensemble quickly or by creating a variable size ensemble of those within a threshold
+of the best</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em> or </em><em>sparse matrix of shape =</em><em> [</em><em>n_instances</em><em>, </em><em>n_columns</em><em>]</em>) – The training input samples.  If a Pandas data frame is passed, it must have a single column. BOSS not configured
+to handle multivariate</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_instances</em><em>] </em><em>The class labels.</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.get_train_probs">
+<code class="sig-name descname">get_train_probs</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.get_train_probs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.get_train_probs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.include_in_ensemble">
+<code class="sig-name descname">include_in_ensemble</code><span class="sig-paren">(</span><em class="sig-param">acc</em>, <em class="sig-param">max_acc</em>, <em class="sig-param">min_max_acc</em>, <em class="sig-param">size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.include_in_ensemble"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.include_in_ensemble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.individual_train_acc">
+<code class="sig-name descname">individual_train_acc</code><span class="sig-paren">(</span><em class="sig-param">boss</em>, <em class="sig-param">y</em>, <em class="sig-param">train_size</em>, <em class="sig-param">lowest_acc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.individual_train_acc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.individual_train_acc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.unique_parameters">
+<code class="sig-name descname">unique_parameters</code><span class="sig-paren">(</span><em class="sig-param">max_window</em>, <em class="sig-param">win_inc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.unique_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.unique_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSEnsemble.worst_ensemble_acc">
+<code class="sig-name descname">worst_ensemble_acc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSEnsemble.worst_ensemble_acc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSEnsemble.worst_ensemble_acc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual">
+<em class="property">class </em><code class="sig-prename descclassname">sktime.classifiers.dictionary_based.boss.</code><code class="sig-name descname">BOSSIndividual</code><span class="sig-paren">(</span><em class="sig-param">window_size</em>, <em class="sig-param">word_length</em>, <em class="sig-param">alphabet_size</em>, <em class="sig-param">norm</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.base.BaseEstimator</span></code></p>
+<p>Single Bag of SFA Symbols (BOSS) classifier</p>
+<p>Bag of SFA Symbols Ensemble: implementation of BOSS from Schaffer :
+&#64;article</p>
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.predict_proba"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.set_word_len">
+<code class="sig-name descname">set_word_len</code><span class="sig-paren">(</span><em class="sig-param">word_len</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.set_word_len"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.set_word_len" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.shorten_bags">
+<code class="sig-name descname">shorten_bags</code><span class="sig-paren">(</span><em class="sig-param">word_len</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.shorten_bags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.shorten_bags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sktime.classifiers.dictionary_based.boss.BOSSIndividual.train_predict">
+<code class="sig-name descname">train_predict</code><span class="sig-paren">(</span><em class="sig-param">train_num</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#BOSSIndividual.train_predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.BOSSIndividual.train_predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="sktime.classifiers.dictionary_based.boss.boss_distance">
+<code class="sig-prename descclassname">sktime.classifiers.dictionary_based.boss.</code><code class="sig-name descname">boss_distance</code><span class="sig-paren">(</span><em class="sig-param">first</em>, <em class="sig-param">second</em>, <em class="sig-param">best_dist=1.7976931348623157e+308</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sktime/classifiers/dictionary_based/boss.html#boss_distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sktime.classifiers.dictionary_based.boss.boss_distance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sktime.classifiers.distance_based.html" class="btn btn-neutral float-right" title="sktime.classifiers.distance_based package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sktime.classifiers.dictionary_based.html" class="btn btn-neutral float-left" title="sktime.classifiers.dictionary_based package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

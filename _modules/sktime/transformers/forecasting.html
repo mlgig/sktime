@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.forecasting &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.forecasting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.forecasting</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.seasonal</span> <span class="kn">import</span> <span class="n">seasonal_decompose</span>
+
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.compose</span> <span class="kn">import</span> <span class="n">Tabulariser</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.data_container</span> <span class="kn">import</span> <span class="n">get_time_index</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.time_series</span> <span class="kn">import</span> <span class="n">fit_trend</span><span class="p">,</span> <span class="n">remove_trend</span><span class="p">,</span> <span class="n">add_trend</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.validation.forecasting</span> <span class="kn">import</span> <span class="n">validate_sp</span><span class="p">,</span> <span class="n">check_is_fitted_in_transform</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.validation.supervised</span> <span class="kn">import</span> <span class="n">validate_X</span><span class="p">,</span> <span class="n">check_X_is_univariate</span>
+
+
+<div class="viewcode-block" id="Deseasonaliser"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Deseasonaliser">[docs]</a><span class="k">class</span> <span class="nc">Deseasonaliser</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A transformer that removes a seasonal component from time series/panel data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sp : int, optional (default=1)</span>
+<span class="sd">        Seasonal periodicity</span>
+<span class="sd">    model : str {&#39;additive&#39;, &#39;multiplicative&#39;}, optional (default=&#39;additive&#39;)</span>
+<span class="sd">        Model to use for estimating seasonal component</span>
+<span class="sd">    check_input : bool, optional (default=True)</span>
+<span class="sd">        When set to ``True``, inputs will be validated, otherwise inputs are assumed to be valid</span>
+<span class="sd">        and no checks are performed. Use with caution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;additive&#39;</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">=</span> <span class="n">validate_sp</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+        <span class="n">allowed_models</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;additive&#39;</span><span class="p">,</span> <span class="s1">&#39;multiplicative&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">allowed_models</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Allowed models are </span><span class="si">{allowed_models}</span><span class="s2">, but found: </span><span class="si">{model}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span> <span class="o">=</span> <span class="n">check_input</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Deseasonaliser.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Deseasonaliser.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transform X.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : nested pandas DataFrame of shape [n_samples, n_features]</span>
+<span class="sd">            Nested dataframe with time-series in cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xt : pandas DataFrame</span>
+<span class="sd">          Transformed pandas DataFrame with same number of rows and one column for each generated interval.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span><span class="p">:</span>
+            <span class="n">validate_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Currently does not work on multiple columns, make use of ColumnTransformer &quot;</span>
+                                          <span class="sa">f</span><span class="s2">&quot;instead&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c1"># when seasonal periodicity is equal to 1 return X unchanged</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">X</span>
+
+        <span class="c1"># keep time index as transform/inverse transform depends on it, e.g. to carry forward trend in inverse_transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span> <span class="o">=</span> <span class="n">get_time_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># convert into tabular format</span>
+        <span class="n">tabulariser</span> <span class="o">=</span> <span class="n">Tabulariser</span><span class="p">()</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;is_fitted_&#39;</span><span class="p">)</span>
+        <span class="n">validate_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># fit seasonal decomposition model</span>
+        <span class="n">seasonal_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_seasonal_decomposition_model</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+
+        <span class="c1"># remove seasonal components from data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;additive&#39;</span><span class="p">:</span>
+            <span class="n">Xt</span> <span class="o">=</span> <span class="n">Xs</span> <span class="o">-</span> <span class="n">seasonal_components</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xt</span> <span class="o">=</span> <span class="n">Xs</span> <span class="o">/</span> <span class="n">seasonal_components</span>
+
+        <span class="c1"># keep fitted seasonal components for inverse transform, they are repeated after the first seasonal</span>
+        <span class="c1"># period so we only keep the components for the first seasonal period</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seasonal_components_</span> <span class="o">=</span> <span class="n">seasonal_components</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">sp</span><span class="p">]</span>
+
+        <span class="c1"># convert back into nested format</span>
+        <span class="n">Xt</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xt</span><span class="p">))</span>
+        <span class="n">Xt</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">return</span> <span class="n">Xt</span></div>
+
+<div class="viewcode-block" id="Deseasonaliser.inverse_transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Deseasonaliser.inverse_transform">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inverse transform X</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : nested pandas DataFrame of shape [n_samples, n_features]</span>
+<span class="sd">            Nested dataframe with time-series in cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xt : pandas DataFrame</span>
+<span class="sd">          Transformed pandas DataFrame with same number of rows and one column for each generated interval.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span><span class="p">:</span>
+            <span class="n">validate_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">check_X_is_univariate</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># check that number of samples are the same, inverse transform depends on parameters fitted in transform and</span>
+        <span class="c1"># hence only works on data with the same (number of) rows</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inverse transform only works on data with the same number samples &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;as seen during transform, but found: </span><span class="si">{X.shape[0]}</span><span class="s2"> samples &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;!= </span><span class="si">{self._input_shape[0]}</span><span class="s2"> samples (seen during transform)&quot;</span><span class="p">)</span>
+
+        <span class="c1"># if the seasonal periodicity is 1, return unchanged X</span>
+        <span class="n">sp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span>
+        <span class="k">if</span> <span class="n">sp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">X</span>
+
+        <span class="c1"># check if seasonal decomposition model has been fitted in transform</span>
+        <span class="n">check_is_fitted_in_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;seasonal_components_&#39;</span><span class="p">)</span>
+
+        <span class="c1"># check if time index is aligned with time index seen during transform</span>
+        <span class="n">time_index</span> <span class="o">=</span> <span class="n">get_time_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># align seasonal components with index of X</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">time_index</span><span class="p">):</span>
+            <span class="c1"># if time index is the same as used for fitting seasonal components, simply expand it to the size of X</span>
+            <span class="n">seasonal_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seasonal_components_</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if time index is not aligned, make sure to align fitted seasonal components to new index</span>
+            <span class="n">seasonal_components</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_seasonal_components_to_index</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span>
+
+        <span class="c1"># expand or shorten aligned seasonal components to same size as X</span>
+        <span class="n">n_obs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_obs</span> <span class="o">&gt;</span> <span class="n">sp</span><span class="p">:</span>
+            <span class="n">n_tiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_obs</span> <span class="o">/</span> <span class="n">sp</span><span class="p">))</span>
+            <span class="n">seasonal_components</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">seasonal_components</span><span class="p">,</span> <span class="n">n_tiles</span><span class="p">)</span>
+        <span class="n">seasonal_components</span> <span class="o">=</span> <span class="n">seasonal_components</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_obs</span><span class="p">]</span>
+
+        <span class="c1"># convert into tabular format</span>
+        <span class="n">tabulariser</span> <span class="o">=</span> <span class="n">Tabulariser</span><span class="p">()</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># inverse transform data</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;additive&#39;</span><span class="p">:</span>
+            <span class="n">Xit</span> <span class="o">=</span> <span class="n">Xs</span> <span class="o">+</span> <span class="n">seasonal_components</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xit</span> <span class="o">=</span> <span class="n">Xs</span> <span class="o">*</span> <span class="n">seasonal_components</span>
+
+        <span class="c1"># convert back into nested format</span>
+        <span class="n">Xit</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xit</span><span class="p">))</span>
+        <span class="n">Xit</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">return</span> <span class="n">Xit</span></div>
+
+    <span class="k">def</span> <span class="nf">_align_seasonal_components_to_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper function to align seasonal components with new time series index&quot;&quot;&quot;</span>
+        <span class="c1"># find out by how much we have to shift seasonal_components to align with new index</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="n">time_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">sp</span>
+
+        <span class="c1"># align seasonal components with new starting point of new time_index</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seasonal_components_</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">shift</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fit_seasonal_decomposition_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit seasonal decopmosition model and return fitted seasonal components&quot;&quot;&quot;</span>
+        <span class="c1"># statsmodels `seasonal_decompose` expects time series to be in columns, rather than rows, we therefore need to</span>
+        <span class="c1"># transpose X here</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">seasonal_decompose</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sp</span><span class="p">,</span> <span class="n">filt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">two_sided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">extrapolate_trend</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">seasonal_components</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">seasonal</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">seasonal_components</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Detrender"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Detrender">[docs]</a><span class="k">class</span> <span class="nc">Detrender</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A transformer that removes trend of given polynomial order from time series/panel data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    order : int</span>
+<span class="sd">        Polynomial order, zero: mean, one: linear, two: quadratic, etc</span>
+<span class="sd">    check_input : bool, optional (default=True)</span>
+<span class="sd">        When set to ``True``, inputs will be validated, otherwise inputs are assumed to be valid</span>
+<span class="sd">        and no checks are performed. Use with caution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">order</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;order must be a positive integer, but found: {type(order)}&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span> <span class="o">=</span> <span class="n">check_input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Detrender.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Detrender.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transform X.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : nested pandas DataFrame of shape [n_samples, n_features]</span>
+<span class="sd">            Nested dataframe with time-series in cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xt : pandas DataFrame</span>
+<span class="sd">          Transformed pandas DataFrame with same number of rows and one column for each generated interval.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input must be pandas DataFrame, but found: {type(X)}&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Currently does not work on multiple columns&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="c1"># keep time index as trend depends on it, e.g. to carry forward trend in inverse_transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span> <span class="o">=</span> <span class="n">get_time_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># convert into tabular format</span>
+        <span class="n">tabulariser</span> <span class="o">=</span> <span class="n">Tabulariser</span><span class="p">()</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># fit polynomial trend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coefs_</span> <span class="o">=</span> <span class="n">fit_trend</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">)</span>
+
+        <span class="c1"># remove trend</span>
+        <span class="n">Xt</span> <span class="o">=</span> <span class="n">remove_trend</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">coefs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coefs_</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_index</span><span class="p">)</span>
+
+        <span class="c1"># convert back into nested format</span>
+        <span class="n">Xt</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xt</span><span class="p">))</span>
+        <span class="n">Xt</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">return</span> <span class="n">Xt</span></div>
+
+<div class="viewcode-block" id="Detrender.inverse_transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.forecasting.html#sktime.transformers.forecasting.Detrender.inverse_transform">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inverse transform X</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : nested pandas DataFrame of shape [n_samples, n_features]</span>
+<span class="sd">            Nested dataframe with time-series in cells.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Xt : pandas DataFrame</span>
+<span class="sd">          Transformed pandas DataFrame with same number of rows and one column for each generated interval.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">check_is_fitted_in_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;coefs_&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_input</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input must be pandas DataFrame, but found: {type(X)}&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Currently does not work on multiple columns, make use of ColumnTransformer &quot;</span>
+                                      <span class="sa">f</span><span class="s2">&quot;instead&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inverse transform only works on data with the same number samples &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;as seen during transform, but found: </span><span class="si">{X.shape[0]}</span><span class="s2"> samples &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;!= </span><span class="si">{self._input_shape[0]}</span><span class="s2"> samples (seen during transform)&quot;</span><span class="p">)</span>
+
+        <span class="n">time_index</span> <span class="o">=</span> <span class="n">get_time_index</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="c1"># convert into tabular format</span>
+        <span class="n">tabulariser</span> <span class="o">=</span> <span class="n">Tabulariser</span><span class="p">()</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># add trend at given time series index</span>
+        <span class="n">Xit</span> <span class="o">=</span> <span class="n">add_trend</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">coefs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coefs_</span><span class="p">,</span> <span class="n">time_index</span><span class="o">=</span><span class="n">time_index</span><span class="p">)</span>
+
+        <span class="c1"># convert back into nested format</span>
+        <span class="n">Xit</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Xit</span><span class="p">))</span>
+        <span class="n">Xit</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+        <span class="k">return</span> <span class="n">Xit</span></div></div>
+
+
+<span class="n">Deseasonalizer</span> <span class="o">=</span> <span class="n">Deseasonaliser</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

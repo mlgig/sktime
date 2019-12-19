@@ -1,0 +1,7 @@
+sktime.contrib.dictionary\_based.bop module
+===========================================
+
+.. automodule:: sktime.contrib.dictionary_based.bop
+   :members:
+   :undoc-members:
+   :show-inheritance:

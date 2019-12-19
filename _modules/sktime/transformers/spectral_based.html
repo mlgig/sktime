@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.spectral_based &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.spectral_based</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.spectral_based</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">pacf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">acf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.stattools</span> <span class="kn">import</span> <span class="n">periodogram</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Jeremy Sellier&quot;</span><span class="p">]</span>
+
+<span class="sd">&quot;&quot;&quot; Config class for the mapped function</span>
+<span class="sd">(comment to be added)</span>
+
+<span class="sd">-- store the lambdas and some other infos in a static member dictionary</span>
+<span class="sd">-- should work as a &#39;singleton&#39; (unless I am missing something with Python - to be confirmed)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="FunctionConfigs"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.FunctionConfigs">[docs]</a><span class="k">class</span> <span class="nc">FunctionConfigs</span><span class="p">:</span>
+
+<div class="viewcode-block" id="FunctionConfigs.FuncType"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.FunctionConfigs.FuncType">[docs]</a>    <span class="k">class</span> <span class="nc">FuncType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+        <span class="n">DFT</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">DFT_REAL</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">DFT_HERMITE</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">POWER_SPECTRUM</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">ACF</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">PACF</span> <span class="o">=</span> <span class="mi">6</span></div>
+
+    <span class="n">lambdaContainer</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">DFT</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftn</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">),</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">DFT_REAL</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfftn</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">),</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">DFT_HERMITE</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">hfft</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">),</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">POWER_SPECTRUM</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">periodogram</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">),</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">ACF</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">acf</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">),</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">PACF</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">pacf</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">constraintTo1D</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">POWER_SPECTRUM</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">ACF</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">PACF</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+
+    <span class="n">indexReturn</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">FuncType</span><span class="o">.</span><span class="n">POWER_SPECTRUM</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<span class="sd">&quot;&quot;&quot; Prototype mechanism for the &#39;mapped&#39; transformer classes</span>
+<span class="sd">(comment to be added)</span>
+
+<span class="sd">- works as a main base abstract class (even though I am not sure how to force an class to be abstract in Python)</span>
+<span class="sd">- store a static ref to the function config class</span>
+<span class="sd">- contain a generic &#39;transform&#39; method</span>
+<span class="sd">- just need to override a &#39;get_transform_params&#39; on the sub-classes (i.e. that return a dict of parameters to be passed within the corresponding lambda-f)</span>
+
+<span class="sd">    Class Attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    configRef_ : FunctionConfigs object</span>
+<span class="sd">        reference to the function configs</span>
+
+<span class="sd">    Instance Attributes</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    type_ = enum of type FunctionConfigs.FuncType</span>
+<span class="sd">        Specify the type of the function to be mapped</span>
+<span class="sd">    input_key_ = string</span>
+<span class="sd">        specify the &#39;X&#39; string key to be used in the corresponding lambda (can be &#39;a&#39;, &#39;x&#39;)</span>
+<span class="sd">    check_input_ = False</span>
+<span class="sd">        specify whether some input_check method should be trigger</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="BaseMappedTransformer"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.BaseMappedTransformer">[docs]</a><span class="k">class</span> <span class="nc">BaseMappedTransformer</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="n">configRef</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="BaseMappedTransformer.get_transform_params"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.BaseMappedTransformer.get_transform_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="BaseMappedTransformer.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.BaseMappedTransformer.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_input_</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__check_input</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;transformer must be fitted before performing the transform&quot;</span><span class="p">)</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_transform_params</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">constraintTo1D</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">constraintTo1D</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">parameters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">lambdaContainer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_</span><span class="p">](</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_output_from</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">out</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                <span class="n">parameters</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">lambdaContainer</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_</span><span class="p">](</span><span class="n">parameters</span><span class="p">)</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_output_from</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">))</span>
+                <span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">arr</span></div>
+
+    <span class="k">def</span> <span class="nf">__get_output_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">indexReturn</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">configRef</span><span class="o">.</span><span class="n">indexReturn</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__check_input</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input should be a pandas dataframe containing Series objects&quot;</span><span class="p">)</span></div>
+
+
+
+
+
+<span class="sd">&quot;&quot;&quot; Sub method for the mapped transform class</span>
+<span class="sd">(comment to be added)</span>
+
+<span class="sd">Sub concrete class method for the mapped transformer instantiation. </span>
+<span class="sd">Act as a simple input mapping/collector. I kept different sub-classes to enforce a control of the input per category</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="DiscreteFourierTransformer"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.DiscreteFourierTransformer">[docs]</a><span class="k">class</span> <span class="nc">DiscreteFourierTransformer</span><span class="p">(</span><span class="n">BaseMappedTransformer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fourier_type</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">fourier_type</span> <span class="o">==</span> <span class="s1">&#39;standard&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">DFT</span>
+        <span class="k">elif</span> <span class="n">fourier_type</span> <span class="o">==</span> <span class="s1">&#39;real&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">DFT_REAL</span>
+        <span class="k">elif</span> <span class="n">fourier_type</span> <span class="o">==</span> <span class="s1">&#39;hermite&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">DFT_HERMITE</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;unrecognized discrete fourier type&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;axes&#39;</span><span class="p">:</span> <span class="n">axes</span><span class="p">,</span> <span class="s1">&#39;norm&#39;</span><span class="p">:</span> <span class="n">norm</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_</span> <span class="o">=</span> <span class="n">check_input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="DiscreteFourierTransformer.get_transform_params"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.DiscreteFourierTransformer.get_transform_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span></div></div>
+
+
+<div class="viewcode-block" id="AutoCorrelationFunctionTransformer"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer">[docs]</a><span class="k">class</span> <span class="nc">AutoCorrelationFunctionTransformer</span><span class="p">(</span><span class="n">BaseMappedTransformer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">acf_type</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span> <span class="n">nlags</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ywunbiased&#39;</span><span class="p">,</span> <span class="n">qstat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fft</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">acf_type</span> <span class="o">==</span> <span class="s1">&#39;standard&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">ACF</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;unbiased&#39;</span><span class="p">:</span> <span class="n">unbiased</span><span class="p">,</span> <span class="s1">&#39;nlags&#39;</span><span class="p">:</span> <span class="n">nlags</span><span class="p">,</span> <span class="s1">&#39;qstat&#39;</span><span class="p">:</span> <span class="n">qstat</span><span class="p">,</span> <span class="s1">&#39;fft&#39;</span><span class="p">:</span> <span class="n">fft</span><span class="p">,</span>
+                                         <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="s1">&#39;missing&#39;</span><span class="p">:</span> <span class="n">missing</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">acf_type</span> <span class="o">==</span> <span class="s1">&#39;partial&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">PACF</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;unbiased&#39;</span><span class="p">:</span> <span class="n">unbiased</span><span class="p">,</span> <span class="s1">&#39;nlags&#39;</span><span class="p">:</span> <span class="n">nlags</span><span class="p">,</span> <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="n">alpha</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;unrecognized ACF type&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_</span> <span class="o">=</span> <span class="n">check_input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="AutoCorrelationFunctionTransformer.get_transform_params"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.AutoCorrelationFunctionTransformer.get_transform_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span></div></div>
+
+
+<div class="viewcode-block" id="PowerSpectrumTransformer"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.PowerSpectrumTransformer">[docs]</a><span class="k">class</span> <span class="nc">PowerSpectrumTransformer</span><span class="p">(</span><span class="n">BaseMappedTransformer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;boxcar&#39;</span><span class="p">,</span> <span class="n">nfft</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detrend</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">return_onesided</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span>
+                 <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fs&#39;</span><span class="p">:</span> <span class="n">fs</span><span class="p">,</span> <span class="s1">&#39;window&#39;</span><span class="p">:</span> <span class="n">window</span><span class="p">,</span> <span class="s1">&#39;nfft&#39;</span><span class="p">:</span> <span class="n">nfft</span><span class="p">,</span> <span class="s1">&#39;detrend&#39;</span><span class="p">:</span> <span class="n">detrend</span><span class="p">,</span>
+                                     <span class="s1">&#39;return_onesided&#39;</span><span class="p">:</span> <span class="n">return_onesided</span><span class="p">,</span> <span class="s1">&#39;scaling&#39;</span><span class="p">:</span> <span class="n">scaling</span><span class="p">,</span> <span class="s1">&#39;axis&#39;</span><span class="p">:</span> <span class="n">axis</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">type_</span> <span class="o">=</span> <span class="n">FunctionConfigs</span><span class="o">.</span><span class="n">FuncType</span><span class="o">.</span><span class="n">POWER_SPECTRUM</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_key_</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_</span> <span class="o">=</span> <span class="n">check_input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="PowerSpectrumTransformer.get_transform_params"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.PowerSpectrumTransformer.get_transform_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_transform_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform_parameters</span></div></div>
+
+
+<div class="viewcode-block" id="CosineTransformer"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.CosineTransformer">[docs]</a><span class="k">class</span> <span class="nc">CosineTransformer</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="CosineTransformer.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.spectral_based.html#sktime.transformers.spectral_based.CosineTransformer.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+sktime.classifiers.interval\_based package
+==========================================
+
+.. automodule:: sktime.classifiers.interval_based
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sktime.classifiers.interval_based.tsf

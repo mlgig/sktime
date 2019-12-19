@@ -1,0 +1,7 @@
+sktime.transformers.forecasting module
+======================================
+
+.. automodule:: sktime.transformers.forecasting
+   :members:
+   :undoc-members:
+   :show-inheritance:

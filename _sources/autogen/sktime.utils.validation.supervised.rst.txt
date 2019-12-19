@@ -1,0 +1,7 @@
+sktime.utils.validation.supervised module
+=========================================
+
+.. automodule:: sktime.utils.validation.supervised
+   :members:
+   :undoc-members:
+   :show-inheritance:

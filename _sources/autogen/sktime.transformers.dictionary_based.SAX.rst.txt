@@ -1,0 +1,7 @@
+sktime.transformers.dictionary\_based.SAX module
+================================================
+
+.. automodule:: sktime.transformers.dictionary_based.SAX
+   :members:
+   :undoc-members:
+   :show-inheritance:

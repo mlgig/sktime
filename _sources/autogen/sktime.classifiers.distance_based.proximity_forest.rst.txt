@@ -1,0 +1,7 @@
+sktime.classifiers.distance\_based.proximity\_forest module
+===========================================================
+
+.. automodule:: sktime.classifiers.distance_based.proximity_forest
+   :members:
+   :undoc-members:
+   :show-inheritance:

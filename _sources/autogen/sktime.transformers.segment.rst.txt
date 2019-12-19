@@ -1,0 +1,7 @@
+sktime.transformers.segment module
+==================================
+
+.. automodule:: sktime.transformers.segment
+   :members:
+   :undoc-members:
+   :show-inheritance:

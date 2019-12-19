@@ -1,0 +1,7 @@
+sktime.utils.validation.forecasting module
+==========================================
+
+.. automodule:: sktime.utils.validation.forecasting
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+sktime.classifiers.distance\_based.time\_series\_neighbors module
+=================================================================
+
+.. automodule:: sktime.classifiers.distance_based.time_series_neighbors
+   :members:
+   :undoc-members:
+   :show-inheritance:

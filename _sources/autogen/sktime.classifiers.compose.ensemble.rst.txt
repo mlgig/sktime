@@ -1,0 +1,7 @@
+sktime.classifiers.compose.ensemble module
+==========================================
+
+.. automodule:: sktime.classifiers.compose.ensemble
+   :members:
+   :undoc-members:
+   :show-inheritance:

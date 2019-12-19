@@ -1,0 +1,7 @@
+sktime.classifiers.interval\_based.tsf module
+=============================================
+
+.. automodule:: sktime.classifiers.interval_based.tsf
+   :members:
+   :undoc-members:
+   :show-inheritance:

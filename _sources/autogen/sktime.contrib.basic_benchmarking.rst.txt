@@ -1,0 +1,7 @@
+sktime.contrib.basic\_benchmarking module
+=========================================
+
+.. automodule:: sktime.contrib.basic_benchmarking
+   :members:
+   :undoc-members:
+   :show-inheritance:

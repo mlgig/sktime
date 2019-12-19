@@ -1,0 +1,7 @@
+sktime.contrib.tale\_of\_two\_toolkits module
+=============================================
+
+.. automodule:: sktime.contrib.tale_of_two_toolkits
+   :members:
+   :undoc-members:
+   :show-inheritance:

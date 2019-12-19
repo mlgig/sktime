@@ -1,0 +1,7 @@
+sktime.utils.results\_writing module
+====================================
+
+.. automodule:: sktime.utils.results_writing
+   :members:
+   :undoc-members:
+   :show-inheritance:

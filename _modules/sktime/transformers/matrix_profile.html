@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sktime.transformers.matrix_profile &mdash; sktime  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sktime
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extension.html">Extension Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autogen/sktime.html">sktime package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sktime</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sktime.transformers.matrix_profile</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sktime.transformers.matrix_profile</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.base</span> <span class="kn">import</span> <span class="n">BaseTransformer</span>
+<span class="kn">from</span> <span class="nn">sktime.transformers.compose</span> <span class="kn">import</span> <span class="n">Tabulariser</span>
+<span class="kn">from</span> <span class="nn">sktime.utils.validation.supervised</span> <span class="kn">import</span> <span class="n">validate_X</span><span class="p">,</span> <span class="n">check_X_is_univariate</span>
+
+<div class="viewcode-block" id="sliding_dot_products"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.sliding_dot_products">[docs]</a><span class="k">def</span> <span class="nf">sliding_dot_products</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">q_len</span><span class="p">,</span> <span class="n">t_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the sliding dot products between a query and a time series.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q: numpy.array</span>
+<span class="sd">                Query.</span>
+<span class="sd">            t: numpy.array</span>
+<span class="sd">                Time series.</span>
+<span class="sd">            q_len: int</span>
+<span class="sd">                Length of the query.</span>
+<span class="sd">            t_len: int</span>
+<span class="sd">                Length of the time series.</span>
+
+<span class="sd">        Output</span>
+<span class="sd">        ------</span>
+<span class="sd">            dot_prod: numpy.array</span>
+<span class="sd">                        Sliding dot products between q and t.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Reversing query and padding both query and time series</span>
+    <span class="n">t_padded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t_len</span><span class="p">))</span>
+    <span class="n">q_reversed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+    <span class="n">q_reversed_padded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">q_reversed</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">t_len</span><span class="o">-</span><span class="n">q_len</span><span class="p">))</span>
+
+    <span class="c1"># Applying FFT to both query and time series</span>
+    <span class="n">t_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">t_padded</span><span class="p">)</span>
+    <span class="n">q_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">q_reversed_padded</span><span class="p">)</span>
+
+    <span class="c1"># Applying inverse FFT to obtain the convolution of the time series by the query</span>
+    <span class="n">element_wise_mult</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">t_fft</span><span class="p">,</span> <span class="n">q_fft</span><span class="p">)</span>
+    <span class="n">inverse_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">element_wise_mult</span><span class="p">)</span>
+
+    <span class="c1"># Returns only the valid dot products from inverse_fft</span>
+    <span class="n">dot_prod</span> <span class="o">=</span> <span class="n">inverse_fft</span><span class="p">[</span><span class="n">q_len</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">t_len</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="k">return</span> <span class="n">dot_prod</span></div>
+
+
+<div class="viewcode-block" id="calculate_distance_profile"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.calculate_distance_profile">[docs]</a><span class="k">def</span> <span class="nf">calculate_distance_profile</span><span class="p">(</span><span class="n">dot_prod</span><span class="p">,</span> <span class="n">q_mean</span><span class="p">,</span> <span class="n">q_std</span><span class="p">,</span> <span class="n">t_mean</span><span class="p">,</span> <span class="n">t_std</span><span class="p">,</span> <span class="n">q_len</span><span class="p">,</span> <span class="n">n_t_subs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the distance profile for the given query.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            dot_prod: numpy.array</span>
+<span class="sd">                Sliding dot products between the time series and the query.</span>
+<span class="sd">            q_mean: float</span>
+<span class="sd">                Mean of the elements of the query.</span>
+<span class="sd">            q_std: float</span>
+<span class="sd">                Standard deviation of elements of the query.</span>
+<span class="sd">            t_mean: numpy.array</span>
+<span class="sd">                Array with the mean of the elements from each subsequence of length(query) from the time series.</span>
+<span class="sd">            t_std: numpy.array</span>
+<span class="sd">                Array with the standard deviation of the elements from each subsequence of length(query) from the time series.</span>
+<span class="sd">            q_len: int</span>
+<span class="sd">                Length of the query.</span>
+<span class="sd">            n_t_subs: int</span>
+<span class="sd">                Number of subsequences in the time series.</span>
+
+<span class="sd">        Output</span>
+<span class="sd">        ------</span>
+<span class="sd">            d: numpy.array</span>
+<span class="sd">                Distance profile of query q.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">q_len</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">dot_prod</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">q_len</span> <span class="o">*</span> <span class="n">q_mean</span> <span class="o">*</span> <span class="n">t_mean</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">q_len</span> <span class="o">*</span> <span class="n">q_std</span> <span class="o">*</span> <span class="n">t_std</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_t_subs</span><span class="p">)]</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">d</span></div>
+
+
+<div class="viewcode-block" id="minimum_distance"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.minimum_distance">[docs]</a><span class="k">def</span> <span class="nf">minimum_distance</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">dp_len</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finds the minimum distance in the distance profile, considering the exclusion zone.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            mp: numpy.array</span>
+<span class="sd">                Matrix profile.</span>
+<span class="sd">            ip: numpy.array</span>
+<span class="sd">                Index profile.</span>
+<span class="sd">            dp: numpy.array</span>
+<span class="sd">                Distance profile.</span>
+<span class="sd">            i: int</span>
+<span class="sd">                Index of the element to be compared from the matrix profile.</span>
+<span class="sd">            m: int</span>
+<span class="sd">                Length of the subsequences.</span>
+<span class="sd">            dp_len: int</span>
+<span class="sd">                Length of the distance profile.</span>
+
+<span class="sd">        Output</span>
+<span class="sd">        ------</span>
+<span class="sd">            mp: numpy.array</span>
+<span class="sd">                Array with the distance between every subsequence and its nearest neighbor from the same time series.</span>
+<span class="sd">            ip: numpy.array</span>
+<span class="sd">                Array with the indexes of the nearest neighbors of each subsequence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Initialization</span>
+    <span class="n">min_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+    <span class="n">min_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dp_len</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_value</span> <span class="ow">and</span> <span class="p">(</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="n">m</span><span class="o">/</span><span class="mi">2</span> <span class="ow">or</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">min_value</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">min_index</span> <span class="o">=</span> <span class="n">k</span>
+    <span class="n">mp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_value</span>
+    <span class="n">ip</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_index</span>
+
+    <span class="k">return</span> <span class="n">mp</span><span class="p">,</span> <span class="n">ip</span></div>
+
+
+<div class="viewcode-block" id="stomp_self"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.stomp_self">[docs]</a><span class="k">def</span> <span class="nf">stomp_self</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        STOMP implementation for self-similarity join.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            ts: numpy.array</span>
+<span class="sd">                Time series.</span>
+<span class="sd">            m: int</span>
+<span class="sd">                Length of the subsequences.</span>
+
+<span class="sd">        Output</span>
+<span class="sd">        ------</span>
+<span class="sd">            mp: numpy.array</span>
+<span class="sd">                Array with the distance between every subsequence from ts1 to the nearest subsequence with same length from ts2.</span>
+<span class="sd">            ip: numpy.array</span>
+<span class="sd">                Array with the index of the nearest neighbor of ts1 in ts2.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+    <span class="n">ts_len</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Number of subsequences</span>
+    <span class="n">n_subs</span> <span class="o">=</span> <span class="n">ts_len</span><span class="o">-</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="c1"># Compute the mean and standard deviation</span>
+    <span class="n">ts_mean</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)]</span>
+    <span class="n">ts_std</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">m</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)]</span>
+
+    <span class="c1"># Compute the dot products between the first subsequence and every other subsequence</span>
+    <span class="n">dot_prod</span> <span class="o">=</span> <span class="n">sliding_dot_products</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">ts</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">ts_len</span><span class="p">)</span>
+    <span class="n">first_dot_prod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dot_prod</span><span class="p">)</span>
+
+    <span class="c1"># Initialization</span>
+    <span class="n">mp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">n_subs</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span> <span class="c1"># matrix profile</span>
+    <span class="n">ip</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_subs</span><span class="p">)</span> <span class="c1"># index profile</span>
+
+    <span class="c1"># Compute the distance profile for the first subsequence</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="n">calculate_distance_profile</span><span class="p">(</span><span class="n">dot_prod</span><span class="p">,</span> <span class="n">ts_mean</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ts_std</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ts_mean</span><span class="p">,</span> <span class="n">ts_std</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)</span>
+
+    <span class="c1"># Updates the matrix profile</span>
+    <span class="n">mp</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="n">minimum_distance</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_subs</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">dot_prod</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dot_prod</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ts</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ts</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">m</span><span class="p">]</span>  <span class="c1"># compute the next dot products using the previous ones</span>
+        <span class="n">dot_prod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_dot_prod</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="n">calculate_distance_profile</span><span class="p">(</span><span class="n">dot_prod</span><span class="p">,</span> <span class="n">ts_mean</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ts_std</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ts_mean</span><span class="p">,</span> <span class="n">ts_std</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)</span>
+        <span class="n">mp</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="n">minimum_distance</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">dp</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n_subs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mp</span></div>
+
+<div class="viewcode-block" id="MatrixProfile"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.MatrixProfile">[docs]</a><span class="k">class</span> <span class="nc">MatrixProfile</span><span class="p">(</span><span class="n">BaseTransformer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Takes as input a time series dataset and returns the matrix profile and</span>
+<span class="sd">        index profile for each time series of the dataset.</span>
+
+<span class="sd">        Example of use:</span>
+<span class="sd">        # Xt = MatrixProfile(m).transform(X)</span>
+<span class="sd">        X, a pandas DataFrame, is the the dataset.</span>
+<span class="sd">        m, an integer, is the desired subsequence length to be used.</span>
+<span class="sd">        Xt is the transformed X, i.e., a pandas DataFrame with the same number</span>
+<span class="sd">        of rows as X, but each row has the matrix profile for the corresponding time series.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subs_len</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">subs_len</span>  <span class="c1"># subsequence length</span>
+
+<div class="viewcode-block" id="MatrixProfile.transform"><a class="viewcode-back" href="../../../autogen/sktime.transformers.matrix_profile.html#sktime.transformers.matrix_profile.MatrixProfile.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Takes as input a time series dataset and returns the matrix profile</span>
+<span class="sd">            for each single time series of the dataset.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                X: pandas.DataFrame</span>
+<span class="sd">                   Time series dataset.</span>
+
+<span class="sd">            Output</span>
+<span class="sd">            ------</span>
+<span class="sd">                Xt: pandas.DataFrame</span>
+<span class="sd">                    Dataframe with the same number of rows as the input.</span>
+<span class="sd">                    The number of columns equals the number of subsequences</span>
+<span class="sd">                    of the desired length in each time series.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Input checks</span>
+        <span class="n">validate_X</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">check_X_is_univariate</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="n">n_instances</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Convert into tabular format</span>
+        <span class="n">tabulariser</span> <span class="o">=</span> <span class="n">Tabulariser</span><span class="p">()</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">tabulariser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="n">n_subs</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span>
+
+        <span class="n">Xt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stomp_self</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_instances</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">Xt</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, The Alan Turing Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

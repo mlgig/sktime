@@ -1,0 +1,14 @@
+sktime.metrics package
+======================
+
+.. automodule:: sktime.metrics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   sktime.metrics.forecasting
