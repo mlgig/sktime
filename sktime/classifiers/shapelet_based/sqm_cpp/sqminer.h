@@ -44,6 +44,7 @@ private:
 		lastdocid = 0;
 		ngram = _ngram;
 		selected = false;
+		foot_print_covered = false;
 
 
 	}
@@ -56,6 +57,8 @@ public:
 	vector<ENode*> children;
 
 	bool selected;
+
+	bool foot_print_covered;
 
 
 
@@ -167,6 +170,12 @@ public:
 	}
 
 	bool insert_node(ENode *node_to_insert){
+
+		if (node_to_insert->foot_print_covered){
+			return false;
+		}
+
+
 		if (capacity != -1){
 			auto it = upper_bound(store.begin(), store.end(), node_to_insert,
 					[](ENode *lhs, ENode *rhs ) { return lhs->chi_square > rhs->chi_square;});
@@ -295,6 +304,8 @@ private:
 	char first_char = 'a';
 	int alphabet_size = 26;
 
+	double selection;
+
 
 	// prepare inverted index of all unigrams (unigram -> location)
 	ENode* prepare_inverted_index(vector<string> &sequences, vector<int>& y){
@@ -350,6 +361,50 @@ private:
 				}
 			}
 		}
+		// compare node finger-print with its children
+		if (node->selected || node->foot_print_covered){
+		for (auto child: node->children){
+			if (child != NULL){
+				int ci = 0;
+				int pi = 0;
+				bool matched = false;
+				while (child->loc[ci] == node->loc[pi]){
+					ci++;
+					pi++;
+					while (child->loc[ci] > 0 && ci < (child->loc.size() - 1)){
+						ci++;
+					}
+					while(node->loc[pi] > 0 && pi < (node->loc.size() - 1)){
+						pi++;
+					}
+
+					if (pi == (node->loc.size() - 1) && ci == (child->loc.size() - 1)){
+						matched = true;
+						break;
+					}
+
+				}
+				if (matched){
+					// cout << "Found a matched: " << endl;
+					// cout << node->ngram << " : ";
+					// for (auto pos: node->loc){
+					// 	cout << pos << " ";
+					// }
+					// cout << endl;
+					// cout << child->ngram << " : ";
+					// for (auto pos: child->loc){
+					// 	cout << pos << " ";
+					// }
+					// cout << endl;
+					child->foot_print_covered = true;
+
+				}
+				
+
+			}
+
+		}
+		}
 		return child_found;
 	}
 
@@ -369,8 +424,7 @@ private:
 		return false;
 	}
 
-	bool can_prune_with_pvalue(ENode* node){
-		double p_threshold = 0.0005;
+	bool can_prune_with_pvalue(ENode* node, double p_threshold){		
 		compute_chi_square_score_and_bound(node);
 		double pvalue = chi2_pvalue(ymgr->unique_label_count() - 1,node->chi_square);
 		// cout << node->ngram << ":" << node->chi_square << ":" << pvalue << endl;
@@ -400,6 +454,17 @@ private:
 		return false;
 	}
 
+	bool can_prune(ENode* node){
+		if (selection <= 0) { // brute force
+			return can_prune_mock(node);
+		} else if (selection < 1) { // chi-squared test with p-value = selection
+			return can_prune_with_pvalue(node, selection);
+		} else { // top k sequences with k = int(selection)
+			return can_prune_with_store(node);
+		}
+
+	}
+
 
 
 public:
@@ -418,11 +483,28 @@ public:
 
 	}
 
+	SQMiner(double selection){
+		if (selection <= 0) { // brute force
+
+		} else if (selection < 1) { // chi-squared test with p-value = selection
+
+		} else { // top k sequences with k = int(selection)
+			store = NodeStore(int(selection));
+		}
+
+		this->selection = selection;
+
+	}
+
+	void configure_alphabet(char first_char, int alphabet_size){
+		this->first_char = first_char;
+		this->alphabet_size = alphabet_size;
+	}
 
 
-	void mine(vector<string> &sequences, vector<int>& y, vector<string>& output){
+	vector<string> mine(vector<string> &sequences, vector<int>& y){
 
-
+		vector<string> output;
 		ymgr = new LabelManager(y);
 
 		if (ft_matrix.empty()){
@@ -452,7 +534,7 @@ public:
 			unvisited.pop_back();
 
 			// if path cannot be pruned then expand the node
-			if ((!can_prune_with_store(current_node)) && expand_node(current_node,sequences)){
+			if ((!can_prune(current_node)) && expand_node(current_node,sequences)){
 				// add new candidates to unvisited list
 				for(auto child:current_node->children){
 					if (child != NULL){
@@ -494,6 +576,7 @@ public:
 
 		//root->print_r();
 		//delete root;
+		return output;
 	}
 
 	void write_mined_sequences(string path){
