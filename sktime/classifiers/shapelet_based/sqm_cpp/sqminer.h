@@ -396,7 +396,7 @@ private:
 					// 	cout << pos << " ";
 					// }
 					// cout << endl;
-					child->foot_print_covered = true;
+					child->foot_print_covered = true; // flag the child with the same fingerprint so it won't be selected later
 
 				}
 				
@@ -575,7 +575,7 @@ public:
 		number_of_ft += store.size();
 
 		//root->print_r();
-		//delete root;
+		delete root;
 		return output;
 	}
 
