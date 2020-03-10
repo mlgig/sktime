@@ -148,7 +148,11 @@ class MrRandomClassifier(BaseClassifier):
 
 
  
-
+    def get_used_methods(self):
+        m = []
+        for cfg in self.config:
+            m.append(cfg['method'])
+        return m
 
     # represent data (in multiple reps form) in feature space
     def __to_feature_space(self, mr_seqs):
