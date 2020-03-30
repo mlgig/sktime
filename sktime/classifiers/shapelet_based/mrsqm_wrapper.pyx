@@ -191,7 +191,7 @@ class MrSQMClassifier(BaseClassifier):
         full_fm = []
 
         for rep, seq_features in zip(mr_seqs, self.sequences):            
-            fm = np.zeros((len(rep), len(seq_features)))
+            fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
             for i,s in enumerate(rep):
                 for j,f in enumerate(seq_features):
                     if f in s:
