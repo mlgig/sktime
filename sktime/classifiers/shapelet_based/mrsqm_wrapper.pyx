@@ -4,6 +4,7 @@ from libcpp.vector cimport vector
 
 import numpy as np
 import pandas as pd
+from numpy.random import randint
 from sklearn.linear_model import LogisticRegression
 
 from sktime.transformers.dictionary_based.SFA import SFA
@@ -191,7 +192,7 @@ class MrSQMClassifier(BaseClassifier):
         full_fm = []
 
         for rep, seq_features in zip(mr_seqs, self.sequences):            
-            fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+            fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
             for i,s in enumerate(rep):
                 for j,f in enumerate(seq_features):
                     if f in s:
@@ -217,6 +218,7 @@ class MrSQMClassifier(BaseClassifier):
         return X
 
     def fit(self, X, y, input_checks=True):
+        
 
         X = self.__X_check(X)
 
@@ -231,7 +233,42 @@ class MrSQMClassifier(BaseClassifier):
 
         for rep in mr_seqs:
             miner = PySQM(self.selection)
-            self.sequences.append(miner.mine(rep, int_y))
+            mined = miner.mine(rep, int_y)
+            self.sequences.append(mined)
+
+
+    
+        # first computing the feature vectors
+        # then fit the new data to a logistic regression model
+        
+        # train_x = self.__to_feature_space(mr_seqs)
+        # self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
+        # self.classes_ = self.clf.classes_ # shouldn't matter
+    
+    def fit_random_selection(self, X, y, input_checks=True):
+    # '''
+    # random selection after mining
+    # '''
+        max_selected = self.selection * 3
+
+        X = self.__X_check(X)
+
+        # transform time series to multiple symbolic representations
+        mr_seqs = self.__transform_time_series(X)
+
+        self.classes_ = np.unique(y) #because sklearn also uses np.unique
+
+        int_y = [np.where(self.classes_ == c)[0][0] for c in y]
+
+        self.sequences = []
+
+        for rep in mr_seqs:
+            miner = PySQM(max_selected)
+            mined = miner.mine(rep, int_y)       
+            # print(len(mined))     
+            random_selected = np.random.permutation(mined)[:self.selection].tolist()
+            # print(len(random_selected))
+            self.sequences.append(random_selected)
 
 
     
@@ -288,6 +325,11 @@ class MrSQMClassifier(BaseClassifier):
 
     def get_all_sequences(self):
         return self.sequences
+
+    def to_csv(self, X,y, target_file):
+        mr_seqs = self.__transform_time_series(X)
+        vs_x = self.__to_feature_space(mr_seqs)
+        np.savetxt(target_file, np.hstack((np.reshape(y,(len(y),1)),vs_x)), fmt='%i', delimiter=",")
 
  
 

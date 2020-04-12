@@ -860,7 +860,7 @@ struct __pyx_defaults {
   PyObject *__pyx_arg_symrep;
 };
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":22
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":23
  *         vector[double] map_weighted_patterns(vector[double], vector[string], vector[double])
  * 
  * cdef class PySAX:             # <<<<<<<<<<<<<<
@@ -873,7 +873,7 @@ struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySAX {
 };
 
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":83
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":84
  * 
  * 
  * cdef class PySQM:             # <<<<<<<<<<<<<<
@@ -1239,6 +1239,13 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, 
     (inplace ? PyNumber_InPlaceAdd(op1, op2) : PyNumber_Add(op1, op2))
 #endif
 
+/* PyObjectCallNoArg.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
+#endif
+
 /* ListExtend.proto */
 static CYTHON_INLINE int __Pyx_PyList_Extend(PyObject* L, PyObject* v) {
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1450,7 +1457,7 @@ static const char __pyx_k_X[] = "X";
 static const char __pyx_k_a[] = "a";
 static const char __pyx_k_c[] = "c";
 static const char __pyx_k_f[] = "f";
-static const char __pyx_k_i[] = "i";
+static const char __pyx_k_i[] = "%i";
 static const char __pyx_k_j[] = "j";
 static const char __pyx_k_l[] = "l";
 static const char __pyx_k_p[] = "p";
@@ -1467,16 +1474,18 @@ static const char __pyx_k_sr[] = "sr";
 static const char __pyx_k_ts[] = "ts";
 static const char __pyx_k_MFT[] = "MFT";
 static const char __pyx_k_SFA[] = "SFA";
+static const char __pyx_k__13[] = ",";
 static const char __pyx_k_cfg[] = "cfg";
 static const char __pyx_k_clf[] = "clf";
 static const char __pyx_k_dft[] = "dft";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_fit[] = "fit";
+static const char __pyx_k_fmt[] = "fmt";
+static const char __pyx_k_i_2[] = "i";
 static const char __pyx_k_rep[] = "rep";
 static const char __pyx_k_sax[] = "sax";
 static const char __pyx_k_sfa[] = "sfa";
 static const char __pyx_k_zip[] = "zip";
-static const char __pyx_k_bool[] = "bool";
 static const char __pyx_k_dfts[] = "dfts";
 static const char __pyx_k_iloc[] = "iloc";
 static const char __pyx_k_init[] = "__init__";
@@ -1492,12 +1501,15 @@ static const char __pyx_k_sqrt[] = "sqrt";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_ts_x[] = "ts_x";
 static const char __pyx_k_tssr[] = "tssr";
+static const char __pyx_k_vs_x[] = "vs_x";
 static const char __pyx_k_word[] = "word";
 static const char __pyx_k_PySAX[] = "PySAX";
 static const char __pyx_k_PySQM[] = "PySQM";
 static const char __pyx_k_array[] = "array";
 static const char __pyx_k_dtype[] = "dtype";
+static const char __pyx_k_int32[] = "int32";
 static const char __pyx_k_int_y[] = "int_y";
+static const char __pyx_k_mined[] = "mined";
 static const char __pyx_k_miner[] = "miner";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_proba[] = "proba";
@@ -1518,10 +1530,13 @@ static const char __pyx_k_method[] = "method";
 static const char __pyx_k_min_ws[] = "min_ws";
 static const char __pyx_k_module[] = "__module__";
 static const char __pyx_k_pandas[] = "pandas";
+static const char __pyx_k_random[] = "random";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_solver[] = "solver";
 static const char __pyx_k_symrep[] = "symrep";
 static const char __pyx_k_test_x[] = "test_x";
+static const char __pyx_k_to_csv[] = "to_csv";
+static const char __pyx_k_tolist[] = "tolist";
 static const char __pyx_k_unique[] = "unique";
 static const char __pyx_k_values[] = "values";
 static const char __pyx_k_window[] = "window";
@@ -1533,6 +1548,9 @@ static const char __pyx_k_full_fm[] = "full_fm";
 static const char __pyx_k_mr_seqs[] = "mr_seqs";
 static const char __pyx_k_predict[] = "predict";
 static const char __pyx_k_prepare[] = "__prepare__";
+static const char __pyx_k_randint[] = "randint";
+static const char __pyx_k_reshape[] = "reshape";
+static const char __pyx_k_savetxt[] = "savetxt";
 static const char __pyx_k_sfa_str[] = "sfa_str";
 static const char __pyx_k_train_x[] = "train_x";
 static const char __pyx_k_weights[] = "weights";
@@ -1543,6 +1561,7 @@ static const char __pyx_k_qualname[] = "__qualname__";
 static const char __pyx_k_setstate[] = "__setstate__";
 static const char __pyx_k_DataFrame[] = "DataFrame";
 static const char __pyx_k_TypeError[] = "TypeError";
+static const char __pyx_k_delimiter[] = "delimiter";
 static const char __pyx_k_enumerate[] = "enumerate";
 static const char __pyx_k_metaclass[] = "__metaclass__";
 static const char __pyx_k_newton_cg[] = "newton-cg";
@@ -1556,9 +1575,13 @@ static const char __pyx_k_breakpoints[] = "breakpoints";
 static const char __pyx_k_c_sequences[] = "c_sequences";
 static const char __pyx_k_multi_class[] = "multi_class";
 static const char __pyx_k_multinomial[] = "multinomial";
+static const char __pyx_k_permutation[] = "permutation";
+static const char __pyx_k_target_file[] = "target_file";
 static const char __pyx_k_word_length[] = "word_length";
 static const char __pyx_k_class_weight[] = "class_weight";
 static const char __pyx_k_input_checks[] = "input_checks";
+static const char __pyx_k_max_selected[] = "max_selected";
+static const char __pyx_k_numpy_random[] = "numpy.random";
 static const char __pyx_k_seq_features[] = "seq_features";
 static const char __pyx_k_symrepconfig[] = "symrepconfig";
 static const char __pyx_k_alphabet_size[] = "alphabet_size";
@@ -1567,6 +1590,7 @@ static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_AdaptedSFA_fit[] = "AdaptedSFA.fit";
 static const char __pyx_k_BaseClassifier[] = "BaseClassifier";
 static const char __pyx_k_MrSQMClassifier[] = "MrSQMClassifier";
+static const char __pyx_k_random_selected[] = "random_selected";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_symbolic_methods[] = "symbolic_methods";
 static const char __pyx_k_to_feature_space[] = "__to_feature_space";
@@ -1578,9 +1602,11 @@ static const char __pyx_k_LogisticRegression[] = "LogisticRegression";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_MrSQMClassifier_fit[] = "MrSQMClassifier.fit";
 static const char __pyx_k_remove_repeat_words[] = "remove_repeat_words";
+static const char __pyx_k_fit_random_selection[] = "fit_random_selection";
 static const char __pyx_k_sklearn_linear_model[] = "sklearn.linear_model";
 static const char __pyx_k_transform_time_series[] = "__transform_time_series";
 static const char __pyx_k_MrSQMClassifier___init[] = "MrSQMClassifier.__init__";
+static const char __pyx_k_MrSQMClassifier_to_csv[] = "MrSQMClassifier.to_csv";
 static const char __pyx_k_MrSQMClassifier_fit_ova[] = "MrSQMClassifier.fit_ova";
 static const char __pyx_k_MrSQMClassifier_predict[] = "MrSQMClassifier.predict";
 static const char __pyx_k_sktime_classifiers_base[] = "sktime.classifiers.base";
@@ -1593,6 +1619,7 @@ static const char __pyx_k_MrSQMClassifier__transform_time[] = "_MrSQMClassifier_
 static const char __pyx_k_Input_should_either_be_a_2d_nump[] = "Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.";
 static const char __pyx_k_MrSQMClassifier___to_feature_spa[] = "MrSQMClassifier.__to_feature_space";
 static const char __pyx_k_MrSQMClassifier___transform_time[] = "MrSQMClassifier.__transform_time_series";
+static const char __pyx_k_MrSQMClassifier_fit_random_selec[] = "MrSQMClassifier.fit_random_selection";
 static const char __pyx_k_MrSQMClassifier_get_all_sequence[] = "MrSQMClassifier.get_all_sequences";
 static const char __pyx_k_Mr_SEQL_cannot_handle_multivaria[] = "Mr-SEQL cannot handle multivariate problems yet";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
@@ -1619,9 +1646,11 @@ static PyObject *__pyx_n_s_MrSQMClassifier__to_feature_spa;
 static PyObject *__pyx_n_s_MrSQMClassifier__transform_time;
 static PyObject *__pyx_n_s_MrSQMClassifier_fit;
 static PyObject *__pyx_n_s_MrSQMClassifier_fit_ova;
+static PyObject *__pyx_n_s_MrSQMClassifier_fit_random_selec;
 static PyObject *__pyx_n_s_MrSQMClassifier_get_all_sequence;
 static PyObject *__pyx_n_s_MrSQMClassifier_predict;
 static PyObject *__pyx_n_s_MrSQMClassifier_predict_proba;
+static PyObject *__pyx_n_s_MrSQMClassifier_to_csv;
 static PyObject *__pyx_kp_u_Mr_SEQL_cannot_handle_multivaria;
 static PyObject *__pyx_n_s_N;
 static PyObject *__pyx_n_s_PySAX;
@@ -1631,6 +1660,7 @@ static PyObject *__pyx_n_s_Series;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_n_s_X;
 static PyObject *__pyx_n_s_X_check;
+static PyObject *__pyx_kp_u__13;
 static PyObject *__pyx_kp_b__2;
 static PyObject *__pyx_n_s_a;
 static PyObject *__pyx_n_u_alphabet;
@@ -1640,7 +1670,6 @@ static PyObject *__pyx_n_s_argmax;
 static PyObject *__pyx_n_s_array;
 static PyObject *__pyx_n_s_asarray;
 static PyObject *__pyx_n_u_balanced;
-static PyObject *__pyx_n_s_bool;
 static PyObject *__pyx_n_s_bp;
 static PyObject *__pyx_n_s_breakpoints;
 static PyObject *__pyx_n_s_c;
@@ -1651,6 +1680,7 @@ static PyObject *__pyx_n_s_classes;
 static PyObject *__pyx_n_s_clf;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_config;
+static PyObject *__pyx_n_s_delimiter;
 static PyObject *__pyx_n_s_dft;
 static PyObject *__pyx_n_s_dfts;
 static PyObject *__pyx_n_s_doc;
@@ -1660,26 +1690,32 @@ static PyObject *__pyx_n_s_f;
 static PyObject *__pyx_n_s_first_char;
 static PyObject *__pyx_n_s_fit;
 static PyObject *__pyx_n_s_fit_ova;
+static PyObject *__pyx_n_s_fit_random_selection;
 static PyObject *__pyx_n_s_fm;
+static PyObject *__pyx_n_s_fmt;
 static PyObject *__pyx_n_s_full_fm;
 static PyObject *__pyx_n_s_get_all_sequences;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_n_s_hstack;
-static PyObject *__pyx_n_s_i;
+static PyObject *__pyx_kp_u_i;
+static PyObject *__pyx_n_s_i_2;
 static PyObject *__pyx_n_s_iloc;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_init;
 static PyObject *__pyx_n_s_input_checks;
+static PyObject *__pyx_n_s_int32;
 static PyObject *__pyx_n_s_int_y;
 static PyObject *__pyx_n_s_j;
 static PyObject *__pyx_n_s_l;
 static PyObject *__pyx_n_s_labels;
 static PyObject *__pyx_n_s_main;
+static PyObject *__pyx_n_s_max_selected;
 static PyObject *__pyx_n_s_max_ws;
 static PyObject *__pyx_n_s_metaclass;
 static PyObject *__pyx_n_u_method;
 static PyObject *__pyx_n_s_min_ws;
 static PyObject *__pyx_n_s_mine;
+static PyObject *__pyx_n_s_mined;
 static PyObject *__pyx_n_s_miner;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_mr_seqs;
@@ -1692,10 +1728,12 @@ static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
 static PyObject *__pyx_n_s_norm;
 static PyObject *__pyx_n_s_np;
 static PyObject *__pyx_n_s_numpy;
+static PyObject *__pyx_n_s_numpy_random;
 static PyObject *__pyx_n_s_p;
 static PyObject *__pyx_n_s_pandas;
 static PyObject *__pyx_n_s_pars;
 static PyObject *__pyx_n_s_pd;
+static PyObject *__pyx_n_s_permutation;
 static PyObject *__pyx_n_s_predict;
 static PyObject *__pyx_n_s_predict_proba;
 static PyObject *__pyx_n_s_prepare;
@@ -1703,13 +1741,18 @@ static PyObject *__pyx_n_s_prob;
 static PyObject *__pyx_n_s_proba;
 static PyObject *__pyx_n_s_ps;
 static PyObject *__pyx_n_s_qualname;
+static PyObject *__pyx_n_s_randint;
+static PyObject *__pyx_n_s_random;
+static PyObject *__pyx_n_s_random_selected;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
 static PyObject *__pyx_n_s_remove_repeat_words;
 static PyObject *__pyx_n_s_rep;
+static PyObject *__pyx_n_s_reshape;
 static PyObject *__pyx_n_s_s;
+static PyObject *__pyx_n_s_savetxt;
 static PyObject *__pyx_n_u_sax;
 static PyObject *__pyx_n_s_selection;
 static PyObject *__pyx_n_s_self;
@@ -1733,12 +1776,15 @@ static PyObject *__pyx_n_s_sr;
 static PyObject *__pyx_n_s_symbolic_methods;
 static PyObject *__pyx_n_s_symrep;
 static PyObject *__pyx_n_s_symrepconfig;
+static PyObject *__pyx_n_s_target_file;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_test_x;
 static PyObject *__pyx_n_s_timeseries2SAXseq;
 static PyObject *__pyx_n_s_timeseries2SFAseq;
 static PyObject *__pyx_n_s_tmp_y;
+static PyObject *__pyx_n_s_to_csv;
 static PyObject *__pyx_n_s_to_feature_space;
+static PyObject *__pyx_n_s_tolist;
 static PyObject *__pyx_n_s_train_x;
 static PyObject *__pyx_n_s_transform_time_series;
 static PyObject *__pyx_n_s_ts;
@@ -1746,6 +1792,7 @@ static PyObject *__pyx_n_s_ts_x;
 static PyObject *__pyx_n_s_tssr;
 static PyObject *__pyx_n_s_unique;
 static PyObject *__pyx_n_s_values;
+static PyObject *__pyx_n_s_vs_x;
 static PyObject *__pyx_n_s_w;
 static PyObject *__pyx_n_s_weights;
 static PyObject *__pyx_n_s_where;
@@ -1777,14 +1824,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
 static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_4__to_feature_space(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_mr_seqs); /* proto */
 static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_6__X_check(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_X); /* proto */
 static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_8fit(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks); /* proto */
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_ova(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks); /* proto */
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12predict_proba(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks); /* proto */
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks); /* proto */
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16get_all_sequences(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_random_selection(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12fit_ova(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict_proba(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16predict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_18get_all_sequences(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_20to_csv(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, PyObject *__pyx_v_target_file); /* proto */
 static PyObject *__pyx_tp_new_6sktime_11classifiers_11classifiers_5mrsqm_PySAX(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_6sktime_11classifiers_11classifiers_5mrsqm_PySQM(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
+static PyObject *__pyx_int_3;
 static PyObject *__pyx_int_4;
 static PyObject *__pyx_int_8;
 static PyObject *__pyx_int_16;
@@ -1800,37 +1850,42 @@ static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_slice__10;
 static PyObject *__pyx_tuple__11;
 static PyObject *__pyx_tuple__12;
-static PyObject *__pyx_tuple__13;
-static PyObject *__pyx_tuple__15;
-static PyObject *__pyx_tuple__17;
-static PyObject *__pyx_tuple__19;
-static PyObject *__pyx_tuple__21;
-static PyObject *__pyx_tuple__23;
-static PyObject *__pyx_tuple__25;
-static PyObject *__pyx_tuple__27;
-static PyObject *__pyx_tuple__29;
+static PyObject *__pyx_tuple__14;
+static PyObject *__pyx_tuple__16;
+static PyObject *__pyx_tuple__18;
+static PyObject *__pyx_tuple__20;
+static PyObject *__pyx_tuple__22;
+static PyObject *__pyx_tuple__24;
+static PyObject *__pyx_tuple__26;
+static PyObject *__pyx_tuple__28;
 static PyObject *__pyx_tuple__30;
-static PyObject *__pyx_tuple__32;
+static PyObject *__pyx_tuple__31;
 static PyObject *__pyx_tuple__33;
-static PyObject *__pyx_tuple__35;
+static PyObject *__pyx_tuple__34;
 static PyObject *__pyx_tuple__36;
-static PyObject *__pyx_tuple__38;
+static PyObject *__pyx_tuple__37;
 static PyObject *__pyx_tuple__39;
-static PyObject *__pyx_codeobj__14;
-static PyObject *__pyx_codeobj__16;
-static PyObject *__pyx_codeobj__18;
-static PyObject *__pyx_codeobj__20;
-static PyObject *__pyx_codeobj__22;
-static PyObject *__pyx_codeobj__24;
-static PyObject *__pyx_codeobj__26;
-static PyObject *__pyx_codeobj__28;
-static PyObject *__pyx_codeobj__31;
-static PyObject *__pyx_codeobj__34;
-static PyObject *__pyx_codeobj__37;
-static PyObject *__pyx_codeobj__40;
+static PyObject *__pyx_tuple__40;
+static PyObject *__pyx_tuple__42;
+static PyObject *__pyx_tuple__43;
+static PyObject *__pyx_tuple__45;
+static PyObject *__pyx_codeobj__15;
+static PyObject *__pyx_codeobj__17;
+static PyObject *__pyx_codeobj__19;
+static PyObject *__pyx_codeobj__21;
+static PyObject *__pyx_codeobj__23;
+static PyObject *__pyx_codeobj__25;
+static PyObject *__pyx_codeobj__27;
+static PyObject *__pyx_codeobj__29;
+static PyObject *__pyx_codeobj__32;
+static PyObject *__pyx_codeobj__35;
+static PyObject *__pyx_codeobj__38;
+static PyObject *__pyx_codeobj__41;
+static PyObject *__pyx_codeobj__44;
+static PyObject *__pyx_codeobj__46;
 /* Late includes */
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":24
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":25
  * cdef class PySAX:
  *     cdef SAX *thisptr      # hold a C++ instance which we're wrapping
  *     def __cinit__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
@@ -1872,17 +1927,17 @@ static int __pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_1__cinit__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(1, 24, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(1, 25, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(1, 24, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(1, 25, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 24, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 25, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -1891,13 +1946,13 @@ static int __pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_1__cinit__
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_N = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 24, __pyx_L3_error)
-    __pyx_v_w = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 24, __pyx_L3_error)
-    __pyx_v_a = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 24, __pyx_L3_error)
+    __pyx_v_N = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 25, __pyx_L3_error)
+    __pyx_v_w = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 25, __pyx_L3_error)
+    __pyx_v_a = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 25, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 24, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 25, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.PySAX.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1915,7 +1970,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX___cinit__(
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":25
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":26
  *     cdef SAX *thisptr      # hold a C++ instance which we're wrapping
  *     def __cinit__(self, int N, int w, int a):
  *         self.thisptr = new SAX(N, w, a)             # <<<<<<<<<<<<<<
@@ -1924,7 +1979,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX___cinit__(
  */
   __pyx_v_self->thisptr = new SAX(__pyx_v_N, __pyx_v_w, __pyx_v_a);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":24
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":25
  * cdef class PySAX:
  *     cdef SAX *thisptr      # hold a C++ instance which we're wrapping
  *     def __cinit__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
@@ -1938,7 +1993,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX___cinit__(
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":26
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":27
  *     def __cinit__(self, int N, int w, int a):
  *         self.thisptr = new SAX(N, w, a)
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1961,7 +2016,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_2__deallo
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":27
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":28
  *         self.thisptr = new SAX(N, w, a)
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
@@ -1970,7 +2025,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_2__deallo
  */
   delete __pyx_v_self->thisptr;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":26
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":27
  *     def __cinit__(self, int N, int w, int a):
  *         self.thisptr = new SAX(N, w, a)
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1982,7 +2037,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_2__deallo
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":28
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":29
  *     def __dealloc__(self):
  *         del self.thisptr
  *     def timeseries2SAX(self, ts):             # <<<<<<<<<<<<<<
@@ -2010,7 +2065,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_4tim
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("timeseries2SAX", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":29
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":30
  *         del self.thisptr
  *     def timeseries2SAX(self, ts):
  *         return self.thisptr.timeseries2SAX(ts)             # <<<<<<<<<<<<<<
@@ -2018,14 +2073,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_4tim
  *         #    return self.thisptr.timeseries2SAX(ts, delimiter)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 29, __pyx_L1_error)
-  __pyx_t_2 = __pyx_convert_vector_to_py_std_3a__3a_string(__pyx_v_self->thisptr->timeseries2SAX(__pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 29, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 30, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_vector_to_py_std_3a__3a_string(__pyx_v_self->thisptr->timeseries2SAX(__pyx_t_1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":28
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":29
  *     def __dealloc__(self):
  *         del self.thisptr
  *     def timeseries2SAX(self, ts):             # <<<<<<<<<<<<<<
@@ -2044,7 +2099,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_4tim
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":32
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":33
  *         #if isinstance(obj, basestring):
  *         #    return self.thisptr.timeseries2SAX(ts, delimiter)
  *     def timeseries2SAXseq(self, ts):             # <<<<<<<<<<<<<<
@@ -2080,17 +2135,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
   int __pyx_t_7;
   __Pyx_RefNannySetupContext("timeseries2SAXseq", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":33
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":34
  *         #    return self.thisptr.timeseries2SAX(ts, delimiter)
  *     def timeseries2SAXseq(self, ts):
  *         words = self.thisptr.timeseries2SAX(ts)             # <<<<<<<<<<<<<<
  *         seq = b''
  *         #print(words)
  */
-  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 33, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 34, __pyx_L1_error)
   __pyx_v_words = __pyx_v_self->thisptr->timeseries2SAX(__pyx_t_1);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":34
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":35
  *     def timeseries2SAXseq(self, ts):
  *         words = self.thisptr.timeseries2SAX(ts)
  *         seq = b''             # <<<<<<<<<<<<<<
@@ -2100,7 +2155,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
   __Pyx_INCREF(__pyx_kp_b_);
   __pyx_v_seq = __pyx_kp_b_;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":36
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":37
  *         seq = b''
  *         #print(words)
  *         for w in words:             # <<<<<<<<<<<<<<
@@ -2114,25 +2169,25 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
     ++__pyx_t_2;
     __pyx_v_w = __pyx_t_3;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":37
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":38
  *         #print(words)
  *         for w in words:
  *             seq = seq + b' ' + w             # <<<<<<<<<<<<<<
  *         if seq: # remove extra space
  *             seq = seq[1:]
  */
-    __pyx_t_4 = PyNumber_Add(__pyx_v_seq, __pyx_kp_b__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 37, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_v_seq, __pyx_kp_b__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_w); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 37, __pyx_L1_error)
+    __pyx_t_5 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_w); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 37, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_seq, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":36
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":37
  *         seq = b''
  *         #print(words)
  *         for w in words:             # <<<<<<<<<<<<<<
@@ -2141,29 +2196,29 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":38
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":39
  *         for w in words:
  *             seq = seq + b' ' + w
  *         if seq: # remove extra space             # <<<<<<<<<<<<<<
  *             seq = seq[1:]
  *         return seq
  */
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(1, 38, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_seq); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(1, 39, __pyx_L1_error)
   if (__pyx_t_7) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":39
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":40
  *             seq = seq + b' ' + w
  *         if seq: # remove extra space
  *             seq = seq[1:]             # <<<<<<<<<<<<<<
  *         return seq
  *     def map_weighted_patterns(self, ts, sequences, weights):
  */
-    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_seq, 1, 0, NULL, NULL, &__pyx_slice__3, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 39, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_seq, 1, 0, NULL, NULL, &__pyx_slice__3, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF_SET(__pyx_v_seq, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":38
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":39
  *         for w in words:
  *             seq = seq + b' ' + w
  *         if seq: # remove extra space             # <<<<<<<<<<<<<<
@@ -2172,7 +2227,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":40
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":41
  *         if seq: # remove extra space
  *             seq = seq[1:]
  *         return seq             # <<<<<<<<<<<<<<
@@ -2184,7 +2239,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
   __pyx_r = __pyx_v_seq;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":32
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":33
  *         #if isinstance(obj, basestring):
  *         #    return self.thisptr.timeseries2SAX(ts, delimiter)
  *     def timeseries2SAXseq(self, ts):             # <<<<<<<<<<<<<<
@@ -2206,7 +2261,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_6tim
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":41
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":42
  *             seq = seq[1:]
  *         return seq
  *     def map_weighted_patterns(self, ts, sequences, weights):             # <<<<<<<<<<<<<<
@@ -2248,17 +2303,17 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_9map
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_sequences)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, 1); __PYX_ERR(1, 41, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, 1); __PYX_ERR(1, 42, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_weights)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, 2); __PYX_ERR(1, 41, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, 2); __PYX_ERR(1, 42, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "map_weighted_patterns") < 0)) __PYX_ERR(1, 41, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "map_weighted_patterns") < 0)) __PYX_ERR(1, 42, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2273,7 +2328,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_9map
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 41, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("map_weighted_patterns", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 42, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.PySAX.map_weighted_patterns", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2295,7 +2350,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_8map
   PyObject *__pyx_t_4 = NULL;
   __Pyx_RefNannySetupContext("map_weighted_patterns", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":42
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":43
  *         return seq
  *     def map_weighted_patterns(self, ts, sequences, weights):
  *         return self.thisptr.map_weighted_patterns(ts, sequences, weights)             # <<<<<<<<<<<<<<
@@ -2303,16 +2358,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_8map
  * class AdaptedSFA:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 42, __pyx_L1_error)
-  __pyx_t_2 = __pyx_convert_vector_from_py_std_3a__3a_string(__pyx_v_sequences); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 42, __pyx_L1_error)
-  __pyx_t_3 = __pyx_convert_vector_from_py_double(__pyx_v_weights); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 42, __pyx_L1_error)
-  __pyx_t_4 = __pyx_convert_vector_to_py_double(__pyx_v_self->thisptr->map_weighted_patterns(__pyx_t_1, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 42, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_from_py_double(__pyx_v_ts); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 43, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_vector_from_py_std_3a__3a_string(__pyx_v_sequences); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 43, __pyx_L1_error)
+  __pyx_t_3 = __pyx_convert_vector_from_py_double(__pyx_v_weights); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 43, __pyx_L1_error)
+  __pyx_t_4 = __pyx_convert_vector_to_py_double(__pyx_v_self->thisptr->map_weighted_patterns(__pyx_t_1, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":41
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":42
  *             seq = seq[1:]
  *         return seq
  *     def map_weighted_patterns(self, ts, sequences, weights):             # <<<<<<<<<<<<<<
@@ -2438,7 +2493,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySAX_12__
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":46
  * 
  * class AdaptedSFA:
  *     def __init__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
@@ -2484,23 +2539,23 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_N)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 1); __PYX_ERR(1, 45, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 1); __PYX_ERR(1, 46, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 2); __PYX_ERR(1, 45, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 2); __PYX_ERR(1, 46, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 3); __PYX_ERR(1, 45, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 3); __PYX_ERR(1, 46, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(1, 45, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(1, 46, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -2511,13 +2566,13 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_self = values[0];
-    __pyx_v_N = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 45, __pyx_L3_error)
-    __pyx_v_w = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 45, __pyx_L3_error)
-    __pyx_v_a = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 45, __pyx_L3_error)
+    __pyx_v_N = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 46, __pyx_L3_error)
+    __pyx_v_w = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 46, __pyx_L3_error)
+    __pyx_v_a = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 46, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 45, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 46, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.AdaptedSFA.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2540,22 +2595,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   PyObject *__pyx_t_5 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":46
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":47
  * class AdaptedSFA:
  *     def __init__(self, int N, int w, int a):
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)             # <<<<<<<<<<<<<<
  * 
  *     def fit(self, train_x):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SFA); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SFA); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_w); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -2566,19 +2621,19 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_norm, Py_True) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_remove_repeat_words, Py_True) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 46, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_norm, Py_True) < 0) __PYX_ERR(1, 47, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_remove_repeat_words, Py_True) < 0) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sfa, __pyx_t_3) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sfa, __pyx_t_3) < 0) __PYX_ERR(1, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":46
  * 
  * class AdaptedSFA:
  *     def __init__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
@@ -2603,7 +2658,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":48
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":49
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  *     def fit(self, train_x):             # <<<<<<<<<<<<<<
@@ -2643,11 +2698,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_train_x)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fit", 1, 2, 2, 1); __PYX_ERR(1, 48, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fit", 1, 2, 2, 1); __PYX_ERR(1, 49, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) __PYX_ERR(1, 48, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) __PYX_ERR(1, 49, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2660,7 +2715,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fit", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 48, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fit", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 49, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.AdaptedSFA.fit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2681,16 +2736,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("fit", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":49
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":50
  * 
  *     def fit(self, train_x):
  *         self.sfa.fit(train_x)             # <<<<<<<<<<<<<<
  * 
  *     def timeseries2SFAseq(self, ts):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_fit); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_fit); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2705,12 +2760,12 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_train_x) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_train_x);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 49, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":48
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":49
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  *     def fit(self, train_x):             # <<<<<<<<<<<<<<
@@ -2733,7 +2788,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":51
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":52
  *         self.sfa.fit(train_x)
  * 
  *     def timeseries2SFAseq(self, ts):             # <<<<<<<<<<<<<<
@@ -2773,11 +2828,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ts)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("timeseries2SFAseq", 1, 2, 2, 1); __PYX_ERR(1, 51, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("timeseries2SFAseq", 1, 2, 2, 1); __PYX_ERR(1, 52, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "timeseries2SFAseq") < 0)) __PYX_ERR(1, 51, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "timeseries2SFAseq") < 0)) __PYX_ERR(1, 52, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2790,7 +2845,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("timeseries2SFAseq", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 51, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("timeseries2SFAseq", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 52, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.AdaptedSFA.timeseries2SFAseq", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2828,16 +2883,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   PyObject *__pyx_t_13 = NULL;
   __Pyx_RefNannySetupContext("timeseries2SFAseq", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":52
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":53
  * 
  *     def timeseries2SFAseq(self, ts):
  *         dfts = self.sfa.MFT(ts)             # <<<<<<<<<<<<<<
  *         sfa_str = b''
  *         for window in range(dfts.shape[0]):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MFT); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MFT); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2852,13 +2907,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_ts) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_ts);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 52, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_dfts = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":53
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":54
  *     def timeseries2SFAseq(self, ts):
  *         dfts = self.sfa.MFT(ts)
  *         sfa_str = b''             # <<<<<<<<<<<<<<
@@ -2868,28 +2923,28 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   __Pyx_INCREF(__pyx_kp_b_);
   __pyx_v_sfa_str = __pyx_kp_b_;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":54
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":55
  *         dfts = self.sfa.MFT(ts)
  *         sfa_str = b''
  *         for window in range(dfts.shape[0]):             # <<<<<<<<<<<<<<
  *             if sfa_str:
  *                 sfa_str += b' '
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_dfts, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_dfts, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 54, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 54, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 55, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 54, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 55, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -2897,17 +2952,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 54, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 55, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 54, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 55, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -2917,7 +2972,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 54, __pyx_L1_error)
+          else __PYX_ERR(1, 55, __pyx_L1_error)
         }
         break;
       }
@@ -2926,7 +2981,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
     __Pyx_XDECREF_SET(__pyx_v_window, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":55
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":56
  *         sfa_str = b''
  *         for window in range(dfts.shape[0]):
  *             if sfa_str:             # <<<<<<<<<<<<<<
@@ -2936,19 +2991,19 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
     __pyx_t_6 = (PyBytes_GET_SIZE(__pyx_v_sfa_str) != 0);
     if (__pyx_t_6) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":56
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":57
  *         for window in range(dfts.shape[0]):
  *             if sfa_str:
  *                 sfa_str += b' '             # <<<<<<<<<<<<<<
  *             dft = dfts[window]
  *             first_char = ord(b'A')
  */
-      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_sfa_str, __pyx_kp_b__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 56, __pyx_L1_error)
+      __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_sfa_str, __pyx_kp_b__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_sfa_str, ((PyObject*)__pyx_t_1));
       __pyx_t_1 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":55
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":56
  *         sfa_str = b''
  *         for window in range(dfts.shape[0]):
  *             if sfa_str:             # <<<<<<<<<<<<<<
@@ -2957,19 +3012,19 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":57
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":58
  *             if sfa_str:
  *                 sfa_str += b' '
  *             dft = dfts[window]             # <<<<<<<<<<<<<<
  *             first_char = ord(b'A')
  *             for i in range(self.sfa.word_length):
  */
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dfts, __pyx_v_window); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dfts, __pyx_v_window); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_dft, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":58
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":59
  *                 sfa_str += b' '
  *             dft = dfts[window]
  *             first_char = ord(b'A')             # <<<<<<<<<<<<<<
@@ -2979,28 +3034,28 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
     __Pyx_INCREF(__pyx_int_65);
     __Pyx_XDECREF_SET(__pyx_v_first_char, __pyx_int_65);
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":59
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":60
  *             dft = dfts[window]
  *             first_char = ord(b'A')
  *             for i in range(self.sfa.word_length):             # <<<<<<<<<<<<<<
  *                 for bp in range(self.sfa.alphabet_size):
  *                     if dft[i] <= self.sfa.breakpoints[i][bp]:
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 59, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_word_length); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 59, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_word_length); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 59, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 59, __pyx_L1_error)
+      __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 60, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 59, __pyx_L1_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 60, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -3008,17 +3063,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         if (likely(PyList_CheckExact(__pyx_t_2))) {
           if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 59, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 60, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 59, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 59, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 60, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 59, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -3028,7 +3083,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(1, 59, __pyx_L1_error)
+            else __PYX_ERR(1, 60, __pyx_L1_error)
           }
           break;
         }
@@ -3037,28 +3092,28 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
       __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":60
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":61
  *             first_char = ord(b'A')
  *             for i in range(self.sfa.word_length):
  *                 for bp in range(self.sfa.alphabet_size):             # <<<<<<<<<<<<<<
  *                     if dft[i] <= self.sfa.breakpoints[i][bp]:
  *                         sfa_str += bytes([first_char + bp])
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_alphabet_size); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 60, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_alphabet_size); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
         __pyx_t_9 = __pyx_t_1; __Pyx_INCREF(__pyx_t_9); __pyx_t_10 = 0;
         __pyx_t_11 = NULL;
       } else {
-        __pyx_t_10 = -1; __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 60, __pyx_L1_error)
+        __pyx_t_10 = -1; __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 61, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_11 = Py_TYPE(__pyx_t_9)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 60, __pyx_L1_error)
+        __pyx_t_11 = Py_TYPE(__pyx_t_9)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 61, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       for (;;) {
@@ -3066,17 +3121,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
           if (likely(PyList_CheckExact(__pyx_t_9))) {
             if (__pyx_t_10 >= PyList_GET_SIZE(__pyx_t_9)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_9, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(1, 60, __pyx_L1_error)
+            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_9, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(1, 61, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           } else {
             if (__pyx_t_10 >= PyTuple_GET_SIZE(__pyx_t_9)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_9, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(1, 60, __pyx_L1_error)
+            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_9, __pyx_t_10); __Pyx_INCREF(__pyx_t_1); __pyx_t_10++; if (unlikely(0 < 0)) __PYX_ERR(1, 61, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 60, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_9, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           }
@@ -3086,7 +3141,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(1, 60, __pyx_L1_error)
+              else __PYX_ERR(1, 61, __pyx_L1_error)
             }
             break;
           }
@@ -3095,57 +3150,57 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
         __Pyx_XDECREF_SET(__pyx_v_bp, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":61
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":62
  *             for i in range(self.sfa.word_length):
  *                 for bp in range(self.sfa.alphabet_size):
  *                     if dft[i] <= self.sfa.breakpoints[i][bp]:             # <<<<<<<<<<<<<<
  *                         sfa_str += bytes([first_char + bp])
  *                         #print(chr(first_char + bp))
  */
-        __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dft, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_dft, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_breakpoints); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_breakpoints); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_12 = __Pyx_PyObject_GetItem(__pyx_t_13, __pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_12 = __Pyx_PyObject_GetItem(__pyx_t_13, __pyx_v_i); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_13 = __Pyx_PyObject_GetItem(__pyx_t_12, __pyx_v_bp); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetItem(__pyx_t_12, __pyx_v_bp); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        __pyx_t_12 = PyObject_RichCompare(__pyx_t_1, __pyx_t_13, Py_LE); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_12 = PyObject_RichCompare(__pyx_t_1, __pyx_t_13, Py_LE); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(1, 61, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(1, 62, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         if (__pyx_t_6) {
 
-          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":62
+          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":63
  *                 for bp in range(self.sfa.alphabet_size):
  *                     if dft[i] <= self.sfa.breakpoints[i][bp]:
  *                         sfa_str += bytes([first_char + bp])             # <<<<<<<<<<<<<<
  *                         #print(chr(first_char + bp))
  *                         break
  */
-          __pyx_t_12 = PyNumber_Add(__pyx_v_first_char, __pyx_v_bp); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 62, __pyx_L1_error)
+          __pyx_t_12 = PyNumber_Add(__pyx_v_first_char, __pyx_v_bp); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 63, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
-          __pyx_t_13 = PyList_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 62, __pyx_L1_error)
+          __pyx_t_13 = PyList_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 63, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_GIVEREF(__pyx_t_12);
           PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_12);
           __pyx_t_12 = 0;
-          __pyx_t_12 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyBytes_Type)), __pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 62, __pyx_L1_error)
+          __pyx_t_12 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyBytes_Type)), __pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 63, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_12);
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_sfa_str, __pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 62, __pyx_L1_error)
+          __pyx_t_13 = PyNumber_InPlaceAdd(__pyx_v_sfa_str, __pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 63, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_DECREF_SET(__pyx_v_sfa_str, ((PyObject*)__pyx_t_13));
           __pyx_t_13 = 0;
 
-          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":64
+          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":65
  *                         sfa_str += bytes([first_char + bp])
  *                         #print(chr(first_char + bp))
  *                         break             # <<<<<<<<<<<<<<
@@ -3154,7 +3209,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
  */
           goto __pyx_L9_break;
 
-          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":61
+          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":62
  *             for i in range(self.sfa.word_length):
  *                 for bp in range(self.sfa.alphabet_size):
  *                     if dft[i] <= self.sfa.breakpoints[i][bp]:             # <<<<<<<<<<<<<<
@@ -3163,7 +3218,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
  */
         }
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":60
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":61
  *             first_char = ord(b'A')
  *             for i in range(self.sfa.word_length):
  *                 for bp in range(self.sfa.alphabet_size):             # <<<<<<<<<<<<<<
@@ -3174,25 +3229,25 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
       __pyx_L9_break:;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":65
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":66
  *                         #print(chr(first_char + bp))
  *                         break
  *                 first_char += self.sfa.alphabet_size             # <<<<<<<<<<<<<<
  *         return sfa_str
  * 
  */
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 65, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfa); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 66, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_alphabet_size); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 65, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_alphabet_size); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 66, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_v_first_char, __pyx_t_13); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 65, __pyx_L1_error)
+      __pyx_t_9 = PyNumber_InPlaceAdd(__pyx_v_first_char, __pyx_t_13); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 66, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       __Pyx_DECREF_SET(__pyx_v_first_char, __pyx_t_9);
       __pyx_t_9 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":59
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":60
  *             dft = dfts[window]
  *             first_char = ord(b'A')
  *             for i in range(self.sfa.word_length):             # <<<<<<<<<<<<<<
@@ -3202,7 +3257,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":54
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":55
  *         dfts = self.sfa.MFT(ts)
  *         sfa_str = b''
  *         for window in range(dfts.shape[0]):             # <<<<<<<<<<<<<<
@@ -3212,7 +3267,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":66
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":67
  *                         break
  *                 first_char += self.sfa.alphabet_size
  *         return sfa_str             # <<<<<<<<<<<<<<
@@ -3224,7 +3279,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   __pyx_r = __pyx_v_sfa_str;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":51
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":52
  *         self.sfa.fit(train_x)
  * 
  *     def timeseries2SFAseq(self, ts):             # <<<<<<<<<<<<<<
@@ -3255,7 +3310,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSF
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":86
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":87
  *     cdef SQMiner *thisptr
  * 
  *     def __cinit__(self, double selection):             # <<<<<<<<<<<<<<
@@ -3289,18 +3344,18 @@ static int __pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_1__cinit__
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 86, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 87, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
     }
-    __pyx_v_selection = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_selection == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 86, __pyx_L3_error)
+    __pyx_v_selection = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_selection == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 86, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 87, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.PySQM.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3318,7 +3373,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM___cinit__(
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":87
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":88
  * 
  *     def __cinit__(self, double selection):
  *         self.thisptr = new SQMiner(selection)             # <<<<<<<<<<<<<<
@@ -3327,7 +3382,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM___cinit__(
  */
   __pyx_v_self->thisptr = new SQMiner(__pyx_v_selection);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":86
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":87
  *     cdef SQMiner *thisptr
  * 
  *     def __cinit__(self, double selection):             # <<<<<<<<<<<<<<
@@ -3341,7 +3396,7 @@ static int __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM___cinit__(
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":88
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":89
  *     def __cinit__(self, double selection):
  *         self.thisptr = new SQMiner(selection)
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3364,7 +3419,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_2__deallo
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":89
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":90
  *         self.thisptr = new SQMiner(selection)
  *     def __dealloc__(self):
  *         del self.thisptr             # <<<<<<<<<<<<<<
@@ -3373,7 +3428,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_2__deallo
  */
   delete __pyx_v_self->thisptr;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":88
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":89
  *     def __cinit__(self, double selection):
  *         self.thisptr = new SQMiner(selection)
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -3385,7 +3440,7 @@ static void __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_2__deallo
   __Pyx_RefNannyFinishContext();
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":91
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":92
  *         del self.thisptr
  * 
  *     def mine(self, vector[string] sequences, vector[int] labels):             # <<<<<<<<<<<<<<
@@ -3424,11 +3479,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_5min
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_labels)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mine", 1, 2, 2, 1); __PYX_ERR(1, 91, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mine", 1, 2, 2, 1); __PYX_ERR(1, 92, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mine") < 0)) __PYX_ERR(1, 91, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mine") < 0)) __PYX_ERR(1, 92, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3436,12 +3491,12 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_5min
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_sequences = __pyx_convert_vector_from_py_std_3a__3a_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 91, __pyx_L3_error)
-    __pyx_v_labels = __pyx_convert_vector_from_py_int(values[1]); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 91, __pyx_L3_error)
+    __pyx_v_sequences = __pyx_convert_vector_from_py_std_3a__3a_string(values[0]); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
+    __pyx_v_labels = __pyx_convert_vector_from_py_int(values[1]); if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mine", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 91, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mine", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 92, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.PySQM.mine", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3460,7 +3515,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_4min
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("mine", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":92
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":93
  * 
  *     def mine(self, vector[string] sequences, vector[int] labels):
  *         return self.thisptr.mine(sequences, labels)             # <<<<<<<<<<<<<<
@@ -3468,13 +3523,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_4min
  *     # def classify(self, string sequence):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_string(__pyx_v_self->thisptr->mine(__pyx_v_sequences, __pyx_v_labels)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 92, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_vector_to_py_std_3a__3a_string(__pyx_v_self->thisptr->mine(__pyx_v_sequences, __pyx_v_labels)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":91
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":92
  *         del self.thisptr
  * 
  *     def mine(self, vector[string] sequences, vector[int] labels):             # <<<<<<<<<<<<<<
@@ -3600,7 +3655,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_5PySQM_8__s
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":114
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":115
  *     # selection >= 1: top k selection with k = int(selection)
  * 
  *     def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):             # <<<<<<<<<<<<<<
@@ -3615,7 +3670,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm___defaults_
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("__defaults__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 114, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)__pyx_int_100));
   __Pyx_GIVEREF(((PyObject *)__pyx_int_100));
@@ -3626,7 +3681,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm___defaults_
   __Pyx_INCREF(((PyObject *)Py_None));
   __Pyx_GIVEREF(((PyObject *)Py_None));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)Py_None));
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 114, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -3708,7 +3763,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(1, 114, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(1, 115, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3730,7 +3785,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 115, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3751,16 +3806,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":116
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":117
  *     def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):
  * 
  *         self.symbolic_methods = symrep             # <<<<<<<<<<<<<<
  * 
  *         if symrepconfig is None:
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods, __pyx_v_symrep) < 0) __PYX_ERR(1, 116, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods, __pyx_v_symrep) < 0) __PYX_ERR(1, 117, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":118
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":119
  *         self.symbolic_methods = symrep
  * 
  *         if symrepconfig is None:             # <<<<<<<<<<<<<<
@@ -3771,19 +3826,19 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":119
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":120
  * 
  *         if symrepconfig is None:
  *             self.config = [] # http://effbot.org/zone/default-values.htm             # <<<<<<<<<<<<<<
  *         else:
  *             self.config = symrepconfig
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 119, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_t_3) < 0) __PYX_ERR(1, 119, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_t_3) < 0) __PYX_ERR(1, 120, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":118
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":119
  *         self.symbolic_methods = symrep
  * 
  *         if symrepconfig is None:             # <<<<<<<<<<<<<<
@@ -3793,7 +3848,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     goto __pyx_L3;
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":121
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":122
  *             self.config = [] # http://effbot.org/zone/default-values.htm
  *         else:
  *             self.config = symrepconfig             # <<<<<<<<<<<<<<
@@ -3801,53 +3856,53 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  * 
  */
   /*else*/ {
-    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_v_symrepconfig) < 0) __PYX_ERR(1, 121, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_config, __pyx_v_symrepconfig) < 0) __PYX_ERR(1, 122, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":129
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":130
  *         # all the unique labels in the data
  *         # in case of binary data the first one is always the negative class
  *         self.classes_ = []             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 129, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_3) < 0) __PYX_ERR(1, 129, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_3) < 0) __PYX_ERR(1, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":133
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":134
  * 
  * 
  *         self.clf = None # scikit-learn model             # <<<<<<<<<<<<<<
  * 
  *         # store fitted sfa for later transformation
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, Py_None) < 0) __PYX_ERR(1, 133, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, Py_None) < 0) __PYX_ERR(1, 134, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":136
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":137
  * 
  *         # store fitted sfa for later transformation
  *         self.sfas = {}             # <<<<<<<<<<<<<<
  * 
  *         self.selection = selection
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 136, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sfas, __pyx_t_3) < 0) __PYX_ERR(1, 136, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sfas, __pyx_t_3) < 0) __PYX_ERR(1, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":138
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":139
  *         self.sfas = {}
  * 
  *         self.selection = selection             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_selection, __pyx_v_selection) < 0) __PYX_ERR(1, 138, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_selection, __pyx_v_selection) < 0) __PYX_ERR(1, 139, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":114
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":115
  *     # selection >= 1: top k selection with k = int(selection)
  * 
  *     def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):             # <<<<<<<<<<<<<<
@@ -3868,7 +3923,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":143
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":144
  * 
  * 
  *     def __transform_time_series(self, ts_x):             # <<<<<<<<<<<<<<
@@ -3908,11 +3963,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ts_x)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__transform_time_series", 1, 2, 2, 1); __PYX_ERR(1, 143, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__transform_time_series", 1, 2, 2, 1); __PYX_ERR(1, 144, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__transform_time_series") < 0)) __PYX_ERR(1, 143, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__transform_time_series") < 0)) __PYX_ERR(1, 144, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3925,7 +3980,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__transform_time_series", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 143, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__transform_time_series", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 144, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.__transform_time_series", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3971,33 +4026,33 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   PyObject *__pyx_t_16 = NULL;
   __Pyx_RefNannySetupContext("__transform_time_series", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":144
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":145
  * 
  *     def __transform_time_series(self, ts_x):
  *         multi_tssr = []             # <<<<<<<<<<<<<<
  * 
  *         # generate configuration if not predefined
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 144, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_multi_tssr = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":147
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":148
  * 
  *         # generate configuration if not predefined
  *         if not self.config:             # <<<<<<<<<<<<<<
  *             min_ws = 16
  *             max_ws = ts_x.shape[1]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 147, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 147, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":148
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":149
  *         # generate configuration if not predefined
  *         if not self.config:
  *             min_ws = 16             # <<<<<<<<<<<<<<
@@ -4006,22 +4061,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     __pyx_v_min_ws = 16;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":149
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":150
  *         if not self.config:
  *             min_ws = 16
  *             max_ws = ts_x.shape[1]             # <<<<<<<<<<<<<<
  *             pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_ts_x, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 149, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_ts_x, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 149, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_max_ws = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":150
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":151
  *             min_ws = 16
  *             max_ws = ts_x.shape[1]
  *             pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]             # <<<<<<<<<<<<<<
@@ -4029,13 +4084,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  *             if 'sax' in self.symbolic_methods:
  */
     { /* enter inner scope */
-      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_min_ws); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v_min_ws); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_6 = NULL;
@@ -4050,13 +4105,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_6, __pyx_v_max_ws) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_max_ws);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 150, __pyx_L6_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_7 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
@@ -4067,16 +4122,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_7);
       __pyx_t_1 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (likely(PyList_CheckExact(__pyx_t_7)) || PyTuple_CheckExact(__pyx_t_7)) {
         __pyx_t_5 = __pyx_t_7; __Pyx_INCREF(__pyx_t_5); __pyx_t_8 = 0;
         __pyx_t_9 = NULL;
       } else {
-        __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 150, __pyx_L6_error)
+        __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 151, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 150, __pyx_L6_error)
+        __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 151, __pyx_L6_error)
       }
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       for (;;) {
@@ -4084,17 +4139,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           if (likely(PyList_CheckExact(__pyx_t_5))) {
             if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_5)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 150, __pyx_L6_error)
+            __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 151, __pyx_L6_error)
             #else
-            __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
           } else {
             if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 150, __pyx_L6_error)
+            __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 151, __pyx_L6_error)
             #else
-            __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
           }
@@ -4104,7 +4159,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(1, 150, __pyx_L6_error)
+              else __PYX_ERR(1, 151, __pyx_L6_error)
             }
             break;
           }
@@ -4112,7 +4167,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
         __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_w, __pyx_t_7);
         __pyx_t_7 = 0;
-        __pyx_t_7 = PyList_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 150, __pyx_L6_error)
+        __pyx_t_7 = PyList_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 151, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_INCREF(__pyx_7genexpr__pyx_v_w);
         __Pyx_GIVEREF(__pyx_7genexpr__pyx_v_w);
@@ -4123,7 +4178,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __Pyx_INCREF(__pyx_int_4);
         __Pyx_GIVEREF(__pyx_int_4);
         PyList_SET_ITEM(__pyx_t_7, 2, __pyx_int_4);
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 150, __pyx_L6_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 151, __pyx_L6_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4137,21 +4192,21 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __pyx_v_pars = ((PyObject*)__pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":152
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":153
  *             pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
  * 
  *             if 'sax' in self.symbolic_methods:             # <<<<<<<<<<<<<<
  *                 for p in pars:
  *                     self.config.append({'method':'sax','window':p[0],'word':p[1],'alphabet':p[2]})
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 152, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_sax, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 152, __pyx_L1_error)
+    __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_sax, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 153, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_2 = (__pyx_t_3 != 0);
     if (__pyx_t_2) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":153
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":154
  * 
  *             if 'sax' in self.symbolic_methods:
  *                 for p in pars:             # <<<<<<<<<<<<<<
@@ -4162,43 +4217,43 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       for (;;) {
         if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_4)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_5); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 153, __pyx_L1_error)
+        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_5); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 154, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 153, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 154, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
         __Pyx_XDECREF_SET(__pyx_v_p, __pyx_t_5);
         __pyx_t_5 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":154
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":155
  *             if 'sax' in self.symbolic_methods:
  *                 for p in pars:
  *                     self.config.append({'method':'sax','window':p[0],'word':p[1],'alphabet':p[2]})             # <<<<<<<<<<<<<<
  * 
  *             if 'sfa' in self.symbolic_methods:
  */
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 154, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 154, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_method, __pyx_n_u_sax) < 0) __PYX_ERR(1, 154, __pyx_L1_error)
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 154, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_method, __pyx_n_u_sax) < 0) __PYX_ERR(1, 155, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_window, __pyx_t_1) < 0) __PYX_ERR(1, 154, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_window, __pyx_t_1) < 0) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 154, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_word, __pyx_t_1) < 0) __PYX_ERR(1, 154, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_word, __pyx_t_1) < 0) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 154, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_alphabet, __pyx_t_1) < 0) __PYX_ERR(1, 154, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_n_u_alphabet, __pyx_t_1) < 0) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_5, __pyx_t_7); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 154, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_5, __pyx_t_7); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 155, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":153
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":154
  * 
  *             if 'sax' in self.symbolic_methods:
  *                 for p in pars:             # <<<<<<<<<<<<<<
@@ -4208,7 +4263,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":152
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":153
  *             pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
  * 
  *             if 'sax' in self.symbolic_methods:             # <<<<<<<<<<<<<<
@@ -4217,21 +4272,21 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":156
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":157
  *                     self.config.append({'method':'sax','window':p[0],'word':p[1],'alphabet':p[2]})
  * 
  *             if 'sfa' in self.symbolic_methods:             # <<<<<<<<<<<<<<
  *                 for p in pars:
  *                     self.config.append({'method':'sfa','window':p[0],'word':8,'alphabet':p[2]})
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 156, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_symbolic_methods); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 157, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_sfa, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 156, __pyx_L1_error)
+    __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_sfa, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(1, 157, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_3 = (__pyx_t_2 != 0);
     if (__pyx_t_3) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":157
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":158
  * 
  *             if 'sfa' in self.symbolic_methods:
  *                 for p in pars:             # <<<<<<<<<<<<<<
@@ -4242,40 +4297,40 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       for (;;) {
         if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_4)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_7 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 157, __pyx_L1_error)
+        __pyx_t_7 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 158, __pyx_L1_error)
         #else
-        __pyx_t_7 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 157, __pyx_L1_error)
+        __pyx_t_7 = PySequence_ITEM(__pyx_t_4, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 158, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         #endif
         __Pyx_XDECREF_SET(__pyx_v_p, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":158
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":159
  *             if 'sfa' in self.symbolic_methods:
  *                 for p in pars:
  *                     self.config.append({'method':'sfa','window':p[0],'word':8,'alphabet':p[2]})             # <<<<<<<<<<<<<<
  * 
  * 
  */
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 158, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 158, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_method, __pyx_n_u_sfa) < 0) __PYX_ERR(1, 158, __pyx_L1_error)
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 158, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_method, __pyx_n_u_sfa) < 0) __PYX_ERR(1, 159, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_window, __pyx_t_1) < 0) __PYX_ERR(1, 158, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_window, __pyx_t_1) < 0) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_word, __pyx_int_8) < 0) __PYX_ERR(1, 158, __pyx_L1_error)
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 158, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_word, __pyx_int_8) < 0) __PYX_ERR(1, 159, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_p, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_alphabet, __pyx_t_1) < 0) __PYX_ERR(1, 158, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_5, __pyx_n_u_alphabet, __pyx_t_1) < 0) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_t_5); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 158, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_t_5); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 159, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":157
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":158
  * 
  *             if 'sfa' in self.symbolic_methods:
  *                 for p in pars:             # <<<<<<<<<<<<<<
@@ -4285,7 +4340,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":156
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":157
  *                     self.config.append({'method':'sax','window':p[0],'word':p[1],'alphabet':p[2]})
  * 
  *             if 'sfa' in self.symbolic_methods:             # <<<<<<<<<<<<<<
@@ -4294,7 +4349,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":147
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":148
  * 
  *         # generate configuration if not predefined
  *         if not self.config:             # <<<<<<<<<<<<<<
@@ -4303,22 +4358,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":161
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":162
  * 
  * 
  *         for cfg in self.config:             # <<<<<<<<<<<<<<
  * 
  *             tssr = []
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 161, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_config); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
     __pyx_t_5 = __pyx_t_4; __Pyx_INCREF(__pyx_t_5); __pyx_t_8 = 0;
     __pyx_t_9 = NULL;
   } else {
-    __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 161, __pyx_L1_error)
+    __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 162, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 161, __pyx_L1_error)
+    __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 162, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   for (;;) {
@@ -4326,17 +4381,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       if (likely(PyList_CheckExact(__pyx_t_5))) {
         if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_5)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 161, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 162, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 161, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 162, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 161, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_4); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 162, __pyx_L1_error)
         #else
-        __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 161, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 162, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -4346,7 +4401,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 161, __pyx_L1_error)
+          else __PYX_ERR(1, 162, __pyx_L1_error)
         }
         break;
       }
@@ -4355,45 +4410,45 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_XDECREF_SET(__pyx_v_cfg, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":163
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":164
  *         for cfg in self.config:
  * 
  *             tssr = []             # <<<<<<<<<<<<<<
  * 
  *             if cfg['method'] == 'sax': # convert time series to SAX
  */
-    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 163, __pyx_L1_error)
+    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 164, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_tssr, ((PyObject*)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":165
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":166
  *             tssr = []
  * 
  *             if cfg['method'] == 'sax': # convert time series to SAX             # <<<<<<<<<<<<<<
  *                 ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])
  *                 for ts in ts_x:
  */
-    __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_method); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 165, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_method); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 166, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_4, __pyx_n_u_sax, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 165, __pyx_L1_error)
+    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_4, __pyx_n_u_sax, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 166, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_3) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":166
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":167
  * 
  *             if cfg['method'] == 'sax': # convert time series to SAX
  *                 ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])             # <<<<<<<<<<<<<<
  *                 for ts in ts_x:
  *                     sr = ps.timeseries2SAXseq(ts)
  */
-      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 166, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 167, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 166, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 167, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 166, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 167, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 166, __pyx_L1_error)
+      __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 167, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
@@ -4404,13 +4459,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_4 = 0;
       __pyx_t_7 = 0;
       __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySAX), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 166, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySAX), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 167, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF_SET(__pyx_v_ps, ((struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySAX *)__pyx_t_1));
       __pyx_t_1 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":167
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":168
  *             if cfg['method'] == 'sax': # convert time series to SAX
  *                 ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])
  *                 for ts in ts_x:             # <<<<<<<<<<<<<<
@@ -4421,26 +4476,26 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_1 = __pyx_v_ts_x; __Pyx_INCREF(__pyx_t_1); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 167, __pyx_L1_error)
+        __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 168, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 167, __pyx_L1_error)
+        __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 168, __pyx_L1_error)
       }
       for (;;) {
         if (likely(!__pyx_t_12)) {
           if (likely(PyList_CheckExact(__pyx_t_1))) {
             if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_6 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 167, __pyx_L1_error)
+            __pyx_t_6 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 168, __pyx_L1_error)
             #else
-            __pyx_t_6 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 167, __pyx_L1_error)
+            __pyx_t_6 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 168, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_6);
             #endif
           } else {
             if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 167, __pyx_L1_error)
+            __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_6); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 168, __pyx_L1_error)
             #else
-            __pyx_t_6 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 167, __pyx_L1_error)
+            __pyx_t_6 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 168, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_6);
             #endif
           }
@@ -4450,7 +4505,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(1, 167, __pyx_L1_error)
+              else __PYX_ERR(1, 168, __pyx_L1_error)
             }
             break;
           }
@@ -4459,14 +4514,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __Pyx_XDECREF_SET(__pyx_v_ts, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":168
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":169
  *                 ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])
  *                 for ts in ts_x:
  *                     sr = ps.timeseries2SAXseq(ts)             # <<<<<<<<<<<<<<
  *                     tssr.append(sr)
  * 
  */
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_ps), __pyx_n_s_timeseries2SAXseq); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 168, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_ps), __pyx_n_s_timeseries2SAXseq); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 169, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __pyx_t_4 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -4480,22 +4535,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
         __pyx_t_6 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_4, __pyx_v_ts) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_ts);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 168, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 169, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_XDECREF_SET(__pyx_v_sr, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":169
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":170
  *                 for ts in ts_x:
  *                     sr = ps.timeseries2SAXseq(ts)
  *                     tssr.append(sr)             # <<<<<<<<<<<<<<
  * 
  *             if cfg['method'] == 'sfa':  # convert time series to SFA
  */
-        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_tssr, __pyx_v_sr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 169, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_tssr, __pyx_v_sr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 170, __pyx_L1_error)
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":167
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":168
  *             if cfg['method'] == 'sax': # convert time series to SAX
  *                 ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])
  *                 for ts in ts_x:             # <<<<<<<<<<<<<<
@@ -4505,7 +4560,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":165
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":166
  *             tssr = []
  * 
  *             if cfg['method'] == 'sax': # convert time series to SAX             # <<<<<<<<<<<<<<
@@ -4514,33 +4569,33 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":171
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":172
  *                     tssr.append(sr)
  * 
  *             if cfg['method'] == 'sfa':  # convert time series to SFA             # <<<<<<<<<<<<<<
  *                 if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:
  *                     sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])
  */
-    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_method); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 171, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_method); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 172, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_sfa, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 171, __pyx_L1_error)
+    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_1, __pyx_n_u_sfa, Py_EQ)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 172, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_3) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":172
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":173
  * 
  *             if cfg['method'] == 'sfa':  # convert time series to SFA
  *                 if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:             # <<<<<<<<<<<<<<
  *                     sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])
  *                     sfa.fit(ts_x)
  */
-      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -4551,28 +4606,28 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_1 = 0;
       __pyx_t_6 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_t_4, __pyx_t_7, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 172, __pyx_L1_error)
+      __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_t_4, __pyx_t_7, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(1, 173, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_2 = (__pyx_t_3 != 0);
       if (__pyx_t_2) {
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":173
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":174
  *             if cfg['method'] == 'sfa':  # convert time series to SFA
  *                 if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:
  *                     sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])             # <<<<<<<<<<<<<<
  *                     sfa.fit(ts_x)
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_AdaptedSFA); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 173, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_AdaptedSFA); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 173, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 173, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_13 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 173, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 174, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __pyx_t_14 = NULL;
         __pyx_t_15 = 0;
@@ -4589,7 +4644,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         #if CYTHON_FAST_PYCALL
         if (PyFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[4] = {__pyx_t_14, __pyx_t_6, __pyx_t_1, __pyx_t_13};
-          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 173, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 174, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4600,7 +4655,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         #if CYTHON_FAST_PYCCALL
         if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
           PyObject *__pyx_temp[4] = {__pyx_t_14, __pyx_t_6, __pyx_t_1, __pyx_t_13};
-          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 173, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_15, 3+__pyx_t_15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 174, __pyx_L1_error)
           __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4609,7 +4664,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         } else
         #endif
         {
-          __pyx_t_16 = PyTuple_New(3+__pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 173, __pyx_L1_error)
+          __pyx_t_16 = PyTuple_New(3+__pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 174, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_16);
           if (__pyx_t_14) {
             __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_14); __pyx_t_14 = NULL;
@@ -4623,7 +4678,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           __pyx_t_6 = 0;
           __pyx_t_1 = 0;
           __pyx_t_13 = 0;
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_16, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 173, __pyx_L1_error)
+          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_16, NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 174, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
         }
@@ -4631,14 +4686,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __Pyx_XDECREF_SET(__pyx_v_sfa, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":174
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":175
  *                 if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:
  *                     sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])
  *                     sfa.fit(ts_x)             # <<<<<<<<<<<<<<
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
  *                 for ts in ts_x:
  */
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_sfa, __pyx_n_s_fit); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 174, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_sfa, __pyx_n_s_fit); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 175, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_16 = NULL;
         if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4652,27 +4707,27 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
         __pyx_t_7 = (__pyx_t_16) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_16, __pyx_v_ts_x) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_ts_x);
         __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 174, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 175, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":175
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":176
  *                     sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])
  *                     sfa.fit(ts_x)
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa             # <<<<<<<<<<<<<<
  *                 for ts in ts_x:
  *                     sr = self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])].timeseries2SFAseq(ts)
  */
-        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 175, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 175, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_16 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 175, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
-        __pyx_t_13 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 175, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 175, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_GIVEREF(__pyx_t_4);
         PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
@@ -4683,11 +4738,11 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_4 = 0;
         __pyx_t_16 = 0;
         __pyx_t_13 = 0;
-        if (unlikely(PyObject_SetItem(__pyx_t_7, __pyx_t_1, __pyx_v_sfa) < 0)) __PYX_ERR(1, 175, __pyx_L1_error)
+        if (unlikely(PyObject_SetItem(__pyx_t_7, __pyx_t_1, __pyx_v_sfa) < 0)) __PYX_ERR(1, 176, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":172
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":173
  * 
  *             if cfg['method'] == 'sfa':  # convert time series to SFA
  *                 if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:             # <<<<<<<<<<<<<<
@@ -4696,7 +4751,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
       }
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":176
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":177
  *                     sfa.fit(ts_x)
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
  *                 for ts in ts_x:             # <<<<<<<<<<<<<<
@@ -4707,26 +4762,26 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_1 = __pyx_v_ts_x; __Pyx_INCREF(__pyx_t_1); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 176, __pyx_L1_error)
+        __pyx_t_11 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_ts_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 176, __pyx_L1_error)
+        __pyx_t_12 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 177, __pyx_L1_error)
       }
       for (;;) {
         if (likely(!__pyx_t_12)) {
           if (likely(PyList_CheckExact(__pyx_t_1))) {
             if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_7 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 176, __pyx_L1_error)
+            __pyx_t_7 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 177, __pyx_L1_error)
             #else
-            __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 176, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 177, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
           } else {
             if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 176, __pyx_L1_error)
+            __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_11); __Pyx_INCREF(__pyx_t_7); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(1, 177, __pyx_L1_error)
             #else
-            __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 176, __pyx_L1_error)
+            __pyx_t_7 = PySequence_ITEM(__pyx_t_1, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 177, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_7);
             #endif
           }
@@ -4736,7 +4791,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(1, 176, __pyx_L1_error)
+              else __PYX_ERR(1, 177, __pyx_L1_error)
             }
             break;
           }
@@ -4745,22 +4800,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __Pyx_XDECREF_SET(__pyx_v_ts, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":177
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":178
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
  *                 for ts in ts_x:
  *                     sr = self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])].timeseries2SFAseq(ts)             # <<<<<<<<<<<<<<
  *                     tssr.append(sr)
  * 
  */
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sfas); if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_16 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_16 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_window); if (unlikely(!__pyx_t_16)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
-        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_word); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cfg, __pyx_n_u_alphabet); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_14 = PyTuple_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_14 = PyTuple_New(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_GIVEREF(__pyx_t_16);
         PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_16);
@@ -4771,11 +4826,11 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_16 = 0;
         __pyx_t_4 = 0;
         __pyx_t_6 = 0;
-        __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_timeseries2SFAseq); if (unlikely(!__pyx_t_14)) __PYX_ERR(1, 177, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_timeseries2SFAseq); if (unlikely(!__pyx_t_14)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_6 = NULL;
@@ -4790,22 +4845,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
         __pyx_t_7 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_14, __pyx_t_6, __pyx_v_ts) : __Pyx_PyObject_CallOneArg(__pyx_t_14, __pyx_v_ts);
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 177, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_XDECREF_SET(__pyx_v_sr, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":178
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":179
  *                 for ts in ts_x:
  *                     sr = self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])].timeseries2SFAseq(ts)
  *                     tssr.append(sr)             # <<<<<<<<<<<<<<
  * 
  *             multi_tssr.append(tssr)
  */
-        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_tssr, __pyx_v_sr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 178, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_tssr, __pyx_v_sr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 179, __pyx_L1_error)
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":176
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":177
  *                     sfa.fit(ts_x)
  *                     self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
  *                 for ts in ts_x:             # <<<<<<<<<<<<<<
@@ -4815,7 +4870,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":171
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":172
  *                     tssr.append(sr)
  * 
  *             if cfg['method'] == 'sfa':  # convert time series to SFA             # <<<<<<<<<<<<<<
@@ -4824,16 +4879,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":180
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":181
  *                     tssr.append(sr)
  * 
  *             multi_tssr.append(tssr)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_multi_tssr, __pyx_v_tssr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 180, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_multi_tssr, __pyx_v_tssr); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 181, __pyx_L1_error)
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":161
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":162
  * 
  * 
  *         for cfg in self.config:             # <<<<<<<<<<<<<<
@@ -4843,7 +4898,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":183
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":184
  * 
  * 
  *         return multi_tssr             # <<<<<<<<<<<<<<
@@ -4855,7 +4910,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_r = __pyx_v_multi_tssr;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":143
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":144
  * 
  * 
  *     def __transform_time_series(self, ts_x):             # <<<<<<<<<<<<<<
@@ -4892,7 +4947,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":190
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":191
  * 
  *     # represent data (in multiple reps form) in feature space
  *     def __to_feature_space(self, mr_seqs):             # <<<<<<<<<<<<<<
@@ -4932,11 +4987,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_mr_seqs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__to_feature_space", 1, 2, 2, 1); __PYX_ERR(1, 190, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__to_feature_space", 1, 2, 2, 1); __PYX_ERR(1, 191, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__to_feature_space") < 0)) __PYX_ERR(1, 190, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__to_feature_space") < 0)) __PYX_ERR(1, 191, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4949,7 +5004,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__to_feature_space", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 190, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__to_feature_space", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 191, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.__to_feature_space", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4991,28 +5046,28 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   int __pyx_t_16;
   __Pyx_RefNannySetupContext("__to_feature_space", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":191
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":192
  *     # represent data (in multiple reps form) in feature space
  *     def __to_feature_space(self, mr_seqs):
  *         full_fm = []             # <<<<<<<<<<<<<<
  * 
  *         for rep, seq_features in zip(mr_seqs, self.sequences):
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 191, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_full_fm = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":193
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":194
  *         full_fm = []
  * 
  *         for rep, seq_features in zip(mr_seqs, self.sequences):             # <<<<<<<<<<<<<<
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 193, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 193, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_mr_seqs);
   __Pyx_GIVEREF(__pyx_v_mr_seqs);
@@ -5020,16 +5075,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 193, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_3 = 0;
     __pyx_t_4 = NULL;
   } else {
-    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 193, __pyx_L1_error)
+    __pyx_t_3 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 194, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 193, __pyx_L1_error)
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 194, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -5037,17 +5092,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(1, 193, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(1, 194, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 193, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(1, 193, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_1); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(1, 194, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 193, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -5057,7 +5112,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 193, __pyx_L1_error)
+          else __PYX_ERR(1, 194, __pyx_L1_error)
         }
         break;
       }
@@ -5069,7 +5124,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(1, 193, __pyx_L1_error)
+        __PYX_ERR(1, 194, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -5082,15 +5137,15 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 193, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 194, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 193, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 194, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 193, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 194, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -5098,7 +5153,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(1, 193, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(1, 194, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -5106,7 +5161,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(1, 193, __pyx_L1_error)
+      __PYX_ERR(1, 194, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_rep, __pyx_t_5);
@@ -5114,25 +5169,25 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_XDECREF_SET(__pyx_v_seq_features, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":194
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":195
  * 
  *         for rep, seq_features in zip(mr_seqs, self.sequences):
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)             # <<<<<<<<<<<<<<
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)             # <<<<<<<<<<<<<<
  *             for i,s in enumerate(rep):
  *                 for j,f in enumerate(seq_features):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_9 = PyObject_Length(__pyx_v_rep); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(1, 194, __pyx_L1_error)
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Length(__pyx_v_rep); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(1, 195, __pyx_L1_error)
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = PyObject_Length(__pyx_v_seq_features); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(1, 194, __pyx_L1_error)
-    __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Length(__pyx_v_seq_features); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(1, 195, __pyx_L1_error)
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
@@ -5140,21 +5195,21 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_5);
     __pyx_t_1 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_7);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_bool); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_int32); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(1, 194, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 194, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -5162,9 +5217,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_XDECREF_SET(__pyx_v_fm, __pyx_t_10);
     __pyx_t_10 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":195
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":196
  *         for rep, seq_features in zip(mr_seqs, self.sequences):
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):             # <<<<<<<<<<<<<<
  *                 for j,f in enumerate(seq_features):
  *                     if f in s:
@@ -5175,26 +5230,26 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_7 = __pyx_v_rep; __Pyx_INCREF(__pyx_t_7); __pyx_t_9 = 0;
       __pyx_t_11 = NULL;
     } else {
-      __pyx_t_9 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_v_rep); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 195, __pyx_L1_error)
+      __pyx_t_9 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_v_rep); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 196, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_11 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 195, __pyx_L1_error)
+      __pyx_t_11 = Py_TYPE(__pyx_t_7)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 196, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_11)) {
         if (likely(PyList_CheckExact(__pyx_t_7))) {
           if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_7)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_5 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 195, __pyx_L1_error)
+          __pyx_t_5 = PyList_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 196, __pyx_L1_error)
           #else
-          __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 195, __pyx_L1_error)
+          __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 196, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           #endif
         } else {
           if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_7)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 195, __pyx_L1_error)
+          __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_9); __Pyx_INCREF(__pyx_t_5); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 196, __pyx_L1_error)
           #else
-          __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 195, __pyx_L1_error)
+          __pyx_t_5 = PySequence_ITEM(__pyx_t_7, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 196, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_5);
           #endif
         }
@@ -5204,7 +5259,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(1, 195, __pyx_L1_error)
+            else __PYX_ERR(1, 196, __pyx_L1_error)
           }
           break;
         }
@@ -5214,14 +5269,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_5 = 0;
       __Pyx_INCREF(__pyx_t_10);
       __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_10);
-      __pyx_t_5 = __Pyx_PyInt_AddObjC(__pyx_t_10, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 195, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyInt_AddObjC(__pyx_t_10, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 196, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_10);
       __pyx_t_10 = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":196
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":197
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):
  *                 for j,f in enumerate(seq_features):             # <<<<<<<<<<<<<<
  *                     if f in s:
@@ -5233,26 +5288,26 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_6 = __pyx_v_seq_features; __Pyx_INCREF(__pyx_t_6); __pyx_t_12 = 0;
         __pyx_t_13 = NULL;
       } else {
-        __pyx_t_12 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_seq_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 196, __pyx_L1_error)
+        __pyx_t_12 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_seq_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 197, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_13 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 196, __pyx_L1_error)
+        __pyx_t_13 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_13)) __PYX_ERR(1, 197, __pyx_L1_error)
       }
       for (;;) {
         if (likely(!__pyx_t_13)) {
           if (likely(PyList_CheckExact(__pyx_t_6))) {
             if (__pyx_t_12 >= PyList_GET_SIZE(__pyx_t_6)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely(0 < 0)) __PYX_ERR(1, 196, __pyx_L1_error)
+            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely(0 < 0)) __PYX_ERR(1, 197, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 196, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 197, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           } else {
             if (__pyx_t_12 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely(0 < 0)) __PYX_ERR(1, 196, __pyx_L1_error)
+            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely(0 < 0)) __PYX_ERR(1, 197, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 196, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_6, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 197, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           }
@@ -5262,7 +5317,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(1, 196, __pyx_L1_error)
+              else __PYX_ERR(1, 197, __pyx_L1_error)
             }
             break;
           }
@@ -5272,31 +5327,31 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __pyx_t_1 = 0;
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_XDECREF_SET(__pyx_v_j, __pyx_t_5);
-        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 196, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 197, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_5);
         __pyx_t_5 = __pyx_t_1;
         __pyx_t_1 = 0;
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":197
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":198
  *             for i,s in enumerate(rep):
  *                 for j,f in enumerate(seq_features):
  *                     if f in s:             # <<<<<<<<<<<<<<
  *                         fm[i,j] = 1
  *             full_fm.append(fm)
  */
-        __pyx_t_14 = (__Pyx_PySequence_ContainsTF(__pyx_v_f, __pyx_v_s, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(1, 197, __pyx_L1_error)
+        __pyx_t_14 = (__Pyx_PySequence_ContainsTF(__pyx_v_f, __pyx_v_s, Py_EQ)); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(1, 198, __pyx_L1_error)
         __pyx_t_15 = (__pyx_t_14 != 0);
         if (__pyx_t_15) {
 
-          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":198
+          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":199
  *                 for j,f in enumerate(seq_features):
  *                     if f in s:
  *                         fm[i,j] = 1             # <<<<<<<<<<<<<<
  *             full_fm.append(fm)
  * 
  */
-          __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 198, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 199, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_INCREF(__pyx_v_i);
           __Pyx_GIVEREF(__pyx_v_i);
@@ -5304,10 +5359,10 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           __Pyx_INCREF(__pyx_v_j);
           __Pyx_GIVEREF(__pyx_v_j);
           PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_j);
-          if (unlikely(PyObject_SetItem(__pyx_v_fm, __pyx_t_1, __pyx_int_1) < 0)) __PYX_ERR(1, 198, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_fm, __pyx_t_1, __pyx_int_1) < 0)) __PYX_ERR(1, 199, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":197
+          /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":198
  *             for i,s in enumerate(rep):
  *                 for j,f in enumerate(seq_features):
  *                     if f in s:             # <<<<<<<<<<<<<<
@@ -5316,8 +5371,8 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
         }
 
-        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":196
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+        /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":197
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):
  *                 for j,f in enumerate(seq_features):             # <<<<<<<<<<<<<<
  *                     if f in s:
@@ -5327,9 +5382,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":195
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":196
  *         for rep, seq_features in zip(mr_seqs, self.sequences):
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):             # <<<<<<<<<<<<<<
  *                 for j,f in enumerate(seq_features):
  *                     if f in s:
@@ -5338,35 +5393,35 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":199
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":200
  *                     if f in s:
  *                         fm[i,j] = 1
  *             full_fm.append(fm)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_16 = __Pyx_PyObject_Append(__pyx_v_full_fm, __pyx_v_fm); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(1, 199, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyObject_Append(__pyx_v_full_fm, __pyx_v_fm); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(1, 200, __pyx_L1_error)
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":193
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":194
  *         full_fm = []
  * 
  *         for rep, seq_features in zip(mr_seqs, self.sequences):             # <<<<<<<<<<<<<<
- *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.bool)
+ *             fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
  *             for i,s in enumerate(rep):
  */
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":202
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":203
  * 
  * 
  *         full_fm = np.hstack(full_fm)             # <<<<<<<<<<<<<<
  *         return full_fm
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 202, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_np); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_hstack); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 202, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_hstack); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_10 = NULL;
@@ -5381,13 +5436,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_2 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_10, __pyx_v_full_fm) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_full_fm);
   __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 202, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF_SET(__pyx_v_full_fm, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":203
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":204
  * 
  *         full_fm = np.hstack(full_fm)
  *         return full_fm             # <<<<<<<<<<<<<<
@@ -5399,7 +5454,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_r = __pyx_v_full_fm;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":190
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":191
  * 
  *     # represent data (in multiple reps form) in feature space
  *     def __to_feature_space(self, mr_seqs):             # <<<<<<<<<<<<<<
@@ -5431,7 +5486,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":209
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
  *     From dictionary_based/boss.py
  *     '''
  *     def __X_check(self,X):             # <<<<<<<<<<<<<<
@@ -5471,11 +5526,11 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__X_check", 1, 2, 2, 1); __PYX_ERR(1, 209, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__X_check", 1, 2, 2, 1); __PYX_ERR(1, 210, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__X_check") < 0)) __PYX_ERR(1, 209, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__X_check") < 0)) __PYX_ERR(1, 210, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -5488,7 +5543,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__X_check", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 209, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__X_check", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 210, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.__X_check", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5517,55 +5572,55 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_RefNannySetupContext("__X_check", 0);
   __Pyx_INCREF(__pyx_v_X);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":211
  *     '''
  *     def __X_check(self,X):
  *         if isinstance(X, pd.DataFrame):             # <<<<<<<<<<<<<<
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pd); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 210, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pd); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_DataFrame); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 210, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_DataFrame); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = PyObject_IsInstance(__pyx_v_X, __pyx_t_2); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 210, __pyx_L1_error)
+  __pyx_t_3 = PyObject_IsInstance(__pyx_v_X, __pyx_t_2); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(1, 211, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_4 = (__pyx_t_3 != 0);
   if (__pyx_t_4) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":211
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":212
  *     def __X_check(self,X):
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:             # <<<<<<<<<<<<<<
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 211, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 211, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 211, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(1, 211, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (unlikely(__pyx_t_4)) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":212
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":213
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")             # <<<<<<<<<<<<<<
  *             elif isinstance(X.iloc[0, 0], pd.Series):
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 212, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 213, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __PYX_ERR(1, 212, __pyx_L1_error)
+      __PYX_ERR(1, 213, __pyx_L1_error)
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":211
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":212
  *     def __X_check(self,X):
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:             # <<<<<<<<<<<<<<
@@ -5574,56 +5629,56 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":213
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":214
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):             # <<<<<<<<<<<<<<
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  *             else:
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_iloc); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 213, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_iloc); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_tuple__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 213, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_tuple__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_pd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 213, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_pd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Series); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 213, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_Series); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_4 = PyObject_IsInstance(__pyx_t_1, __pyx_t_5); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 213, __pyx_L1_error)
+    __pyx_t_4 = PyObject_IsInstance(__pyx_t_1, __pyx_t_5); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(1, 214, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_3 = (__pyx_t_4 != 0);
     if (likely(__pyx_t_3)) {
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":214
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":215
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])             # <<<<<<<<<<<<<<
  *             else:
  *                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 214, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 214, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       { /* enter inner scope */
-        __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 214, __pyx_L7_error)
+        __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 215, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_iloc); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 214, __pyx_L7_error)
+        __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_X, __pyx_n_s_iloc); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 215, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_tuple__11); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 214, __pyx_L7_error)
+        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_tuple__11); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 215, __pyx_L7_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         if (likely(PyList_CheckExact(__pyx_t_7)) || PyTuple_CheckExact(__pyx_t_7)) {
           __pyx_t_6 = __pyx_t_7; __Pyx_INCREF(__pyx_t_6); __pyx_t_8 = 0;
           __pyx_t_9 = NULL;
         } else {
-          __pyx_t_8 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 214, __pyx_L7_error)
+          __pyx_t_8 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 215, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_9 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 214, __pyx_L7_error)
+          __pyx_t_9 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 215, __pyx_L7_error)
         }
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         for (;;) {
@@ -5631,17 +5686,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             if (likely(PyList_CheckExact(__pyx_t_6))) {
               if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_6)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_7 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 214, __pyx_L7_error)
+              __pyx_t_7 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 215, __pyx_L7_error)
               #else
-              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 214, __pyx_L7_error)
+              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 215, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_7);
               #endif
             } else {
               if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 214, __pyx_L7_error)
+              __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_8); __Pyx_INCREF(__pyx_t_7); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(1, 215, __pyx_L7_error)
               #else
-              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 214, __pyx_L7_error)
+              __pyx_t_7 = PySequence_ITEM(__pyx_t_6, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 215, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_7);
               #endif
             }
@@ -5651,7 +5706,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
                 if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(1, 214, __pyx_L7_error)
+                else __PYX_ERR(1, 215, __pyx_L7_error)
               }
               break;
             }
@@ -5659,9 +5714,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           }
           __Pyx_XDECREF_SET(__pyx_8genexpr1__pyx_v_a, __pyx_t_7);
           __pyx_t_7 = 0;
-          __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_8genexpr1__pyx_v_a, __pyx_n_s_values); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 214, __pyx_L7_error)
+          __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_8genexpr1__pyx_v_a, __pyx_n_s_values); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 215, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_7);
-          if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 214, __pyx_L7_error)
+          if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_7))) __PYX_ERR(1, 215, __pyx_L7_error)
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -5685,13 +5740,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_6, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 214, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 215, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":213
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":214
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):             # <<<<<<<<<<<<<<
@@ -5701,7 +5756,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       goto __pyx_L4;
     }
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":216
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":217
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  *             else:
  *                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")             # <<<<<<<<<<<<<<
@@ -5709,15 +5764,15 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  * 
  */
     /*else*/ {
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 216, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 217, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_Raise(__pyx_t_5, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __PYX_ERR(1, 216, __pyx_L1_error)
+      __PYX_ERR(1, 217, __pyx_L1_error)
     }
     __pyx_L4:;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":211
  *     '''
  *     def __X_check(self,X):
  *         if isinstance(X, pd.DataFrame):             # <<<<<<<<<<<<<<
@@ -5726,7 +5781,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":217
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":218
  *             else:
  *                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")
  *         return X             # <<<<<<<<<<<<<<
@@ -5738,7 +5793,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_r = __pyx_v_X;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":209
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
  *     From dictionary_based/boss.py
  *     '''
  *     def __X_check(self,X):             # <<<<<<<<<<<<<<
@@ -5763,12 +5818,12 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":219
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":220
  *         return X
  * 
  *     def fit(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  * 
- *         X = self.__X_check(X)
+ * 
  */
 
 /* Python wrapper */
@@ -5810,13 +5865,13 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, 1); __PYX_ERR(1, 219, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, 1); __PYX_ERR(1, 220, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, 2); __PYX_ERR(1, 219, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, 2); __PYX_ERR(1, 220, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -5826,7 +5881,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) __PYX_ERR(1, 219, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit") < 0)) __PYX_ERR(1, 220, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -5846,7 +5901,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 219, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fit", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 220, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.fit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5864,7 +5919,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   PyObject *__pyx_v_int_y = NULL;
   PyObject *__pyx_v_rep = NULL;
   struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *__pyx_v_miner = NULL;
-  PyObject *__pyx_v_train_x = NULL;
+  PyObject *__pyx_v_mined = NULL;
   PyObject *__pyx_8genexpr2__pyx_v_c = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5881,14 +5936,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_RefNannySetupContext("fit", 0);
   __Pyx_INCREF(__pyx_v_X);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":221
- *     def fit(self, X, y, input_checks=True):
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":223
+ * 
  * 
  *         X = self.__X_check(X)             # <<<<<<<<<<<<<<
  * 
  *         # transform time series to multiple symbolic representations
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 221, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5902,20 +5957,20 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 221, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":224
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":226
  * 
  *         # transform time series to multiple symbolic representations
  *         mr_seqs = self.__transform_time_series(X)             # <<<<<<<<<<<<<<
  * 
  *         self.classes_ = np.unique(y) #because sklearn also uses np.unique
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 224, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5929,22 +5984,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 224, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_mr_seqs = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":226
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":228
  *         mr_seqs = self.__transform_time_series(X)
  * 
  *         self.classes_ = np.unique(y) #because sklearn also uses np.unique             # <<<<<<<<<<<<<<
  * 
  *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5959,13 +6014,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_y) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_y);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 226, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_1) < 0) __PYX_ERR(1, 226, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_1) < 0) __PYX_ERR(1, 228, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":228
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":230
  *         self.classes_ = np.unique(y) #because sklearn also uses np.unique
  * 
  *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]             # <<<<<<<<<<<<<<
@@ -5973,32 +6028,32 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  *         self.sequences = []
  */
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 228, __pyx_L5_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 230, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (likely(PyList_CheckExact(__pyx_v_y)) || PyTuple_CheckExact(__pyx_v_y)) {
       __pyx_t_3 = __pyx_v_y; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
       __pyx_t_5 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 230, __pyx_L5_error)
     }
     for (;;) {
       if (likely(!__pyx_t_5)) {
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 228, __pyx_L5_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 230, __pyx_L5_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L5_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 230, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 228, __pyx_L5_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 230, __pyx_L5_error)
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L5_error)
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 230, __pyx_L5_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -6008,7 +6063,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(1, 228, __pyx_L5_error)
+            else __PYX_ERR(1, 230, __pyx_L5_error)
           }
           break;
         }
@@ -6016,14 +6071,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       }
       __Pyx_XDECREF_SET(__pyx_8genexpr2__pyx_v_c, __pyx_t_2);
       __pyx_t_2 = 0;
-      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_where); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_where); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_8 = PyObject_RichCompare(__pyx_t_6, __pyx_8genexpr2__pyx_v_c, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_8 = PyObject_RichCompare(__pyx_t_6, __pyx_8genexpr2__pyx_v_c, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_6 = NULL;
       if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -6038,16 +6093,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_6, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L5_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_2))) __PYX_ERR(1, 228, __pyx_L5_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_2))) __PYX_ERR(1, 230, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6061,49 +6116,49 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_v_int_y = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":230
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":232
  *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
  * 
  *         self.sequences = []             # <<<<<<<<<<<<<<
  * 
  *         for rep in mr_seqs:
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 230, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sequences, __pyx_t_1) < 0) __PYX_ERR(1, 230, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sequences, __pyx_t_1) < 0) __PYX_ERR(1, 232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":232
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":234
  *         self.sequences = []
  * 
  *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
  *             miner = PySQM(self.selection)
- *             self.sequences.append(miner.mine(rep, int_y))
+ *             mined = miner.mine(rep, int_y)
  */
   if (likely(PyList_CheckExact(__pyx_v_mr_seqs)) || PyTuple_CheckExact(__pyx_v_mr_seqs)) {
     __pyx_t_1 = __pyx_v_mr_seqs; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_mr_seqs); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 232, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_mr_seqs); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 234, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 232, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 234, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 232, __pyx_L1_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 234, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 232, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 234, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 232, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 234, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 232, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 234, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       }
@@ -6113,7 +6168,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 232, __pyx_L1_error)
+          else __PYX_ERR(1, 234, __pyx_L1_error)
         }
         break;
       }
@@ -6122,208 +6177,106 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_XDECREF_SET(__pyx_v_rep, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":233
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":235
  * 
  *         for rep in mr_seqs:
  *             miner = PySQM(self.selection)             # <<<<<<<<<<<<<<
- *             self.sequences.append(miner.mine(rep, int_y))
- * 
+ *             mined = miner.mine(rep, int_y)
+ *             self.sequences.append(mined)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 233, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM), __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 233, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM), __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF_SET(__pyx_v_miner, ((struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":234
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":236
  *         for rep in mr_seqs:
  *             miner = PySQM(self.selection)
- *             self.sequences.append(miner.mine(rep, int_y))             # <<<<<<<<<<<<<<
- * 
+ *             mined = miner.mine(rep, int_y)             # <<<<<<<<<<<<<<
+ *             self.sequences.append(mined)
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 234, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_miner), __pyx_n_s_mine); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 234, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = NULL;
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_miner), __pyx_n_s_mine); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 236, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = NULL;
     __pyx_t_9 = 0;
-    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
-      __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_7);
-      if (likely(__pyx_t_8)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-        __Pyx_INCREF(__pyx_t_8);
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_3);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_7);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_7, function);
+        __Pyx_DECREF_SET(__pyx_t_3, function);
         __pyx_t_9 = 1;
       }
     }
     #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_v_rep, __pyx_v_int_y};
-      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 234, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __Pyx_GOTREF(__pyx_t_3);
+    if (PyFunction_Check(__pyx_t_3)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_rep, __pyx_v_int_y};
+      __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
-      PyObject *__pyx_temp[3] = {__pyx_t_8, __pyx_v_rep, __pyx_v_int_y};
-      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 234, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __Pyx_GOTREF(__pyx_t_3);
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_rep, __pyx_v_int_y};
+      __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_2);
     } else
     #endif
     {
-      __pyx_t_6 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 234, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      if (__pyx_t_8) {
-        __Pyx_GIVEREF(__pyx_t_8); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_8); __pyx_t_8 = NULL;
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 236, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
+      if (__pyx_t_7) {
+        __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
       }
       __Pyx_INCREF(__pyx_v_rep);
       __Pyx_GIVEREF(__pyx_v_rep);
-      PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_9, __pyx_v_rep);
+      PyTuple_SET_ITEM(__pyx_t_8, 0+__pyx_t_9, __pyx_v_rep);
       __Pyx_INCREF(__pyx_v_int_y);
       __Pyx_GIVEREF(__pyx_v_int_y);
-      PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_9, __pyx_v_int_y);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 234, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_9, __pyx_v_int_y);
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_t_3); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 234, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_mined, __pyx_t_2);
+    __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":232
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":237
+ *             miner = PySQM(self.selection)
+ *             mined = miner.mine(rep, int_y)
+ *             self.sequences.append(mined)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 237, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_mined); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 237, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":234
  *         self.sequences = []
  * 
  *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
  *             miner = PySQM(self.selection)
- *             self.sequences.append(miner.mine(rep, int_y))
+ *             mined = miner.mine(rep, int_y)
  */
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":241
- *         # then fit the new data to a logistic regression model
- * 
- *         train_x = self.__to_feature_space(mr_seqs)             # <<<<<<<<<<<<<<
- *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
- *         self.classes_ = self.clf.classes_ # shouldn't matter
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 241, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_mr_seqs) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_mr_seqs);
-  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 241, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_train_x = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":242
- * 
- *         train_x = self.__to_feature_space(mr_seqs)
- *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)             # <<<<<<<<<<<<<<
- *         self.classes_ = self.clf.classes_ # shouldn't matter
- * 
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 242, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 242, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_solver, __pyx_kp_u_newton_cg) < 0) __PYX_ERR(1, 242, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_multi_class, __pyx_n_u_multinomial) < 0) __PYX_ERR(1, 242, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_class_weight, __pyx_n_u_balanced) < 0) __PYX_ERR(1, 242, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 242, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_fit); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 242, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  __pyx_t_9 = 0;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_9 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_train_x, __pyx_v_y};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 242, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_train_x, __pyx_v_y};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 242, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-  } else
-  #endif
-  {
-    __pyx_t_3 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 242, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    if (__pyx_t_7) {
-      __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7); __pyx_t_7 = NULL;
-    }
-    __Pyx_INCREF(__pyx_v_train_x);
-    __Pyx_GIVEREF(__pyx_v_train_x);
-    PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_9, __pyx_v_train_x);
-    __Pyx_INCREF(__pyx_v_y);
-    __Pyx_GIVEREF(__pyx_v_y);
-    PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_9, __pyx_v_y);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 242, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, __pyx_t_1) < 0) __PYX_ERR(1, 242, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":243
- *         train_x = self.__to_feature_space(mr_seqs)
- *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
- *         self.classes_ = self.clf.classes_ # shouldn't matter             # <<<<<<<<<<<<<<
- * 
- *     def fit_ova(self, X, y, input_checks=True):
- */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 243, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_classes); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 243, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_2) < 0) __PYX_ERR(1, 243, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":219
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":220
  *         return X
  * 
  *     def fit(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  * 
- *         X = self.__X_check(X)
+ * 
  */
 
   /* function exit code */
@@ -6343,7 +6296,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_XDECREF(__pyx_v_int_y);
   __Pyx_XDECREF(__pyx_v_rep);
   __Pyx_XDECREF((PyObject *)__pyx_v_miner);
-  __Pyx_XDECREF(__pyx_v_train_x);
+  __Pyx_XDECREF(__pyx_v_mined);
   __Pyx_XDECREF(__pyx_8genexpr2__pyx_v_c);
   __Pyx_XDECREF(__pyx_v_X);
   __Pyx_XGIVEREF(__pyx_r);
@@ -6351,7 +6304,679 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":245
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":248
+ *         # self.classes_ = self.clf.classes_ # shouldn't matter
+ * 
+ *     def fit_random_selection(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
+ *     # '''
+ *     # random selection after mining
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_random_selection = {"fit_random_selection", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_random_selection, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_X = 0;
+  PyObject *__pyx_v_y = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_input_checks = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("fit_random_selection (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_X,&__pyx_n_s_y,&__pyx_n_s_input_checks,0};
+    PyObject* values[4] = {0,0,0,0};
+    values[3] = ((PyObject *)((PyObject *)Py_True));
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("fit_random_selection", 0, 3, 4, 1); __PYX_ERR(1, 248, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("fit_random_selection", 0, 3, 4, 2); __PYX_ERR(1, 248, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_input_checks);
+          if (value) { values[3] = value; kw_args--; }
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit_random_selection") < 0)) __PYX_ERR(1, 248, __pyx_L3_error)
+      }
+    } else {
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_X = values[1];
+    __pyx_v_y = values[2];
+    __pyx_v_input_checks = values[3];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("fit_random_selection", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 248, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.fit_random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_random_selection(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_input_checks);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_random_selection(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks) {
+  PyObject *__pyx_v_max_selected = NULL;
+  PyObject *__pyx_v_mr_seqs = NULL;
+  PyObject *__pyx_v_int_y = NULL;
+  PyObject *__pyx_v_rep = NULL;
+  struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *__pyx_v_miner = NULL;
+  PyObject *__pyx_v_mined = NULL;
+  PyObject *__pyx_v_random_selected = NULL;
+  PyObject *__pyx_v_train_x = NULL;
+  PyObject *__pyx_8genexpr3__pyx_v_c = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  PyObject *(*__pyx_t_5)(PyObject *);
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  int __pyx_t_9;
+  int __pyx_t_10;
+  __Pyx_RefNannySetupContext("fit_random_selection", 0);
+  __Pyx_INCREF(__pyx_v_X);
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":252
+ *     # random selection after mining
+ *     # '''
+ *         max_selected = self.selection * 3             # <<<<<<<<<<<<<<
+ * 
+ *         X = self.__X_check(X)
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 252, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_int_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 252, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_max_selected = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":254
+ *         max_selected = self.selection * 3
+ * 
+ *         X = self.__X_check(X)             # <<<<<<<<<<<<<<
+ * 
+ *         # transform time series to multiple symbolic representations
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 254, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_X);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 254, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":257
+ * 
+ *         # transform time series to multiple symbolic representations
+ *         mr_seqs = self.__transform_time_series(X)             # <<<<<<<<<<<<<<
+ * 
+ *         self.classes_ = np.unique(y) #because sklearn also uses np.unique
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 257, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_X);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 257, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_mr_seqs = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":259
+ *         mr_seqs = self.__transform_time_series(X)
+ * 
+ *         self.classes_ = np.unique(y) #because sklearn also uses np.unique             # <<<<<<<<<<<<<<
+ * 
+ *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 259, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 259, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_y) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_y);
+  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 259, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_2) < 0) __PYX_ERR(1, 259, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":261
+ *         self.classes_ = np.unique(y) #because sklearn also uses np.unique
+ * 
+ *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]             # <<<<<<<<<<<<<<
+ * 
+ *         self.sequences = []
+ */
+  { /* enter inner scope */
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 261, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (likely(PyList_CheckExact(__pyx_v_y)) || PyTuple_CheckExact(__pyx_v_y)) {
+      __pyx_t_3 = __pyx_v_y; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
+      __pyx_t_5 = NULL;
+    } else {
+      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_y); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 261, __pyx_L5_error)
+    }
+    for (;;) {
+      if (likely(!__pyx_t_5)) {
+        if (likely(PyList_CheckExact(__pyx_t_3))) {
+          if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 261, __pyx_L5_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 261, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        } else {
+          if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 261, __pyx_L5_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 261, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        }
+      } else {
+        __pyx_t_1 = __pyx_t_5(__pyx_t_3);
+        if (unlikely(!__pyx_t_1)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(1, 261, __pyx_L5_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_XDECREF_SET(__pyx_8genexpr3__pyx_v_c, __pyx_t_1);
+      __pyx_t_1 = 0;
+      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_where); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_8 = PyObject_RichCompare(__pyx_t_6, __pyx_8genexpr3__pyx_v_c, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_6 = NULL;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_7))) {
+        __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_7);
+        if (likely(__pyx_t_6)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
+          __Pyx_INCREF(__pyx_t_6);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_7, function);
+        }
+      }
+      __pyx_t_1 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_6, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8);
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) __PYX_ERR(1, 261, __pyx_L5_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_c); __pyx_8genexpr3__pyx_v_c = 0;
+    goto __pyx_L8_exit_scope;
+    __pyx_L5_error:;
+    __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_c); __pyx_8genexpr3__pyx_v_c = 0;
+    goto __pyx_L1_error;
+    __pyx_L8_exit_scope:;
+  } /* exit inner scope */
+  __pyx_v_int_y = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":263
+ *         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
+ * 
+ *         self.sequences = []             # <<<<<<<<<<<<<<
+ * 
+ *         for rep in mr_seqs:
+ */
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 263, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sequences, __pyx_t_2) < 0) __PYX_ERR(1, 263, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":265
+ *         self.sequences = []
+ * 
+ *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
+ *             miner = PySQM(max_selected)
+ *             mined = miner.mine(rep, int_y)
+ */
+  if (likely(PyList_CheckExact(__pyx_v_mr_seqs)) || PyTuple_CheckExact(__pyx_v_mr_seqs)) {
+    __pyx_t_2 = __pyx_v_mr_seqs; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
+    __pyx_t_5 = NULL;
+  } else {
+    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_mr_seqs); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 265, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 265, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_5)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 265, __pyx_L1_error)
+        #else
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 265, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        #endif
+      } else {
+        if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 265, __pyx_L1_error)
+        #else
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 265, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        #endif
+      }
+    } else {
+      __pyx_t_3 = __pyx_t_5(__pyx_t_2);
+      if (unlikely(!__pyx_t_3)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(1, 265, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_3);
+    }
+    __Pyx_XDECREF_SET(__pyx_v_rep, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":266
+ * 
+ *         for rep in mr_seqs:
+ *             miner = PySQM(max_selected)             # <<<<<<<<<<<<<<
+ *             mined = miner.mine(rep, int_y)
+ *             # print(len(mined))
+ */
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM), __pyx_v_max_selected); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 266, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_XDECREF_SET(__pyx_v_miner, ((struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *)__pyx_t_3));
+    __pyx_t_3 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":267
+ *         for rep in mr_seqs:
+ *             miner = PySQM(max_selected)
+ *             mined = miner.mine(rep, int_y)             # <<<<<<<<<<<<<<
+ *             # print(len(mined))
+ *             random_selected = np.random.permutation(mined)[:self.selection].tolist()
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_miner), __pyx_n_s_mine); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 267, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_7 = NULL;
+    __pyx_t_9 = 0;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __pyx_t_9 = 1;
+      }
+    }
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(__pyx_t_1)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_rep, __pyx_v_int_y};
+      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 267, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_3);
+    } else
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+      PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_rep, __pyx_v_int_y};
+      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 267, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_3);
+    } else
+    #endif
+    {
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 267, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
+      if (__pyx_t_7) {
+        __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_7); __pyx_t_7 = NULL;
+      }
+      __Pyx_INCREF(__pyx_v_rep);
+      __Pyx_GIVEREF(__pyx_v_rep);
+      PyTuple_SET_ITEM(__pyx_t_8, 0+__pyx_t_9, __pyx_v_rep);
+      __Pyx_INCREF(__pyx_v_int_y);
+      __Pyx_GIVEREF(__pyx_v_int_y);
+      PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_9, __pyx_v_int_y);
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 267, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_mined, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":269
+ *             mined = miner.mine(rep, int_y)
+ *             # print(len(mined))
+ *             random_selected = np.random.permutation(mined)[:self.selection].tolist()             # <<<<<<<<<<<<<<
+ *             # print(len(random_selected))
+ *             self.sequences.append(random_selected)
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_random); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_permutation); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_8);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_8, function);
+      }
+    }
+    __pyx_t_1 = (__pyx_t_7) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_7, __pyx_v_mined) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_mined);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_7 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, 0, NULL, &__pyx_t_8, NULL, 0, 0, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_tolist); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_8);
+      if (likely(__pyx_t_7)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_8, function);
+      }
+    }
+    __pyx_t_3 = (__pyx_t_7) ? __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7) : __Pyx_PyObject_CallNoArg(__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 269, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_random_selected, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":271
+ *             random_selected = np.random.permutation(mined)[:self.selection].tolist()
+ *             # print(len(random_selected))
+ *             self.sequences.append(random_selected)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_10 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_v_random_selected); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(1, 271, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":265
+ *         self.sequences = []
+ * 
+ *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
+ *             miner = PySQM(max_selected)
+ *             mined = miner.mine(rep, int_y)
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":278
+ *         # then fit the new data to a logistic regression model
+ * 
+ *         train_x = self.__to_feature_space(mr_seqs)             # <<<<<<<<<<<<<<
+ *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
+ *         self.classes_ = self.clf.classes_ # shouldn't matter
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_8 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_8)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_8);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_8, __pyx_v_mr_seqs) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_mr_seqs);
+  __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_train_x = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":279
+ * 
+ *         train_x = self.__to_feature_space(mr_seqs)
+ *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)             # <<<<<<<<<<<<<<
+ *         self.classes_ = self.clf.classes_ # shouldn't matter
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_solver, __pyx_kp_u_newton_cg) < 0) __PYX_ERR(1, 279, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_multi_class, __pyx_n_u_multinomial) < 0) __PYX_ERR(1, 279, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_class_weight, __pyx_n_u_balanced) < 0) __PYX_ERR(1, 279, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_fit); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = NULL;
+  __pyx_t_9 = 0;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_7)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+      __Pyx_INCREF(__pyx_t_7);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_8, function);
+      __pyx_t_9 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_8)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_train_x, __pyx_v_y};
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 279, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_8)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_train_x, __pyx_v_y};
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_8, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 279, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else
+  #endif
+  {
+    __pyx_t_3 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 279, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (__pyx_t_7) {
+      __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7); __pyx_t_7 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_train_x);
+    __Pyx_GIVEREF(__pyx_v_train_x);
+    PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_9, __pyx_v_train_x);
+    __Pyx_INCREF(__pyx_v_y);
+    __Pyx_GIVEREF(__pyx_v_y);
+    PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_9, __pyx_v_y);
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 279, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, __pyx_t_2) < 0) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":280
+ *         train_x = self.__to_feature_space(mr_seqs)
+ *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
+ *         self.classes_ = self.clf.classes_ # shouldn't matter             # <<<<<<<<<<<<<<
+ * 
+ *     def fit_ova(self, X, y, input_checks=True):
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_classes); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 280, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_8) < 0) __PYX_ERR(1, 280, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":248
+ *         # self.classes_ = self.clf.classes_ # shouldn't matter
+ * 
+ *     def fit_random_selection(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
+ *     # '''
+ *     # random selection after mining
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.fit_random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_max_selected);
+  __Pyx_XDECREF(__pyx_v_mr_seqs);
+  __Pyx_XDECREF(__pyx_v_int_y);
+  __Pyx_XDECREF(__pyx_v_rep);
+  __Pyx_XDECREF((PyObject *)__pyx_v_miner);
+  __Pyx_XDECREF(__pyx_v_mined);
+  __Pyx_XDECREF(__pyx_v_random_selected);
+  __Pyx_XDECREF(__pyx_v_train_x);
+  __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_c);
+  __Pyx_XDECREF(__pyx_v_X);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":282
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  * 
  *     def fit_ova(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
@@ -6360,9 +6985,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_ova(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_ova = {"fit_ova", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_ova, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_ova(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13fit_ova(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13fit_ova = {"fit_ova", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13fit_ova, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13fit_ova(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_X = 0;
   PyObject *__pyx_v_y = 0;
@@ -6398,13 +7023,13 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, 1); __PYX_ERR(1, 245, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, 1); __PYX_ERR(1, 282, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, 2); __PYX_ERR(1, 245, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, 2); __PYX_ERR(1, 282, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -6414,7 +7039,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit_ova") < 0)) __PYX_ERR(1, 245, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "fit_ova") < 0)) __PYX_ERR(1, 282, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -6434,20 +7059,20 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 245, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fit_ova", 0, 3, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 282, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.fit_ova", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_ova(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_input_checks);
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12fit_ova(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_input_checks);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_10fit_ova(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks) {
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12fit_ova(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, CYTHON_UNUSED PyObject *__pyx_v_input_checks) {
   PyObject *__pyx_v_mr_seqs = NULL;
   PyObject *__pyx_v_rep = NULL;
   PyObject *__pyx_v_c_sequences = NULL;
@@ -6455,7 +7080,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   PyObject *__pyx_v_tmp_y = NULL;
   struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *__pyx_v_miner = NULL;
   PyObject *__pyx_v_train_x = NULL;
-  PyObject *__pyx_8genexpr3__pyx_v_l = NULL;
+  PyObject *__pyx_8genexpr4__pyx_v_l = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6476,14 +7101,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_RefNannySetupContext("fit_ova", 0);
   __Pyx_INCREF(__pyx_v_X);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":246
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":283
  * 
  *     def fit_ova(self, X, y, input_checks=True):
  *         X = self.__X_check(X)             # <<<<<<<<<<<<<<
  * 
  *         # transform time series to multiple symbolic representations
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 246, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6497,20 +7122,20 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 246, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":249
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":286
  * 
  *         # transform time series to multiple symbolic representations
  *         mr_seqs = self.__transform_time_series(X)             # <<<<<<<<<<<<<<
  * 
  *         self.classes_ = np.unique(y) #because sklearn also uses np.unique
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 249, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6524,22 +7149,22 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 249, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_mr_seqs = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":251
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":288
  *         mr_seqs = self.__transform_time_series(X)
  * 
  *         self.classes_ = np.unique(y) #because sklearn also uses np.unique             # <<<<<<<<<<<<<<
  * 
  *         #int_y = [np.where(self.classes_ == c)[0][0] for c in y]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 251, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 251, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -6554,25 +7179,25 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_y) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_y);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 251, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_1) < 0) __PYX_ERR(1, 251, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_1) < 0) __PYX_ERR(1, 288, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":255
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":292
  *         #int_y = [np.where(self.classes_ == c)[0][0] for c in y]
  * 
  *         self.sequences = []             # <<<<<<<<<<<<<<
  * 
  *         for rep in mr_seqs:
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 255, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sequences, __pyx_t_1) < 0) __PYX_ERR(1, 255, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_sequences, __pyx_t_1) < 0) __PYX_ERR(1, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":257
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":294
  *         self.sequences = []
  * 
  *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
@@ -6583,26 +7208,26 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __pyx_t_1 = __pyx_v_mr_seqs; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_mr_seqs); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 257, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_mr_seqs); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 257, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 294, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 257, __pyx_L1_error)
+        __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 294, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 257, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 294, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 257, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(1, 294, __pyx_L1_error)
         #else
-        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 257, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 294, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         #endif
       }
@@ -6612,7 +7237,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(1, 257, __pyx_L1_error)
+          else __PYX_ERR(1, 294, __pyx_L1_error)
         }
         break;
       }
@@ -6621,34 +7246,34 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_XDECREF_SET(__pyx_v_rep, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":258
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":295
  * 
  *         for rep in mr_seqs:
  *             c_sequences = []             # <<<<<<<<<<<<<<
  *             for c in self.classes_:
  *                 tmp_y = [1 if l == c else 0 for l in y]
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 258, __pyx_L1_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_c_sequences, ((PyObject*)__pyx_t_3));
     __pyx_t_3 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":259
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":296
  *         for rep in mr_seqs:
  *             c_sequences = []
  *             for c in self.classes_:             # <<<<<<<<<<<<<<
  *                 tmp_y = [1 if l == c else 0 for l in y]
  *                 miner = PySQM(self.selection)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 259, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 296, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
       __pyx_t_2 = __pyx_t_3; __Pyx_INCREF(__pyx_t_2); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
     } else {
-      __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 259, __pyx_L1_error)
+      __pyx_t_6 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 296, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 259, __pyx_L1_error)
+      __pyx_t_7 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 296, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
@@ -6656,17 +7281,17 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         if (likely(PyList_CheckExact(__pyx_t_2))) {
           if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_3); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(1, 259, __pyx_L1_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_3); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(1, 296, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 259, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 296, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_3); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(1, 259, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_6); __Pyx_INCREF(__pyx_t_3); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(1, 296, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 259, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 296, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -6676,7 +7301,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(1, 259, __pyx_L1_error)
+            else __PYX_ERR(1, 296, __pyx_L1_error)
           }
           break;
         }
@@ -6685,7 +7310,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":260
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":297
  *             c_sequences = []
  *             for c in self.classes_:
  *                 tmp_y = [1 if l == c else 0 for l in y]             # <<<<<<<<<<<<<<
@@ -6693,32 +7318,32 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  *                 c_sequences.extend(miner.mine(rep, tmp_y))
  */
       { /* enter inner scope */
-        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 260, __pyx_L9_error)
+        __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 297, __pyx_L9_error)
         __Pyx_GOTREF(__pyx_t_3);
         if (likely(PyList_CheckExact(__pyx_v_y)) || PyTuple_CheckExact(__pyx_v_y)) {
           __pyx_t_8 = __pyx_v_y; __Pyx_INCREF(__pyx_t_8); __pyx_t_9 = 0;
           __pyx_t_10 = NULL;
         } else {
-          __pyx_t_9 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_v_y); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 260, __pyx_L9_error)
+          __pyx_t_9 = -1; __pyx_t_8 = PyObject_GetIter(__pyx_v_y); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 297, __pyx_L9_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_10 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 260, __pyx_L9_error)
+          __pyx_t_10 = Py_TYPE(__pyx_t_8)->tp_iternext; if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 297, __pyx_L9_error)
         }
         for (;;) {
           if (likely(!__pyx_t_10)) {
             if (likely(PyList_CheckExact(__pyx_t_8))) {
               if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_8)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_11 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_9); __Pyx_INCREF(__pyx_t_11); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 260, __pyx_L9_error)
+              __pyx_t_11 = PyList_GET_ITEM(__pyx_t_8, __pyx_t_9); __Pyx_INCREF(__pyx_t_11); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 297, __pyx_L9_error)
               #else
-              __pyx_t_11 = PySequence_ITEM(__pyx_t_8, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 260, __pyx_L9_error)
+              __pyx_t_11 = PySequence_ITEM(__pyx_t_8, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 297, __pyx_L9_error)
               __Pyx_GOTREF(__pyx_t_11);
               #endif
             } else {
               if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_8)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_11 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_9); __Pyx_INCREF(__pyx_t_11); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 260, __pyx_L9_error)
+              __pyx_t_11 = PyTuple_GET_ITEM(__pyx_t_8, __pyx_t_9); __Pyx_INCREF(__pyx_t_11); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(1, 297, __pyx_L9_error)
               #else
-              __pyx_t_11 = PySequence_ITEM(__pyx_t_8, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 260, __pyx_L9_error)
+              __pyx_t_11 = PySequence_ITEM(__pyx_t_8, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 297, __pyx_L9_error)
               __Pyx_GOTREF(__pyx_t_11);
               #endif
             }
@@ -6728,16 +7353,16 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
                 if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(1, 260, __pyx_L9_error)
+                else __PYX_ERR(1, 297, __pyx_L9_error)
               }
               break;
             }
             __Pyx_GOTREF(__pyx_t_11);
           }
-          __Pyx_XDECREF_SET(__pyx_8genexpr3__pyx_v_l, __pyx_t_11);
+          __Pyx_XDECREF_SET(__pyx_8genexpr4__pyx_v_l, __pyx_t_11);
           __pyx_t_11 = 0;
-          __pyx_t_12 = PyObject_RichCompare(__pyx_8genexpr3__pyx_v_l, __pyx_v_c, Py_EQ); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 260, __pyx_L9_error)
-          __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(1, 260, __pyx_L9_error)
+          __pyx_t_12 = PyObject_RichCompare(__pyx_8genexpr4__pyx_v_l, __pyx_v_c, Py_EQ); __Pyx_XGOTREF(__pyx_t_12); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 297, __pyx_L9_error)
+          __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_12); if (unlikely(__pyx_t_13 < 0)) __PYX_ERR(1, 297, __pyx_L9_error)
           __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           if (__pyx_t_13) {
             __Pyx_INCREF(__pyx_int_1);
@@ -6746,43 +7371,43 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
             __Pyx_INCREF(__pyx_int_0);
             __pyx_t_11 = __pyx_int_0;
           }
-          if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_11))) __PYX_ERR(1, 260, __pyx_L9_error)
+          if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_11))) __PYX_ERR(1, 297, __pyx_L9_error)
           __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         }
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_l); __pyx_8genexpr3__pyx_v_l = 0;
+        __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_l); __pyx_8genexpr4__pyx_v_l = 0;
         goto __pyx_L12_exit_scope;
         __pyx_L9_error:;
-        __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_l); __pyx_8genexpr3__pyx_v_l = 0;
+        __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_l); __pyx_8genexpr4__pyx_v_l = 0;
         goto __pyx_L1_error;
         __pyx_L12_exit_scope:;
       } /* exit inner scope */
       __Pyx_XDECREF_SET(__pyx_v_tmp_y, ((PyObject*)__pyx_t_3));
       __pyx_t_3 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":261
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":298
  *             for c in self.classes_:
  *                 tmp_y = [1 if l == c else 0 for l in y]
  *                 miner = PySQM(self.selection)             # <<<<<<<<<<<<<<
  *                 c_sequences.extend(miner.mine(rep, tmp_y))
  *             self.sequences.append(np.unique(c_sequences))
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 261, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_selection); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 298, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_8 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM), __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 261, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM), __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 298, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF_SET(__pyx_v_miner, ((struct __pyx_obj_6sktime_11classifiers_11classifiers_5mrsqm_PySQM *)__pyx_t_8));
       __pyx_t_8 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":262
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":299
  *                 tmp_y = [1 if l == c else 0 for l in y]
  *                 miner = PySQM(self.selection)
  *                 c_sequences.extend(miner.mine(rep, tmp_y))             # <<<<<<<<<<<<<<
  *             self.sequences.append(np.unique(c_sequences))
  * 
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_miner), __pyx_n_s_mine); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 262, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_miner), __pyx_n_s_mine); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 299, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_11 = NULL;
       __pyx_t_14 = 0;
@@ -6799,7 +7424,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_v_rep, __pyx_v_tmp_y};
-        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 262, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 299, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
@@ -6807,13 +7432,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
         PyObject *__pyx_temp[3] = {__pyx_t_11, __pyx_v_rep, __pyx_v_tmp_y};
-        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 262, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 299, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
       #endif
       {
-        __pyx_t_12 = PyTuple_New(2+__pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 262, __pyx_L1_error)
+        __pyx_t_12 = PyTuple_New(2+__pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_12);
         if (__pyx_t_11) {
           __Pyx_GIVEREF(__pyx_t_11); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_11); __pyx_t_11 = NULL;
@@ -6824,15 +7449,15 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         __Pyx_INCREF(__pyx_v_tmp_y);
         __Pyx_GIVEREF(__pyx_v_tmp_y);
         PyTuple_SET_ITEM(__pyx_t_12, 1+__pyx_t_14, __pyx_v_tmp_y);
-        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_12, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 262, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_12, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 299, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_15 = __Pyx_PyList_Extend(__pyx_v_c_sequences, __pyx_t_8); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(1, 262, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyList_Extend(__pyx_v_c_sequences, __pyx_t_8); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(1, 299, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":259
+      /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":296
  *         for rep in mr_seqs:
  *             c_sequences = []
  *             for c in self.classes_:             # <<<<<<<<<<<<<<
@@ -6842,18 +7467,18 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":263
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":300
  *                 miner = PySQM(self.selection)
  *                 c_sequences.extend(miner.mine(rep, tmp_y))
  *             self.sequences.append(np.unique(c_sequences))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 263, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 263, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_unique); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 263, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_unique); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -6868,14 +7493,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     }
     __pyx_t_8 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_12, __pyx_t_3, __pyx_v_c_sequences) : __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_c_sequences);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 263, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_t_8); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(1, 263, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_t_8); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":257
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":294
  *         self.sequences = []
  * 
  *         for rep in mr_seqs:             # <<<<<<<<<<<<<<
@@ -6885,14 +7510,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":270
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":307
  *         # then fit the new data to a logistic regression model
  * 
  *         train_x = self.__to_feature_space(mr_seqs)             # <<<<<<<<<<<<<<
  *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 270, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_2 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_8))) {
@@ -6906,31 +7531,31 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_2, __pyx_v_mr_seqs) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_mr_seqs);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 270, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 307, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_train_x = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":271
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":308
  * 
  *         train_x = self.__to_feature_space(mr_seqs)
  *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)             # <<<<<<<<<<<<<<
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 271, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 271, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_solver, __pyx_kp_u_newton_cg) < 0) __PYX_ERR(1, 271, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_multi_class, __pyx_n_u_multinomial) < 0) __PYX_ERR(1, 271, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_class_weight, __pyx_n_u_balanced) < 0) __PYX_ERR(1, 271, __pyx_L1_error)
-  __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 271, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_solver, __pyx_kp_u_newton_cg) < 0) __PYX_ERR(1, 308, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_multi_class, __pyx_n_u_multinomial) < 0) __PYX_ERR(1, 308, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_class_weight, __pyx_n_u_balanced) < 0) __PYX_ERR(1, 308, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_fit); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 271, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_fit); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __pyx_t_12 = NULL;
@@ -6948,7 +7573,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_v_train_x, __pyx_v_y};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 271, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 308, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -6956,13 +7581,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_12, __pyx_v_train_x, __pyx_v_y};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 271, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_14, 2+__pyx_t_14); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 308, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_8 = PyTuple_New(2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 271, __pyx_L1_error)
+    __pyx_t_8 = PyTuple_New(2+__pyx_t_14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     if (__pyx_t_12) {
       __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -6973,30 +7598,30 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_INCREF(__pyx_v_y);
     __Pyx_GIVEREF(__pyx_v_y);
     PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_14, __pyx_v_y);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 271, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, __pyx_t_1) < 0) __PYX_ERR(1, 271, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_clf, __pyx_t_1) < 0) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":272
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":309
  *         train_x = self.__to_feature_space(mr_seqs)
  *         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
  *         self.classes_ = self.clf.classes_ # shouldn't matter             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 272, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_classes); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 272, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_classes); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_2) < 0) __PYX_ERR(1, 272, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_classes, __pyx_t_2) < 0) __PYX_ERR(1, 309, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":245
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":282
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  * 
  *     def fit_ova(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
@@ -7024,14 +7649,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_XDECREF(__pyx_v_tmp_y);
   __Pyx_XDECREF((PyObject *)__pyx_v_miner);
   __Pyx_XDECREF(__pyx_v_train_x);
-  __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_l);
+  __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_l);
   __Pyx_XDECREF(__pyx_v_X);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":276
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":313
  * 
  * 
  *     def predict_proba(self, X, input_checks=True):             # <<<<<<<<<<<<<<
@@ -7040,9 +7665,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13predict_proba(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13predict_proba = {"predict_proba", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13predict_proba, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13predict_proba(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict_proba(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict_proba = {"predict_proba", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict_proba, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict_proba(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_X = 0;
   PyObject *__pyx_v_input_checks = 0;
@@ -7075,7 +7700,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("predict_proba", 0, 2, 3, 1); __PYX_ERR(1, 276, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("predict_proba", 0, 2, 3, 1); __PYX_ERR(1, 313, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -7085,7 +7710,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "predict_proba") < 0)) __PYX_ERR(1, 276, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "predict_proba") < 0)) __PYX_ERR(1, 313, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7103,20 +7728,20 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("predict_proba", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 276, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("predict_proba", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 313, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.predict_proba", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12predict_proba(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_input_checks);
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict_proba(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_input_checks);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_12predict_proba(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks) {
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict_proba(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks) {
   PyObject *__pyx_v_mr_seqs = NULL;
   PyObject *__pyx_v_test_x = NULL;
   PyObject *__pyx_r = NULL;
@@ -7128,24 +7753,24 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_RefNannySetupContext("predict_proba", 0);
   __Pyx_INCREF(__pyx_v_X);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":277
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":314
  * 
  *     def predict_proba(self, X, input_checks=True):
  *         if input_checks:             # <<<<<<<<<<<<<<
  *             X = self.__X_check(X)
  *         mr_seqs = self.__transform_time_series(X)
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_input_checks); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(1, 277, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_input_checks); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(1, 314, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":278
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":315
  *     def predict_proba(self, X, input_checks=True):
  *         if input_checks:
  *             X = self.__X_check(X)             # <<<<<<<<<<<<<<
  *         mr_seqs = self.__transform_time_series(X)
  *         test_x = self.__to_feature_space(mr_seqs)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 278, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -7159,13 +7784,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     }
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 278, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":277
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":314
  * 
  *     def predict_proba(self, X, input_checks=True):
  *         if input_checks:             # <<<<<<<<<<<<<<
@@ -7174,14 +7799,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":279
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":316
  *         if input_checks:
  *             X = self.__X_check(X)
  *         mr_seqs = self.__transform_time_series(X)             # <<<<<<<<<<<<<<
  *         test_x = self.__to_feature_space(mr_seqs)
  *         return self.clf.predict_proba(test_x)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -7195,20 +7820,20 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 279, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_mr_seqs = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":280
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":317
  *             X = self.__X_check(X)
  *         mr_seqs = self.__transform_time_series(X)
  *         test_x = self.__to_feature_space(mr_seqs)             # <<<<<<<<<<<<<<
  *         return self.clf.predict_proba(test_x)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 280, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -7222,13 +7847,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_mr_seqs) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_mr_seqs);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 280, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 317, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_test_x = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":281
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":318
  *         mr_seqs = self.__transform_time_series(X)
  *         test_x = self.__to_feature_space(mr_seqs)
  *         return self.clf.predict_proba(test_x)             # <<<<<<<<<<<<<<
@@ -7236,9 +7861,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  *     def predict(self, X, input_checks=True):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_clf); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_predict_proba); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_predict_proba); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -7253,14 +7878,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_v_test_x) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_test_x);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 281, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":276
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":313
  * 
  * 
  *     def predict_proba(self, X, input_checks=True):             # <<<<<<<<<<<<<<
@@ -7284,7 +7909,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":283
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":320
  *         return self.clf.predict_proba(test_x)
  * 
  *     def predict(self, X, input_checks=True):             # <<<<<<<<<<<<<<
@@ -7293,9 +7918,9 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict = {"predict", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17predict(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17predict = {"predict", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17predict, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17predict(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_X = 0;
   PyObject *__pyx_v_input_checks = 0;
@@ -7328,7 +7953,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("predict", 0, 2, 3, 1); __PYX_ERR(1, 283, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("predict", 0, 2, 3, 1); __PYX_ERR(1, 320, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -7338,7 +7963,7 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "predict") < 0)) __PYX_ERR(1, 283, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "predict") < 0)) __PYX_ERR(1, 320, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -7356,22 +7981,22 @@ static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("predict", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 283, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("predict", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 320, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.predict", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_input_checks);
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16predict(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_input_checks);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_14predict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks) {
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16predict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_input_checks) {
   PyObject *__pyx_v_proba = NULL;
-  PyObject *__pyx_8genexpr4__pyx_v_prob = NULL;
+  PyObject *__pyx_8genexpr5__pyx_v_prob = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -7389,24 +8014,24 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_RefNannySetupContext("predict", 0);
   __Pyx_INCREF(__pyx_v_X);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":284
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":321
  * 
  *     def predict(self, X, input_checks=True):
  *         if input_checks:             # <<<<<<<<<<<<<<
  *             X = self.__X_check(X)
  *         proba = self.predict_proba(X, False)
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_input_checks); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(1, 284, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_input_checks); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(1, 321, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":285
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":322
  *     def predict(self, X, input_checks=True):
  *         if input_checks:
  *             X = self.__X_check(X)             # <<<<<<<<<<<<<<
  *         proba = self.predict_proba(X, False)
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 285, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__X_check); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 322, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -7420,13 +8045,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     }
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_X);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 285, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 322, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_X, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":284
+    /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":321
  * 
  *     def predict(self, X, input_checks=True):
  *         if input_checks:             # <<<<<<<<<<<<<<
@@ -7435,14 +8060,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
   }
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":286
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":323
  *         if input_checks:
  *             X = self.__X_check(X)
  *         proba = self.predict_proba(X, False)             # <<<<<<<<<<<<<<
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_predict_proba); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 286, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_predict_proba); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -7459,7 +8084,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_X, Py_False};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 323, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
@@ -7467,13 +8092,13 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_X, Py_False};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 323, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 286, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 323, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7484,7 +8109,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
     __Pyx_INCREF(Py_False);
     __Pyx_GIVEREF(Py_False);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, Py_False);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 286, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 323, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -7492,7 +8117,7 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_v_proba = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":287
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":324
  *             X = self.__X_check(X)
  *         proba = self.predict_proba(X, False)
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])             # <<<<<<<<<<<<<<
@@ -7500,38 +8125,38 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  *     def get_all_sequences(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   { /* enter inner scope */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 287, __pyx_L6_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 324, __pyx_L6_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (likely(PyList_CheckExact(__pyx_v_proba)) || PyTuple_CheckExact(__pyx_v_proba)) {
       __pyx_t_4 = __pyx_v_proba; __Pyx_INCREF(__pyx_t_4); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_7 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_v_proba); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __pyx_t_7 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_v_proba); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 324, __pyx_L6_error)
     }
     for (;;) {
       if (likely(!__pyx_t_8)) {
         if (likely(PyList_CheckExact(__pyx_t_4))) {
           if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_9 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_9); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 287, __pyx_L6_error)
+          __pyx_t_9 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_9); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 324, __pyx_L6_error)
           #else
-          __pyx_t_9 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 287, __pyx_L6_error)
+          __pyx_t_9 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 324, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_9);
           #endif
         } else {
           if (__pyx_t_7 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_9 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_9); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 287, __pyx_L6_error)
+          __pyx_t_9 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_7); __Pyx_INCREF(__pyx_t_9); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(1, 324, __pyx_L6_error)
           #else
-          __pyx_t_9 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 287, __pyx_L6_error)
+          __pyx_t_9 = PySequence_ITEM(__pyx_t_4, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 324, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_9);
           #endif
         }
@@ -7541,19 +8166,19 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(1, 287, __pyx_L6_error)
+            else __PYX_ERR(1, 324, __pyx_L6_error)
           }
           break;
         }
         __Pyx_GOTREF(__pyx_t_9);
       }
-      __Pyx_XDECREF_SET(__pyx_8genexpr4__pyx_v_prob, __pyx_t_9);
+      __Pyx_XDECREF_SET(__pyx_8genexpr5__pyx_v_prob, __pyx_t_9);
       __pyx_t_9 = 0;
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_classes); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_np); if (unlikely(!__pyx_t_11)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_argmax); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_argmax); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __pyx_t_11 = NULL;
@@ -7566,23 +8191,23 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
           __Pyx_DECREF_SET(__pyx_t_12, function);
         }
       }
-      __pyx_t_10 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_12, __pyx_t_11, __pyx_8genexpr4__pyx_v_prob) : __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_8genexpr4__pyx_v_prob);
+      __pyx_t_10 = (__pyx_t_11) ? __Pyx_PyObject_Call2Args(__pyx_t_12, __pyx_t_11, __pyx_8genexpr5__pyx_v_prob) : __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_8genexpr5__pyx_v_prob);
       __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 287, __pyx_L6_error)
+      if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_12 = __Pyx_PyObject_GetItem(__pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 287, __pyx_L6_error)
+      __pyx_t_12 = __Pyx_PyObject_GetItem(__pyx_t_9, __pyx_t_10); if (unlikely(!__pyx_t_12)) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_12))) __PYX_ERR(1, 287, __pyx_L6_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_12))) __PYX_ERR(1, 324, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_prob); __pyx_8genexpr4__pyx_v_prob = 0;
+    __Pyx_XDECREF(__pyx_8genexpr5__pyx_v_prob); __pyx_8genexpr5__pyx_v_prob = 0;
     goto __pyx_L9_exit_scope;
     __pyx_L6_error:;
-    __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_prob); __pyx_8genexpr4__pyx_v_prob = 0;
+    __Pyx_XDECREF(__pyx_8genexpr5__pyx_v_prob); __pyx_8genexpr5__pyx_v_prob = 0;
     goto __pyx_L1_error;
     __pyx_L9_exit_scope:;
   } /* exit inner scope */
@@ -7599,14 +8224,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 287, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":283
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":320
  *         return self.clf.predict_proba(test_x)
  * 
  *     def predict(self, X, input_checks=True):             # <<<<<<<<<<<<<<
@@ -7628,14 +8253,14 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_proba);
-  __Pyx_XDECREF(__pyx_8genexpr4__pyx_v_prob);
+  __Pyx_XDECREF(__pyx_8genexpr5__pyx_v_prob);
   __Pyx_XDECREF(__pyx_v_X);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":289
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":326
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  * 
  *     def get_all_sequences(self):             # <<<<<<<<<<<<<<
@@ -7644,40 +8269,40 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17get_all_sequences(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17get_all_sequences = {"get_all_sequences", (PyCFunction)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17get_all_sequences, METH_O, 0};
-static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17get_all_sequences(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_19get_all_sequences(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_19get_all_sequences = {"get_all_sequences", (PyCFunction)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_19get_all_sequences, METH_O, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_19get_all_sequences(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_all_sequences (wrapper)", 0);
-  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16get_all_sequences(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_18get_all_sequences(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_16get_all_sequences(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_18get_all_sequences(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("get_all_sequences", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":290
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":327
  * 
  *     def get_all_sequences(self):
  *         return self.sequences             # <<<<<<<<<<<<<<
  * 
- * 
+ *     def to_csv(self, X,y, target_file):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 290, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sequences); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":289
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":326
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  * 
  *     def get_all_sequences(self):             # <<<<<<<<<<<<<<
@@ -7691,6 +8316,322 @@ static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClas
   __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.get_all_sequences", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":329
+ *         return self.sequences
+ * 
+ *     def to_csv(self, X,y, target_file):             # <<<<<<<<<<<<<<
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_21to_csv(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_21to_csv = {"to_csv", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_21to_csv, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_21to_csv(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_X = 0;
+  PyObject *__pyx_v_y = 0;
+  PyObject *__pyx_v_target_file = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("to_csv (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_X,&__pyx_n_s_y,&__pyx_n_s_target_file,0};
+    PyObject* values[4] = {0,0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_X)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("to_csv", 1, 4, 4, 1); __PYX_ERR(1, 329, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("to_csv", 1, 4, 4, 2); __PYX_ERR(1, 329, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_target_file)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("to_csv", 1, 4, 4, 3); __PYX_ERR(1, 329, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "to_csv") < 0)) __PYX_ERR(1, 329, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_X = values[1];
+    __pyx_v_y = values[2];
+    __pyx_v_target_file = values[3];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("to_csv", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 329, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.to_csv", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_20to_csv(__pyx_self, __pyx_v_self, __pyx_v_X, __pyx_v_y, __pyx_v_target_file);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_20to_csv(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_X, PyObject *__pyx_v_y, PyObject *__pyx_v_target_file) {
+  PyObject *__pyx_v_mr_seqs = NULL;
+  PyObject *__pyx_v_vs_x = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  Py_ssize_t __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  int __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
+  __Pyx_RefNannySetupContext("to_csv", 0);
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":330
+ * 
+ *     def to_csv(self, X,y, target_file):
+ *         mr_seqs = self.__transform_time_series(X)             # <<<<<<<<<<<<<<
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ *         np.savetxt(target_file, np.hstack((np.reshape(y,(len(y),1)),vs_x)), fmt='%i', delimiter=",")
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__transform_time); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 330, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_X) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_X);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 330, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_mr_seqs = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":331
+ *     def to_csv(self, X,y, target_file):
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)             # <<<<<<<<<<<<<<
+ *         np.savetxt(target_file, np.hstack((np.reshape(y,(len(y),1)),vs_x)), fmt='%i', delimiter=",")
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_MrSQMClassifier__to_feature_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 331, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_mr_seqs) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_mr_seqs);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 331, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_vs_x = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":332
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ *         np.savetxt(target_file, np.hstack((np.reshape(y,(len(y),1)),vs_x)), fmt='%i', delimiter=",")             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_savetxt); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_hstack); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_reshape); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_7 = PyObject_Length(__pyx_v_y); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(1, 332, __pyx_L1_error)
+  __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5);
+  __Pyx_INCREF(__pyx_int_1);
+  __Pyx_GIVEREF(__pyx_int_1);
+  PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_int_1);
+  __pyx_t_5 = 0;
+  __pyx_t_5 = NULL;
+  __pyx_t_9 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_9 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_6)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_y, __pyx_t_8};
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 332, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_y, __pyx_t_8};
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 332, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 332, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    if (__pyx_t_5) {
+      __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_5); __pyx_t_5 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_y);
+    __Pyx_GIVEREF(__pyx_v_y);
+    PyTuple_SET_ITEM(__pyx_t_10, 0+__pyx_t_9, __pyx_v_y);
+    __Pyx_GIVEREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_8);
+    __pyx_t_8 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_10, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 332, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
+  __Pyx_INCREF(__pyx_v_vs_x);
+  __Pyx_GIVEREF(__pyx_v_vs_x);
+  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_vs_x);
+  __pyx_t_3 = 0;
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_INCREF(__pyx_v_target_file);
+  __Pyx_GIVEREF(__pyx_v_target_file);
+  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_target_file);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_fmt, __pyx_kp_u_i) < 0) __PYX_ERR(1, 332, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_delimiter, __pyx_kp_u__13) < 0) __PYX_ERR(1, 332, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 332, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":329
+ *         return self.sequences
+ * 
+ *     def to_csv(self, X,y, target_file):             # <<<<<<<<<<<<<<
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_AddTraceback("sktime.classifiers.classifiers.mrsqm.MrSQMClassifier.to_csv", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_mr_seqs);
+  __Pyx_XDECREF(__pyx_v_vs_x);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -8733,9 +9674,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_MrSQMClassifier__transform_time, __pyx_k_MrSQMClassifier__transform_time, sizeof(__pyx_k_MrSQMClassifier__transform_time), 0, 0, 1, 1},
   {&__pyx_n_s_MrSQMClassifier_fit, __pyx_k_MrSQMClassifier_fit, sizeof(__pyx_k_MrSQMClassifier_fit), 0, 0, 1, 1},
   {&__pyx_n_s_MrSQMClassifier_fit_ova, __pyx_k_MrSQMClassifier_fit_ova, sizeof(__pyx_k_MrSQMClassifier_fit_ova), 0, 0, 1, 1},
+  {&__pyx_n_s_MrSQMClassifier_fit_random_selec, __pyx_k_MrSQMClassifier_fit_random_selec, sizeof(__pyx_k_MrSQMClassifier_fit_random_selec), 0, 0, 1, 1},
   {&__pyx_n_s_MrSQMClassifier_get_all_sequence, __pyx_k_MrSQMClassifier_get_all_sequence, sizeof(__pyx_k_MrSQMClassifier_get_all_sequence), 0, 0, 1, 1},
   {&__pyx_n_s_MrSQMClassifier_predict, __pyx_k_MrSQMClassifier_predict, sizeof(__pyx_k_MrSQMClassifier_predict), 0, 0, 1, 1},
   {&__pyx_n_s_MrSQMClassifier_predict_proba, __pyx_k_MrSQMClassifier_predict_proba, sizeof(__pyx_k_MrSQMClassifier_predict_proba), 0, 0, 1, 1},
+  {&__pyx_n_s_MrSQMClassifier_to_csv, __pyx_k_MrSQMClassifier_to_csv, sizeof(__pyx_k_MrSQMClassifier_to_csv), 0, 0, 1, 1},
   {&__pyx_kp_u_Mr_SEQL_cannot_handle_multivaria, __pyx_k_Mr_SEQL_cannot_handle_multivaria, sizeof(__pyx_k_Mr_SEQL_cannot_handle_multivaria), 0, 1, 0, 0},
   {&__pyx_n_s_N, __pyx_k_N, sizeof(__pyx_k_N), 0, 0, 1, 1},
   {&__pyx_n_s_PySAX, __pyx_k_PySAX, sizeof(__pyx_k_PySAX), 0, 0, 1, 1},
@@ -8745,6 +9688,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_n_s_X, __pyx_k_X, sizeof(__pyx_k_X), 0, 0, 1, 1},
   {&__pyx_n_s_X_check, __pyx_k_X_check, sizeof(__pyx_k_X_check), 0, 0, 1, 1},
+  {&__pyx_kp_u__13, __pyx_k__13, sizeof(__pyx_k__13), 0, 1, 0, 0},
   {&__pyx_kp_b__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 0, 0, 0},
   {&__pyx_n_s_a, __pyx_k_a, sizeof(__pyx_k_a), 0, 0, 1, 1},
   {&__pyx_n_u_alphabet, __pyx_k_alphabet, sizeof(__pyx_k_alphabet), 0, 1, 0, 1},
@@ -8754,7 +9698,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
   {&__pyx_n_s_asarray, __pyx_k_asarray, sizeof(__pyx_k_asarray), 0, 0, 1, 1},
   {&__pyx_n_u_balanced, __pyx_k_balanced, sizeof(__pyx_k_balanced), 0, 1, 0, 1},
-  {&__pyx_n_s_bool, __pyx_k_bool, sizeof(__pyx_k_bool), 0, 0, 1, 1},
   {&__pyx_n_s_bp, __pyx_k_bp, sizeof(__pyx_k_bp), 0, 0, 1, 1},
   {&__pyx_n_s_breakpoints, __pyx_k_breakpoints, sizeof(__pyx_k_breakpoints), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
@@ -8765,6 +9708,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_clf, __pyx_k_clf, sizeof(__pyx_k_clf), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_config, __pyx_k_config, sizeof(__pyx_k_config), 0, 0, 1, 1},
+  {&__pyx_n_s_delimiter, __pyx_k_delimiter, sizeof(__pyx_k_delimiter), 0, 0, 1, 1},
   {&__pyx_n_s_dft, __pyx_k_dft, sizeof(__pyx_k_dft), 0, 0, 1, 1},
   {&__pyx_n_s_dfts, __pyx_k_dfts, sizeof(__pyx_k_dfts), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
@@ -8774,26 +9718,32 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_first_char, __pyx_k_first_char, sizeof(__pyx_k_first_char), 0, 0, 1, 1},
   {&__pyx_n_s_fit, __pyx_k_fit, sizeof(__pyx_k_fit), 0, 0, 1, 1},
   {&__pyx_n_s_fit_ova, __pyx_k_fit_ova, sizeof(__pyx_k_fit_ova), 0, 0, 1, 1},
+  {&__pyx_n_s_fit_random_selection, __pyx_k_fit_random_selection, sizeof(__pyx_k_fit_random_selection), 0, 0, 1, 1},
   {&__pyx_n_s_fm, __pyx_k_fm, sizeof(__pyx_k_fm), 0, 0, 1, 1},
+  {&__pyx_n_s_fmt, __pyx_k_fmt, sizeof(__pyx_k_fmt), 0, 0, 1, 1},
   {&__pyx_n_s_full_fm, __pyx_k_full_fm, sizeof(__pyx_k_full_fm), 0, 0, 1, 1},
   {&__pyx_n_s_get_all_sequences, __pyx_k_get_all_sequences, sizeof(__pyx_k_get_all_sequences), 0, 0, 1, 1},
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_n_s_hstack, __pyx_k_hstack, sizeof(__pyx_k_hstack), 0, 0, 1, 1},
-  {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
+  {&__pyx_kp_u_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 1, 0, 0},
+  {&__pyx_n_s_i_2, __pyx_k_i_2, sizeof(__pyx_k_i_2), 0, 0, 1, 1},
   {&__pyx_n_s_iloc, __pyx_k_iloc, sizeof(__pyx_k_iloc), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
   {&__pyx_n_s_input_checks, __pyx_k_input_checks, sizeof(__pyx_k_input_checks), 0, 0, 1, 1},
+  {&__pyx_n_s_int32, __pyx_k_int32, sizeof(__pyx_k_int32), 0, 0, 1, 1},
   {&__pyx_n_s_int_y, __pyx_k_int_y, sizeof(__pyx_k_int_y), 0, 0, 1, 1},
   {&__pyx_n_s_j, __pyx_k_j, sizeof(__pyx_k_j), 0, 0, 1, 1},
   {&__pyx_n_s_l, __pyx_k_l, sizeof(__pyx_k_l), 0, 0, 1, 1},
   {&__pyx_n_s_labels, __pyx_k_labels, sizeof(__pyx_k_labels), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+  {&__pyx_n_s_max_selected, __pyx_k_max_selected, sizeof(__pyx_k_max_selected), 0, 0, 1, 1},
   {&__pyx_n_s_max_ws, __pyx_k_max_ws, sizeof(__pyx_k_max_ws), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
   {&__pyx_n_u_method, __pyx_k_method, sizeof(__pyx_k_method), 0, 1, 0, 1},
   {&__pyx_n_s_min_ws, __pyx_k_min_ws, sizeof(__pyx_k_min_ws), 0, 0, 1, 1},
   {&__pyx_n_s_mine, __pyx_k_mine, sizeof(__pyx_k_mine), 0, 0, 1, 1},
+  {&__pyx_n_s_mined, __pyx_k_mined, sizeof(__pyx_k_mined), 0, 0, 1, 1},
   {&__pyx_n_s_miner, __pyx_k_miner, sizeof(__pyx_k_miner), 0, 0, 1, 1},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_mr_seqs, __pyx_k_mr_seqs, sizeof(__pyx_k_mr_seqs), 0, 0, 1, 1},
@@ -8806,10 +9756,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_norm, __pyx_k_norm, sizeof(__pyx_k_norm), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
+  {&__pyx_n_s_numpy_random, __pyx_k_numpy_random, sizeof(__pyx_k_numpy_random), 0, 0, 1, 1},
   {&__pyx_n_s_p, __pyx_k_p, sizeof(__pyx_k_p), 0, 0, 1, 1},
   {&__pyx_n_s_pandas, __pyx_k_pandas, sizeof(__pyx_k_pandas), 0, 0, 1, 1},
   {&__pyx_n_s_pars, __pyx_k_pars, sizeof(__pyx_k_pars), 0, 0, 1, 1},
   {&__pyx_n_s_pd, __pyx_k_pd, sizeof(__pyx_k_pd), 0, 0, 1, 1},
+  {&__pyx_n_s_permutation, __pyx_k_permutation, sizeof(__pyx_k_permutation), 0, 0, 1, 1},
   {&__pyx_n_s_predict, __pyx_k_predict, sizeof(__pyx_k_predict), 0, 0, 1, 1},
   {&__pyx_n_s_predict_proba, __pyx_k_predict_proba, sizeof(__pyx_k_predict_proba), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
@@ -8817,13 +9769,18 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_proba, __pyx_k_proba, sizeof(__pyx_k_proba), 0, 0, 1, 1},
   {&__pyx_n_s_ps, __pyx_k_ps, sizeof(__pyx_k_ps), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
+  {&__pyx_n_s_randint, __pyx_k_randint, sizeof(__pyx_k_randint), 0, 0, 1, 1},
+  {&__pyx_n_s_random, __pyx_k_random, sizeof(__pyx_k_random), 0, 0, 1, 1},
+  {&__pyx_n_s_random_selected, __pyx_k_random_selected, sizeof(__pyx_k_random_selected), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
   {&__pyx_n_s_remove_repeat_words, __pyx_k_remove_repeat_words, sizeof(__pyx_k_remove_repeat_words), 0, 0, 1, 1},
   {&__pyx_n_s_rep, __pyx_k_rep, sizeof(__pyx_k_rep), 0, 0, 1, 1},
+  {&__pyx_n_s_reshape, __pyx_k_reshape, sizeof(__pyx_k_reshape), 0, 0, 1, 1},
   {&__pyx_n_s_s, __pyx_k_s, sizeof(__pyx_k_s), 0, 0, 1, 1},
+  {&__pyx_n_s_savetxt, __pyx_k_savetxt, sizeof(__pyx_k_savetxt), 0, 0, 1, 1},
   {&__pyx_n_u_sax, __pyx_k_sax, sizeof(__pyx_k_sax), 0, 1, 0, 1},
   {&__pyx_n_s_selection, __pyx_k_selection, sizeof(__pyx_k_selection), 0, 0, 1, 1},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
@@ -8847,12 +9804,15 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_symbolic_methods, __pyx_k_symbolic_methods, sizeof(__pyx_k_symbolic_methods), 0, 0, 1, 1},
   {&__pyx_n_s_symrep, __pyx_k_symrep, sizeof(__pyx_k_symrep), 0, 0, 1, 1},
   {&__pyx_n_s_symrepconfig, __pyx_k_symrepconfig, sizeof(__pyx_k_symrepconfig), 0, 0, 1, 1},
+  {&__pyx_n_s_target_file, __pyx_k_target_file, sizeof(__pyx_k_target_file), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_test_x, __pyx_k_test_x, sizeof(__pyx_k_test_x), 0, 0, 1, 1},
   {&__pyx_n_s_timeseries2SAXseq, __pyx_k_timeseries2SAXseq, sizeof(__pyx_k_timeseries2SAXseq), 0, 0, 1, 1},
   {&__pyx_n_s_timeseries2SFAseq, __pyx_k_timeseries2SFAseq, sizeof(__pyx_k_timeseries2SFAseq), 0, 0, 1, 1},
   {&__pyx_n_s_tmp_y, __pyx_k_tmp_y, sizeof(__pyx_k_tmp_y), 0, 0, 1, 1},
+  {&__pyx_n_s_to_csv, __pyx_k_to_csv, sizeof(__pyx_k_to_csv), 0, 0, 1, 1},
   {&__pyx_n_s_to_feature_space, __pyx_k_to_feature_space, sizeof(__pyx_k_to_feature_space), 0, 0, 1, 1},
+  {&__pyx_n_s_tolist, __pyx_k_tolist, sizeof(__pyx_k_tolist), 0, 0, 1, 1},
   {&__pyx_n_s_train_x, __pyx_k_train_x, sizeof(__pyx_k_train_x), 0, 0, 1, 1},
   {&__pyx_n_s_transform_time_series, __pyx_k_transform_time_series, sizeof(__pyx_k_transform_time_series), 0, 0, 1, 1},
   {&__pyx_n_s_ts, __pyx_k_ts, sizeof(__pyx_k_ts), 0, 0, 1, 1},
@@ -8860,6 +9820,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_tssr, __pyx_k_tssr, sizeof(__pyx_k_tssr), 0, 0, 1, 1},
   {&__pyx_n_s_unique, __pyx_k_unique, sizeof(__pyx_k_unique), 0, 0, 1, 1},
   {&__pyx_n_s_values, __pyx_k_values, sizeof(__pyx_k_values), 0, 0, 1, 1},
+  {&__pyx_n_s_vs_x, __pyx_k_vs_x, sizeof(__pyx_k_vs_x), 0, 0, 1, 1},
   {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
   {&__pyx_n_s_weights, __pyx_k_weights, sizeof(__pyx_k_weights), 0, 0, 1, 1},
   {&__pyx_n_s_where, __pyx_k_where, sizeof(__pyx_k_where), 0, 0, 1, 1},
@@ -8874,9 +9835,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 54, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(1, 193, __pyx_L1_error)
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 195, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 55, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 196, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -8886,14 +9847,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":39
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":40
  *             seq = seq + b' ' + w
  *         if seq: # remove extra space
  *             seq = seq[1:]             # <<<<<<<<<<<<<<
  *         return seq
  *     def map_weighted_patterns(self, ts, sequences, weights):
  */
-  __pyx_slice__3 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(1, 39, __pyx_L1_error)
+  __pyx_slice__3 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(1, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__3);
   __Pyx_GIVEREF(__pyx_slice__3);
 
@@ -8935,208 +9896,235 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":212
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":213
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")             # <<<<<<<<<<<<<<
  *             elif isinstance(X.iloc[0, 0], pd.Series):
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_Mr_SEQL_cannot_handle_multivaria); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 212, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_Mr_SEQL_cannot_handle_multivaria); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":213
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":214
  *             if X.shape[1] > 1:
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):             # <<<<<<<<<<<<<<
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  *             else:
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(1, 213, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(1, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":214
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":215
  *                 raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
  *             elif isinstance(X.iloc[0, 0], pd.Series):
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])             # <<<<<<<<<<<<<<
  *             else:
  *                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")
  */
-  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) __PYX_ERR(1, 214, __pyx_L1_error)
+  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__10);
   __Pyx_GIVEREF(__pyx_slice__10);
-  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_slice__10, __pyx_int_0); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 214, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_slice__10, __pyx_int_0); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":216
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":217
  *                 X = np.asarray([a.values for a in X.iloc[:, 0]])
  *             else:
  *                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")             # <<<<<<<<<<<<<<
  *         return X
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Input_should_either_be_a_2d_nump); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 216, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Input_should_either_be_a_2d_nump); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":46
  * 
  * class AdaptedSFA:
  *     def __init__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  */
-  __pyx_tuple__13 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_N, __pyx_n_s_w, __pyx_n_s_a); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_init, 45, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(1, 45, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_N, __pyx_n_s_w, __pyx_n_s_a); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_init, 46, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(1, 46, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":48
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":49
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  *     def fit(self, train_x):             # <<<<<<<<<<<<<<
  *         self.sfa.fit(train_x)
  * 
  */
-  __pyx_tuple__15 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_train_x); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit, 48, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(1, 48, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_train_x); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(1, 49, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":51
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":52
  *         self.sfa.fit(train_x)
  * 
  *     def timeseries2SFAseq(self, ts):             # <<<<<<<<<<<<<<
  *         dfts = self.sfa.MFT(ts)
  *         sfa_str = b''
  */
-  __pyx_tuple__17 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_ts, __pyx_n_s_dfts, __pyx_n_s_sfa_str, __pyx_n_s_window, __pyx_n_s_dft, __pyx_n_s_first_char, __pyx_n_s_i, __pyx_n_s_bp); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_timeseries2SFAseq, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_ts, __pyx_n_s_dfts, __pyx_n_s_sfa_str, __pyx_n_s_window, __pyx_n_s_dft, __pyx_n_s_first_char, __pyx_n_s_i_2, __pyx_n_s_bp); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_timeseries2SFAseq, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(1, 52, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":114
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":115
  *     # selection >= 1: top k selection with k = int(selection)
  * 
  *     def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):             # <<<<<<<<<<<<<<
  * 
  *         self.symbolic_methods = symrep
  */
-  __pyx_tuple__19 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_selection, __pyx_n_s_symrep, __pyx_n_s_symrepconfig); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 114, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_init, 114, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(1, 114, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_selection, __pyx_n_s_symrep, __pyx_n_s_symrepconfig); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 115, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__20);
+  __Pyx_GIVEREF(__pyx_tuple__20);
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_init, 115, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(1, 115, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":143
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":144
  * 
  * 
  *     def __transform_time_series(self, ts_x):             # <<<<<<<<<<<<<<
  *         multi_tssr = []
  * 
  */
-  __pyx_tuple__21 = PyTuple_Pack(14, __pyx_n_s_self, __pyx_n_s_ts_x, __pyx_n_s_multi_tssr, __pyx_n_s_min_ws, __pyx_n_s_max_ws, __pyx_n_s_pars, __pyx_n_s_p, __pyx_n_s_cfg, __pyx_n_s_tssr, __pyx_n_s_ps, __pyx_n_s_ts, __pyx_n_s_sr, __pyx_n_s_sfa, __pyx_n_s_w); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(1, 143, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 14, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_transform_time_series, 143, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(1, 143, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(14, __pyx_n_s_self, __pyx_n_s_ts_x, __pyx_n_s_multi_tssr, __pyx_n_s_min_ws, __pyx_n_s_max_ws, __pyx_n_s_pars, __pyx_n_s_p, __pyx_n_s_cfg, __pyx_n_s_tssr, __pyx_n_s_ps, __pyx_n_s_ts, __pyx_n_s_sr, __pyx_n_s_sfa, __pyx_n_s_w); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(1, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__22);
+  __Pyx_GIVEREF(__pyx_tuple__22);
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(2, 0, 14, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_transform_time_series, 144, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(1, 144, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":190
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":191
  * 
  *     # represent data (in multiple reps form) in feature space
  *     def __to_feature_space(self, mr_seqs):             # <<<<<<<<<<<<<<
  *         full_fm = []
  * 
  */
-  __pyx_tuple__23 = PyTuple_Pack(10, __pyx_n_s_self, __pyx_n_s_mr_seqs, __pyx_n_s_full_fm, __pyx_n_s_rep, __pyx_n_s_seq_features, __pyx_n_s_fm, __pyx_n_s_i, __pyx_n_s_s, __pyx_n_s_j, __pyx_n_s_f); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(1, 190, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(2, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_to_feature_space, 190, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(1, 190, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(10, __pyx_n_s_self, __pyx_n_s_mr_seqs, __pyx_n_s_full_fm, __pyx_n_s_rep, __pyx_n_s_seq_features, __pyx_n_s_fm, __pyx_n_s_i_2, __pyx_n_s_s, __pyx_n_s_j, __pyx_n_s_f); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(1, 191, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__24);
+  __Pyx_GIVEREF(__pyx_tuple__24);
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_to_feature_space, 191, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(1, 191, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":209
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
  *     From dictionary_based/boss.py
  *     '''
  *     def __X_check(self,X):             # <<<<<<<<<<<<<<
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:
  */
-  __pyx_tuple__25 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_a); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(1, 209, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_X_check, 209, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(1, 209, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_a); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(1, 210, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_X_check, 210, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(1, 210, __pyx_L1_error)
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":219
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":220
  *         return X
  * 
  *     def fit(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  * 
- *         X = self.__X_check(X)
+ * 
  */
-  __pyx_tuple__27 = PyTuple_Pack(10, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_int_y, __pyx_n_s_rep, __pyx_n_s_miner, __pyx_n_s_train_x, __pyx_n_s_c); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(4, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit, 219, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __pyx_tuple__29 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(1, 219, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_tuple__28 = PyTuple_Pack(10, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_int_y, __pyx_n_s_rep, __pyx_n_s_miner, __pyx_n_s_mined, __pyx_n_s_c); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(1, 220, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(4, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit, 220, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(1, 220, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 220, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":245
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":248
+ *         # self.classes_ = self.clf.classes_ # shouldn't matter
+ * 
+ *     def fit_random_selection(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
+ *     # '''
+ *     # random selection after mining
+ */
+  __pyx_tuple__31 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_input_checks, __pyx_n_s_max_selected, __pyx_n_s_mr_seqs, __pyx_n_s_int_y, __pyx_n_s_rep, __pyx_n_s_miner, __pyx_n_s_mined, __pyx_n_s_random_selected, __pyx_n_s_train_x, __pyx_n_s_c); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(1, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(4, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit_random_selection, 248, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(1, 248, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":282
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  * 
  *     def fit_ova(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  *         X = self.__X_check(X)
  * 
  */
-  __pyx_tuple__30 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_rep, __pyx_n_s_c_sequences, __pyx_n_s_c, __pyx_n_s_tmp_y, __pyx_n_s_miner, __pyx_n_s_train_x, __pyx_n_s_l); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 245, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(4, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit_ova, 245, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(1, 245, __pyx_L1_error)
-  __pyx_tuple__32 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 245, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
+  __pyx_tuple__34 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_rep, __pyx_n_s_c_sequences, __pyx_n_s_c, __pyx_n_s_tmp_y, __pyx_n_s_miner, __pyx_n_s_train_x, __pyx_n_s_l); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 282, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__34);
+  __Pyx_GIVEREF(__pyx_tuple__34);
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(4, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_fit_ova, 282, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(1, 282, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(1, 282, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":276
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":313
  * 
  * 
  *     def predict_proba(self, X, input_checks=True):             # <<<<<<<<<<<<<<
  *         if input_checks:
  *             X = self.__X_check(X)
  */
-  __pyx_tuple__33 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_test_x); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(1, 276, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__33);
-  __Pyx_GIVEREF(__pyx_tuple__33);
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_predict_proba, 276, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(1, 276, __pyx_L1_error)
-  __pyx_tuple__35 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(1, 276, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
+  __pyx_tuple__37 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_input_checks, __pyx_n_s_mr_seqs, __pyx_n_s_test_x); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(1, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_predict_proba, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(1, 313, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(1, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":283
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":320
  *         return self.clf.predict_proba(test_x)
  * 
  *     def predict(self, X, input_checks=True):             # <<<<<<<<<<<<<<
  *         if input_checks:
  *             X = self.__X_check(X)
  */
-  __pyx_tuple__36 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_input_checks, __pyx_n_s_proba, __pyx_n_s_prob); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(1, 283, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__36);
-  __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_predict, 283, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(1, 283, __pyx_L1_error)
-  __pyx_tuple__38 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(1, 283, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__38);
-  __Pyx_GIVEREF(__pyx_tuple__38);
+  __pyx_tuple__40 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_input_checks, __pyx_n_s_proba, __pyx_n_s_prob); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(1, 320, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__40);
+  __Pyx_GIVEREF(__pyx_tuple__40);
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_predict, 320, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(1, 320, __pyx_L1_error)
+  __pyx_tuple__42 = PyTuple_Pack(1, ((PyObject *)Py_True)); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 320, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__42);
+  __Pyx_GIVEREF(__pyx_tuple__42);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":289
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":326
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  * 
  *     def get_all_sequences(self):             # <<<<<<<<<<<<<<
  *         return self.sequences
  * 
  */
-  __pyx_tuple__39 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(1, 289, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__39);
-  __Pyx_GIVEREF(__pyx_tuple__39);
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_get_all_sequences, 289, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(1, 326, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_get_all_sequences, 326, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(1, 326, __pyx_L1_error)
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":329
+ *         return self.sequences
+ * 
+ *     def to_csv(self, X,y, target_file):             # <<<<<<<<<<<<<<
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ */
+  __pyx_tuple__45 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_X, __pyx_n_s_y, __pyx_n_s_target_file, __pyx_n_s_mr_seqs, __pyx_n_s_vs_x); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(1, 329, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(4, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_sktime_classifiers_shapelet_base, __pyx_n_s_to_csv, 329, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(1, 329, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -9148,6 +10136,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(1, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(1, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_int_3 = PyInt_FromLong(3); if (unlikely(!__pyx_int_3)) __PYX_ERR(1, 1, __pyx_L1_error)
   __pyx_int_4 = PyInt_FromLong(4); if (unlikely(!__pyx_int_4)) __PYX_ERR(1, 1, __pyx_L1_error)
   __pyx_int_8 = PyInt_FromLong(8); if (unlikely(!__pyx_int_8)) __PYX_ERR(1, 1, __pyx_L1_error)
   __pyx_int_16 = PyInt_FromLong(16); if (unlikely(!__pyx_int_16)) __PYX_ERR(1, 1, __pyx_L1_error)
@@ -9194,25 +10183,25 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 22, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 23, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX.tp_dictoffset && __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PySAX, (PyObject *)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 22, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 22, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PySAX, (PyObject *)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 23, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX) < 0) __PYX_ERR(1, 23, __pyx_L1_error)
   __pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySAX = &__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySAX;
-  if (PyType_Ready(&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 84, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM.tp_dictoffset && __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PySQM, (PyObject *)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 83, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PySQM, (PyObject *)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 84, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM) < 0) __PYX_ERR(1, 84, __pyx_L1_error)
   __pyx_ptype_6sktime_11classifiers_11classifiers_5mrsqm_PySQM = &__pyx_type_6sktime_11classifiers_11classifiers_5mrsqm_PySQM;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -9451,7 +10440,7 @@ if (!__Pyx_RefNanny) {
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
  * import pandas as pd
- * from sklearn.linear_model import LogisticRegression
+ * from numpy.random import randint
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9462,8 +10451,8 @@ if (!__Pyx_RefNanny) {
  * 
  * import numpy as np
  * import pandas as pd             # <<<<<<<<<<<<<<
+ * from numpy.random import randint
  * from sklearn.linear_model import LogisticRegression
- * 
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_pandas, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -9473,155 +10462,176 @@ if (!__Pyx_RefNanny) {
   /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":7
  * import numpy as np
  * import pandas as pd
+ * from numpy.random import randint             # <<<<<<<<<<<<<<
+ * from sklearn.linear_model import LogisticRegression
+ * 
+ */
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_n_s_randint);
+  __Pyx_GIVEREF(__pyx_n_s_randint);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_randint);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_numpy_random, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_randint); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_randint, __pyx_t_1) < 0) __PYX_ERR(1, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":8
+ * import pandas as pd
+ * from numpy.random import randint
  * from sklearn.linear_model import LogisticRegression             # <<<<<<<<<<<<<<
  * 
  * from sktime.transformers.dictionary_based.SFA import SFA
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_LogisticRegression);
   __Pyx_GIVEREF(__pyx_n_s_LogisticRegression);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_LogisticRegression);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_sklearn_linear_model, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 7, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_LogisticRegression);
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_sklearn_linear_model, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LogisticRegression, __pyx_t_1) < 0) __PYX_ERR(1, 7, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_LogisticRegression); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LogisticRegression, __pyx_t_2) < 0) __PYX_ERR(1, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":9
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":10
  * from sklearn.linear_model import LogisticRegression
  * 
  * from sktime.transformers.dictionary_based.SFA import SFA             # <<<<<<<<<<<<<<
  * #from sktime.transformers.dictionary_based.SFA import SAX
  * from sktime.classifiers.base import BaseClassifier
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_SFA);
   __Pyx_GIVEREF(__pyx_n_s_SFA);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_SFA);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_sktime_transformers_dictionary_b, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 9, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_SFA); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 9, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_SFA);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_sktime_transformers_dictionary_b, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFA, __pyx_t_2) < 0) __PYX_ERR(1, 9, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_SFA); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_SFA, __pyx_t_1) < 0) __PYX_ERR(1, 10, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":11
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":12
  * from sktime.transformers.dictionary_based.SFA import SFA
  * #from sktime.transformers.dictionary_based.SFA import SAX
  * from sktime.classifiers.base import BaseClassifier             # <<<<<<<<<<<<<<
  * 
  * ######################### SAX and SFA #########################
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_BaseClassifier);
   __Pyx_GIVEREF(__pyx_n_s_BaseClassifier);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_BaseClassifier);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_sktime_classifiers_base, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_BaseClassifier); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 11, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_BaseClassifier);
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_sktime_classifiers_base, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BaseClassifier, __pyx_t_1) < 0) __PYX_ERR(1, 11, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_BaseClassifier); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_BaseClassifier, __pyx_t_2) < 0) __PYX_ERR(1, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":44
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
  *         return self.thisptr.map_weighted_patterns(ts, sequences, weights)
  * 
  * class AdaptedSFA:             # <<<<<<<<<<<<<<
  *     def __init__(self, int N, int w, int a):
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_AdaptedSFA, __pyx_n_s_AdaptedSFA, (PyObject *) NULL, __pyx_n_s_sktime_classifiers_classifiers_m, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_AdaptedSFA, __pyx_n_s_AdaptedSFA, (PyObject *) NULL, __pyx_n_s_sktime_classifiers_classifiers_m, (PyObject *) NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":46
  * 
  * class AdaptedSFA:
  *     def __init__(self, int N, int w, int a):             # <<<<<<<<<<<<<<
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_1__init__, 0, __pyx_n_s_AdaptedSFA___init, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(1, 45, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_1__init__, 0, __pyx_n_s_AdaptedSFA___init, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(1, 46, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":48
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":49
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  * 
  *     def fit(self, train_x):             # <<<<<<<<<<<<<<
  *         self.sfa.fit(train_x)
  * 
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_3fit, 0, __pyx_n_s_AdaptedSFA_fit, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_fit, __pyx_t_1) < 0) __PYX_ERR(1, 48, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_3fit, 0, __pyx_n_s_AdaptedSFA_fit, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_fit, __pyx_t_2) < 0) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":51
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":52
  *         self.sfa.fit(train_x)
  * 
  *     def timeseries2SFAseq(self, ts):             # <<<<<<<<<<<<<<
  *         dfts = self.sfa.MFT(ts)
  *         sfa_str = b''
  */
-  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_5timeseries2SFAseq, 0, __pyx_n_s_AdaptedSFA_timeseries2SFAseq, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_timeseries2SFAseq, __pyx_t_1) < 0) __PYX_ERR(1, 51, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_10AdaptedSFA_5timeseries2SFAseq, 0, __pyx_n_s_AdaptedSFA_timeseries2SFAseq, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_timeseries2SFAseq, __pyx_t_2) < 0) __PYX_ERR(1, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":44
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":45
  *         return self.thisptr.map_weighted_patterns(ts, sequences, weights)
  * 
  * class AdaptedSFA:             # <<<<<<<<<<<<<<
  *     def __init__(self, int N, int w, int a):
  *         self.sfa = SFA(w,a,N,norm=True,remove_repeat_words=True)
  */
-  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_AdaptedSFA, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AdaptedSFA, __pyx_t_1) < 0) __PYX_ERR(1, 44, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_AdaptedSFA, __pyx_empty_tuple, __pyx_t_1, NULL, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_AdaptedSFA, __pyx_t_2) < 0) __PYX_ERR(1, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":108
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":109
  * 
  * 
  * class MrSQMClassifier(BaseClassifier):             # <<<<<<<<<<<<<<
  * 
  *     # selection <= 0: brute force selection
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_BaseClassifier); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 108, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 108, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_BaseClassifier); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_CalculateMetaclass(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 108, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_2, __pyx_t_1, __pyx_n_s_MrSQMClassifier, __pyx_n_s_MrSQMClassifier, (PyObject *) NULL, __pyx_n_s_sktime_classifiers_classifiers_m, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 108, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 109, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_MrSQMClassifier, __pyx_n_s_MrSQMClassifier, (PyObject *) NULL, __pyx_n_s_sktime_classifiers_classifiers_m, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":114
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":115
  *     # selection >= 1: top k selection with k = int(selection)
  * 
  *     def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):             # <<<<<<<<<<<<<<
  * 
  *         self.symbolic_methods = symrep
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_1__init__, 0, __pyx_n_s_MrSQMClassifier___init, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 114, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_1__init__, 0, __pyx_n_s_MrSQMClassifier___init, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, sizeof(__pyx_defaults), 1)) __PYX_ERR(1, 114, __pyx_L1_error)
-  __pyx_t_5 = PyList_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 114, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, sizeof(__pyx_defaults), 1)) __PYX_ERR(1, 115, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_n_u_sax);
   __Pyx_GIVEREF(__pyx_n_u_sax);
@@ -9630,133 +10640,158 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
   __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_4, __pyx_pf_6sktime_11classifiers_11classifiers_5mrsqm___defaults__);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(1, 114, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(1, 115, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":143
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":144
  * 
  * 
  *     def __transform_time_series(self, ts_x):             # <<<<<<<<<<<<<<
  *         multi_tssr = []
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_3__transform_time_series, 0, __pyx_n_s_MrSQMClassifier___transform_time, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 143, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_3__transform_time_series, 0, __pyx_n_s_MrSQMClassifier___transform_time, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__transform_time, __pyx_t_4) < 0) __PYX_ERR(1, 143, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__transform_time, __pyx_t_4) < 0) __PYX_ERR(1, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":190
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":191
  * 
  *     # represent data (in multiple reps form) in feature space
  *     def __to_feature_space(self, mr_seqs):             # <<<<<<<<<<<<<<
  *         full_fm = []
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_5__to_feature_space, 0, __pyx_n_s_MrSQMClassifier___to_feature_spa, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 190, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_5__to_feature_space, 0, __pyx_n_s_MrSQMClassifier___to_feature_spa, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__to_feature_spa, __pyx_t_4) < 0) __PYX_ERR(1, 190, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__to_feature_spa, __pyx_t_4) < 0) __PYX_ERR(1, 191, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":209
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":210
  *     From dictionary_based/boss.py
  *     '''
  *     def __X_check(self,X):             # <<<<<<<<<<<<<<
  *         if isinstance(X, pd.DataFrame):
  *             if X.shape[1] > 1:
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_7__X_check, 0, __pyx_n_s_MrSQMClassifier___X_check, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 209, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_7__X_check, 0, __pyx_n_s_MrSQMClassifier___X_check, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__X_check, __pyx_t_4) < 0) __PYX_ERR(1, 209, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_MrSQMClassifier__X_check, __pyx_t_4) < 0) __PYX_ERR(1, 210, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":219
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":220
  *         return X
  * 
  *     def fit(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  * 
- *         X = self.__X_check(X)
+ * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_9fit, 0, __pyx_n_s_MrSQMClassifier_fit, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 219, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_9fit, 0, __pyx_n_s_MrSQMClassifier_fit, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__29);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_fit, __pyx_t_4) < 0) __PYX_ERR(1, 219, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__30);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_fit, __pyx_t_4) < 0) __PYX_ERR(1, 220, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":245
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":248
+ *         # self.classes_ = self.clf.classes_ # shouldn't matter
+ * 
+ *     def fit_random_selection(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
+ *     # '''
+ *     # random selection after mining
+ */
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_random_selection, 0, __pyx_n_s_MrSQMClassifier_fit_random_selec, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 248, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__33);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_fit_random_selection, __pyx_t_4) < 0) __PYX_ERR(1, 248, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":282
  *         self.classes_ = self.clf.classes_ # shouldn't matter
  * 
  *     def fit_ova(self, X, y, input_checks=True):             # <<<<<<<<<<<<<<
  *         X = self.__X_check(X)
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_11fit_ova, 0, __pyx_n_s_MrSQMClassifier_fit_ova, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 245, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13fit_ova, 0, __pyx_n_s_MrSQMClassifier_fit_ova, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__32);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_fit_ova, __pyx_t_4) < 0) __PYX_ERR(1, 245, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__36);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_fit_ova, __pyx_t_4) < 0) __PYX_ERR(1, 282, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":276
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":313
  * 
  * 
  *     def predict_proba(self, X, input_checks=True):             # <<<<<<<<<<<<<<
  *         if input_checks:
  *             X = self.__X_check(X)
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_13predict_proba, 0, __pyx_n_s_MrSQMClassifier_predict_proba, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 276, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict_proba, 0, __pyx_n_s_MrSQMClassifier_predict_proba, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__35);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_predict_proba, __pyx_t_4) < 0) __PYX_ERR(1, 276, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__39);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_predict_proba, __pyx_t_4) < 0) __PYX_ERR(1, 313, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":283
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":320
  *         return self.clf.predict_proba(test_x)
  * 
  *     def predict(self, X, input_checks=True):             # <<<<<<<<<<<<<<
  *         if input_checks:
  *             X = self.__X_check(X)
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_15predict, 0, __pyx_n_s_MrSQMClassifier_predict, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 283, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17predict, 0, __pyx_n_s_MrSQMClassifier_predict, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__38);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_predict, __pyx_t_4) < 0) __PYX_ERR(1, 283, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__42);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_predict, __pyx_t_4) < 0) __PYX_ERR(1, 320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":289
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":326
  *         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
  * 
  *     def get_all_sequences(self):             # <<<<<<<<<<<<<<
  *         return self.sequences
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_17get_all_sequences, 0, __pyx_n_s_MrSQMClassifier_get_all_sequence, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_19get_all_sequences, 0, __pyx_n_s_MrSQMClassifier_get_all_sequence, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 326, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_get_all_sequences, __pyx_t_4) < 0) __PYX_ERR(1, 289, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_get_all_sequences, __pyx_t_4) < 0) __PYX_ERR(1, 326, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":108
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":329
+ *         return self.sequences
+ * 
+ *     def to_csv(self, X,y, target_file):             # <<<<<<<<<<<<<<
+ *         mr_seqs = self.__transform_time_series(X)
+ *         vs_x = self.__to_feature_space(mr_seqs)
+ */
+  __pyx_t_4 = __Pyx_CyFunction_NewEx(&__pyx_mdef_6sktime_11classifiers_11classifiers_5mrsqm_15MrSQMClassifier_21to_csv, 0, __pyx_n_s_MrSQMClassifier_to_csv, NULL, __pyx_n_s_sktime_classifiers_classifiers_m, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 329, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_to_csv, __pyx_t_4) < 0) __PYX_ERR(1, 329, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":109
  * 
  * 
  * class MrSQMClassifier(BaseClassifier):             # <<<<<<<<<<<<<<
  * 
  *     # selection <= 0: brute force selection
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_2, __pyx_n_s_MrSQMClassifier, __pyx_t_1, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 108, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_MrSQMClassifier, __pyx_t_2, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MrSQMClassifier, __pyx_t_4) < 0) __PYX_ERR(1, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MrSQMClassifier, __pyx_t_4) < 0) __PYX_ERR(1, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "sktime/classifiers/shapelet_based/mrsqm_wrapper.pyx":1
  * from libcpp.string cimport string             # <<<<<<<<<<<<<<
  * from libcpp cimport bool
  * from libcpp.vector cimport vector
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "vector.to_py":60
  * 
@@ -11185,6 +12220,28 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
             return PyFloat_FromDouble(result);
     }
     return (inplace ? PyNumber_InPlaceAdd : PyNumber_Add)(op1, op2);
+}
+#endif
+
+/* PyObjectCallNoArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, NULL, 0);
+    }
+#endif
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+#else
+    if (likely(PyCFunction_Check(func)))
+#endif
+    {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
 }
 #endif
 
