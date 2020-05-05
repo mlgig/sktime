@@ -9,6 +9,7 @@ from sklearn.linear_model import LogisticRegression
 from sktime.transformers.dictionary_based.SFA import SFA
 #from sktime.transformers.dictionary_based.SFA import SAX
 from sktime.classifiers.base import BaseClassifier
+from sklearn.utils import resample
 
 ######################### SAX and SFA #########################
 
@@ -111,7 +112,7 @@ class MrSQMClassifier(BaseClassifier):
     # selection > 0 and selection < 1 : chisquared test with p value threshold = selection
     # selection >= 1: top k selection with k = int(selection)    
 
-    def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None):
+    def __init__(self, selection = 100, symrep=['sax'], symrepconfig=None, n_samples = 5, sample_rate = 0.5):
 
         self.symbolic_methods = symrep
 
@@ -137,7 +138,8 @@ class MrSQMClassifier(BaseClassifier):
 
         self.selection = selection
 
-
+        self.n_samples = 5
+        self.sample_rate = 0.5
 
 
     def __transform_time_series(self, ts_x):
@@ -216,6 +218,21 @@ class MrSQMClassifier(BaseClassifier):
                 raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")
         return X
 
+    def _resample(self, y):
+        train_x = [i for i in range(0,len(y))]
+
+        sample_size = self.sample_rate * len(y)
+
+        resample_indices = []
+
+        for i in range(0,self.n_samples):
+            selected, _ = resample(train_x, y,n_samples=sample_size, stratify=y)
+            resample_indices.append(selected)
+        
+        return resample_indices
+
+
+
     def fit(self, X, y, input_checks=True):
 
         X = self.__X_check(X)
@@ -227,11 +244,19 @@ class MrSQMClassifier(BaseClassifier):
 
         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
 
+        resample_indices = self._resample(int_y)
+
         self.sequences = []
 
         for rep in mr_seqs:
-            miner = PySQM(self.selection)
-            self.sequences.append(miner.mine(rep, int_y))
+            seqs = []
+            for sample in resample_indices:
+                new_rep = [rep[i] for i in sample]
+                new_y = [int_y[i] for i in sample]
+                miner = PySQM(self.selection)
+                seqs.extend(miner.mine(new_rep, new_y))
+            seqs = np.unique(seqs)
+            self.sequences.append(seqs)
 
 
     
