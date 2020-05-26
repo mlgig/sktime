@@ -7,11 +7,11 @@ import pandas as pd
 from numpy.random import randint
 from sklearn.linear_model import LogisticRegression
 
-from sktime.transformers.dictionary_based.SFA import SFA
-from sktime.classifiers.shapelet_based.mrseql.mrseql import PySAX
-from sktime.classifiers.shapelet_based.mrseql.mrseql import AdaptedSFA
+from sktime.transformers.series_as_features.dictionary_based import SFA
+from sktime.classification.shapelet_based.mrseql.mrseql import PySAX
+from sktime.classification.shapelet_based.mrseql.mrseql import AdaptedSFA
 #from sktime.transformers.dictionary_based.SFA import SAX
-from sktime.classifiers.base import BaseClassifier
+from sktime.classification.base import BaseClassifier
 
 
 
@@ -63,7 +63,7 @@ class MrSQMClassifier(BaseClassifier):
 
     def __init__(self, selection = 100, max_selection = 300, symrep=['sax'], symrepconfig=None):
 
-        self.symbolic_methods = symrep
+        self.symrep = symrep
 
         if symrepconfig is None:
             self.config = [] # http://effbot.org/zone/default-values.htm
@@ -92,44 +92,58 @@ class MrSQMClassifier(BaseClassifier):
 
 
     def transform_time_series(self, ts_x):
-        multi_tssr = []
+        multi_tssr = []   
+
 
         # generate configuration if not predefined
         if not self.config:
+            self.config = []
             min_ws = 16
-            max_ws = ts_x.shape[1]
-            pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            min_len = max_len = len(ts_x.iloc[0, 0])
+            for a in ts_x.iloc[:, 0]:
+                min_len = min(min_len, len(a)) 
+                max_len = max(max_len, len(a))
+            max_ws = (min_len + max_len)//2
 
-            if 'sax' in self.symbolic_methods:
+            if min_ws < max_ws: 
+                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            else:
+                pars = [[max_ws, 16, 4]]
+
+            if 'sax' in self.symrep:
                 for p in pars:
-                    self.config.append({'method':'sax','window':p[0],'word':p[1],'alphabet':p[2]})
+                    self.config.append(
+                        {'method': 'sax', 'window': p[0], 'word': p[1], 'alphabet': p[2]})
 
-            if 'sfa' in self.symbolic_methods:
+            if 'sfa' in self.symrep:
                 for p in pars:
-                    self.config.append({'method':'sfa','window':p[0],'word':8,'alphabet':p[2]})
+                    self.config.append(
+                        {'method': 'sfa', 'window': p[0], 'word': 8, 'alphabet': p[2]})
 
-
+        
         for cfg in self.config:
+            for dim in ts_x:
+                tssr = []
 
-            tssr = []
+                if cfg['method'] == 'sax':  # convert time series to SAX
+                    ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'])
+                    for ts in ts_x[dim]:
+                        sr = ps.timeseries2SAXseq(ts)
+                        tssr.append(sr)
 
-            if cfg['method'] == 'sax': # convert time series to SAX
-                ps = PySAX(cfg['window'],cfg['word'],cfg['alphabet'])
-                for ts in ts_x:
-                    sr = ps.timeseries2SAXseq(ts)
-                    tssr.append(sr)
+                if cfg['method'] == 'sfa':  # convert time series to SFA
+                    if (cfg['window'], cfg['word'], cfg['alphabet']) not in self.sfas:
+                        sfa = AdaptedSFA(
+                            cfg['window'], cfg['word'], cfg['alphabet'])
+                        sfa.fit(pd.DataFrame(ts_x[dim]))
+                        self.sfas[(cfg['window'], cfg['word'],
+                                cfg['alphabet'])] = sfa
+                    for ts in ts_x[dim]:
+                        sr = self.sfas[(cfg['window'], cfg['word'],
+                                        cfg['alphabet'])].timeseries2SFAseq(ts)
+                        tssr.append(sr)
 
-            if cfg['method'] == 'sfa':  # convert time series to SFA
-                if (cfg['window'],cfg['word'],cfg['alphabet']) not in self.sfas:
-                    sfa = AdaptedSFA(cfg['window'],cfg['word'],cfg['alphabet'])
-                    sfa.fit(ts_x)
-                    self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])] = sfa
-                for ts in ts_x:
-                    sr = self.sfas[(cfg['window'],cfg['word'],cfg['alphabet'])].timeseries2SFAseq(ts)
-                    tssr.append(sr)
-
-            multi_tssr.append(tssr)
-
+                multi_tssr.append(tssr)
 
         return multi_tssr
 
@@ -170,7 +184,7 @@ class MrSQMClassifier(BaseClassifier):
     def fit(self, X, y, input_checks=True):
         
 
-        X = self.__X_check(X)
+        # X = self.__X_check(X)
 
         # transform time series to multiple symbolic representations
         mr_seqs = self.transform_time_series(X)
@@ -261,15 +275,13 @@ class MrSQMClassifier(BaseClassifier):
     
 
     def predict_proba(self, X, input_checks=True):
-        if input_checks:
-            X = self.__X_check(X)
+        
         mr_seqs = self.transform_time_series(X)
         test_x = self.__to_feature_space(mr_seqs)
         return self.clf.predict_proba(test_x) 
 
     def predict(self, X, input_checks=True):
-        if input_checks:
-            X = self.__X_check(X)
+        
         proba = self.predict_proba(X, False)
         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
 
@@ -282,7 +294,7 @@ class MrSQMClassifier(BaseClassifier):
         np.savetxt(target_file, np.hstack((np.reshape(y,(len(y),1)),vs_x)), fmt='%i', delimiter=",")
 
     def get_coverage(self, X):
-        X = self.__X_check(X)
+        
 
         # transform time series to multiple symbolic representations
         mr_seqs = self.transform_time_series(X)
