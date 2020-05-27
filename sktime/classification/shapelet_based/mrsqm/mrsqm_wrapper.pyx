@@ -12,7 +12,7 @@ from sktime.classification.shapelet_based.mrseql.mrseql import PySAX
 from sktime.classification.shapelet_based.mrseql.mrseql import AdaptedSFA
 #from sktime.transformers.dictionary_based.SFA import SAX
 from sktime.classification.base import BaseClassifier
-
+from sklearn.naive_bayes import BernoulliNB
 
 
 #########################SEQL wrapper#########################
@@ -167,19 +167,6 @@ class MrSQMClassifier(BaseClassifier):
         full_fm = np.hstack(full_fm)
         return full_fm
 
-    '''
-    Check if X input is correct.
-    From dictionary_based/boss.py
-    '''
-    def __X_check(self,X):
-        if isinstance(X, pd.DataFrame):
-            if X.shape[1] > 1:
-                raise TypeError("Mr-SEQL cannot handle multivariate problems yet")
-            elif isinstance(X.iloc[0, 0], pd.Series):
-                X = np.asarray([a.values for a in X.iloc[:, 0]])
-            else:
-                raise TypeError("Input should either be a 2d numpy array, or a pandas dataframe with a single column of Series objects.")
-        return X
 
     def fit(self, X, y, input_checks=True):
         
@@ -205,17 +192,16 @@ class MrSQMClassifier(BaseClassifier):
         # first computing the feature vectors
         # then fit the new data to a logistic regression model
         
-        # train_x = self.__to_feature_space(mr_seqs)
+        train_x = self.__to_feature_space(mr_seqs)
         # self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
-        # self.classes_ = self.clf.classes_ # shouldn't matter
+        self.clf = BernoulliNB().fit(train_x,y)
+        self.classes_ = self.clf.classes_ # shouldn't matter
     
     def fit_random_selection(self, X, y, input_checks=True):
     # '''
     # random selection after mining
     # '''
         # max_selected = self.selection * 3
-
-        X = self.__X_check(X)
 
         # transform time series to multiple symbolic representations
         mr_seqs = self.transform_time_series(X)
@@ -270,6 +256,7 @@ class MrSQMClassifier(BaseClassifier):
         
         train_x = self.__to_feature_space(mr_seqs)
         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
+        # self.clf = 
         self.classes_ = self.clf.classes_ # shouldn't matter
 
     
@@ -280,10 +267,11 @@ class MrSQMClassifier(BaseClassifier):
         test_x = self.__to_feature_space(mr_seqs)
         return self.clf.predict_proba(test_x) 
 
-    def predict(self, X, input_checks=True):
-        
-        proba = self.predict_proba(X, False)
-        return np.array([self.classes_[np.argmax(prob)] for prob in proba])
+    def predict(self, X, input_checks=True):        
+
+        mr_seqs = self.transform_time_series(X)
+        test_x = self.__to_feature_space(mr_seqs)
+        return self.clf.predict(test_x)
 
     def get_all_sequences(self):
         return self.sequences
