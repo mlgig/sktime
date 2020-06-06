@@ -257,10 +257,17 @@ class MrSEQLClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            if min_ws < max_ws: 
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            ws_choices = [i for i in range(10,max_ws+1)]
+            wl_choices = [6,8,10,12,14,16]
+            pars = []
+            
+            if max_ws > min_ws:
+                # pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2))]
+                for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2)): # to make sure it has the same number of reps
+                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), 4])
             else:
-                pars = [[max_ws, 16, 4]]
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), 4])
+                # pars = [[max_ws, 16, 4]]
 
             if 'sax' in self.symrep:
                 for p in pars:

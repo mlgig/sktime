@@ -98,6 +98,7 @@ class MrSQMClassifier(BaseClassifier):
         # generate configuration if not predefined
         if not self.config:
             self.config = []
+            
             min_ws = 16
             min_len = max_len = len(ts_x.iloc[0, 0])
             for a in ts_x.iloc[:, 0]:
@@ -105,11 +106,18 @@ class MrSQMClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            if min_ws < max_ws: 
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            ws_choices = [i for i in range(10,max_ws+1)]
+            wl_choices = [6,8,10,12,14,16]
+            pars = []
+            
+            if max_ws > min_ws:
+                # pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2))]
+                for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2)): # to make sure it has the same number of reps
+                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), 4])
             else:
-                pars = [[max_ws, 16, 4]]
-
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), 4])
+                # pars = [[max_ws, 16, 4]]
+            
             if 'sax' in self.symrep:
                 for p in pars:
                     self.config.append(
@@ -118,7 +126,7 @@ class MrSQMClassifier(BaseClassifier):
             if 'sfa' in self.symrep:
                 for p in pars:
                     self.config.append(
-                        {'method': 'sfa', 'window': p[0], 'word': 8, 'alphabet': p[2]})
+                        {'method': 'sfa', 'window': p[0], 'word': p[1], 'alphabet': p[2]})
 
         
         for cfg in self.config:
