@@ -99,7 +99,7 @@ class MrSQMClassifier(BaseClassifier):
         resample_indices = []
 
         for i in range(0,self.n_samples):
-            selected, _ = resample(train_x, y,n_samples=sample_size, stratify=y)
+            selected, _ = resample(train_x, y,n_samples=sample_size) #, stratify=y)
             resample_indices.append(selected)
         
         return resample_indices
