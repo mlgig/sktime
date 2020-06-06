@@ -88,18 +88,19 @@ class MrSQMClassifier(BaseClassifier):
         self.selection = selection
         self.max_selection = max_selection
 
-        self.n_samples = 5
-        self.sample_rate = 0.5
+        self.n_samples = n_samples
+        self.sample_rate = sample_rate
 
     def _resample(self, y):
         train_x = [i for i in range(0,len(y))]
 
-        sample_size = self.sample_rate * len(y)
+        sample_size = int(self.sample_rate * len(y))
 
         resample_indices = []
 
         for i in range(0,self.n_samples):
-            selected, _ = resample(train_x, y,n_samples=sample_size) #, stratify=y)
+            selected, _ = resample(train_x, y,n_samples=sample_size)#, stratify=y)
+            # print(selected)
             resample_indices.append(selected)
         
         return resample_indices
