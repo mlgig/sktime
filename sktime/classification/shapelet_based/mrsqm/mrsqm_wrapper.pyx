@@ -12,8 +12,8 @@ from sktime.classification.shapelet_based.mrseql.mrseql import PySAX
 from sktime.classification.shapelet_based.mrseql.mrseql import AdaptedSFA
 #from sktime.transformers.dictionary_based.SFA import SAX
 from sktime.classification.base import BaseClassifier
-from sklearn.naive_bayes import BernoulliNB
-
+#from sklearn.naive_bayes import BernoulliNB
+from sklearn.utils import resample
 
 #########################SEQL wrapper#########################
 
@@ -61,7 +61,7 @@ class MrSQMClassifier(BaseClassifier):
     # selection > 0 and selection < 1 : chisquared test with p value threshold = selection
     # selection >= 1: top k selection with k = int(selection)    
 
-    def __init__(self, selection = 100, max_selection = 300, symrep=['sax'], symrepconfig=None):
+    def __init__(self, selection = 100, max_selection = 300, symrep=['sax'], symrepconfig=None, n_samples = 5, sample_rate = 0.5):
 
         self.symrep = symrep
 
@@ -88,7 +88,21 @@ class MrSQMClassifier(BaseClassifier):
         self.selection = selection
         self.max_selection = max_selection
 
+        self.n_samples = 5
+        self.sample_rate = 0.5
 
+    def _resample(self, y):
+        train_x = [i for i in range(0,len(y))]
+
+        sample_size = self.sample_rate * len(y)
+
+        resample_indices = []
+
+        for i in range(0,self.n_samples):
+            selected, _ = resample(train_x, y,n_samples=sample_size, stratify=y)
+            resample_indices.append(selected)
+        
+        return resample_indices
 
 
     def transform_time_series(self, ts_x):
@@ -260,6 +274,37 @@ class MrSQMClassifier(BaseClassifier):
         self.classes_ = self.clf.classes_ # shouldn't matter
 
     
+    def fit_resample(self, X, y, input_checks=True):    
+
+        # transform time series to multiple symbolic representations
+        mr_seqs = self.transform_time_series(X)
+
+        self.classes_ = np.unique(y) #because sklearn also uses np.unique
+
+        int_y = [np.where(self.classes_ == c)[0][0] for c in y]
+
+        resample_indices = self._resample(int_y)
+
+        self.sequences = []
+
+        for rep in mr_seqs:
+            seqs = []
+            for sample in resample_indices:
+                new_rep = [rep[i] for i in sample]
+                new_y = [int_y[i] for i in sample]
+                miner = PySQM(self.selection)
+                seqs.extend(miner.mine(new_rep, new_y))
+            seqs = np.unique(seqs)
+            self.sequences.append(seqs)
+
+
+    
+        # first computing the feature vectors
+        # then fit the new data to a logistic regression model
+        
+        train_x = self.__to_feature_space(mr_seqs)
+        self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
+        self.classes_ = self.clf.classes_ # shouldn't matter
 
     def predict_proba(self, X, input_checks=True):
         
