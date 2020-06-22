@@ -17,7 +17,7 @@ __author__ = ["Thach Le Nguyen"]
 
 cdef extern from "sax_converter.h":
     cdef cppclass SAX:
-        SAX(int, int, int)        
+        SAX(int, int, int, int)        
         vector[string] timeseries2SAX(vector[double])
         vector[double] map_weighted_patterns(vector[double], vector[string], vector[double])
 
@@ -27,8 +27,8 @@ cdef class PySAX:
     '''
     cdef SAX * thisptr      # hold a C++ instance which we're wrapping
 
-    def __cinit__(self, int N, int w, int a):
-        self.thisptr = new SAX(N, w, a)
+    def __cinit__(self, int N, int w, int a, int di = 1):
+        self.thisptr = new SAX(N, w, a, di)
 
     def __dealloc__(self):
         del self.thisptr
