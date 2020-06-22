@@ -37,6 +37,7 @@ public:
 	int step_size;
 	int word_length;
 	int alphabet_size;
+	int dilation;
 	// numerosity reduction strategy
 	static const int NONE_NR = 0;
 	static const int BACK2BACK_NR = 1;
@@ -44,7 +45,7 @@ public:
 
 	static const int TEST_NORMALIZE = 1;
 
-	void init(int N, int w, int a, int _step_size, int nr_strategy){
+	void init(int N, int w, int a, int _step_size, int nr_strategy, int di){
 		window_size = N;
 		word_length = w;
 		alphabet_size = a;
@@ -52,6 +53,7 @@ public:
 		numerosity_reduction = nr_strategy;
 		MAX = 10000;
 		initialize_break_points();
+		dilation = di;
 
 		// if (window_size % word_length == 0){
 		// 	divisible = true;
@@ -61,25 +63,10 @@ public:
 	}
 
 	// Constructor
-	SAX(){
-		init(64,16,4,1,NONE_NR);
+	SAX(int N, int w, int a,int di){
+		init(N,w,a,1,BACK2BACK_NR,di);
 	}
-
-	SAX(int w, int a){
-		init(-1,w,a,1,NONE_NR);
-	}
-
-	SAX(int N, int w, int a){
-		init(N,w,a,1,BACK2BACK_NR);
-	}
-
-	SAX(int N, int w, int a, int nr_strategy){
-		init(N,w,a,1,nr_strategy);
-	}
-
-	SAX(int N, int w, int a, int _step_size, int nr_strategy){
-		init(N,w,a,_step_size,nr_strategy);
-	}
+	
 
 	// Destructor
 	~SAX(){
@@ -173,15 +160,19 @@ public:
 		 */
 	}
 
+	
+
 	std::string segment2SAX(std::vector<double> &timeseries, int cur_pos, char char_start){
-		int window_end = cur_pos + window_size - 1;
+		int window_end = cur_pos + (window_size-1)*dilation;
+		
+		
 
 		// calculate mean and std
 		double mean_wd = 0.0;
 		double var_wd = 0.0;
 		double sum_wd = 0.0;
 		double sumsq_wd = 0.0;
-		for (int i = cur_pos; i <= window_end; i++){
+		for (int i = cur_pos; i <= window_end; i+= dilation){
 			sum_wd += timeseries[i];
 			sumsq_wd += timeseries[i]*timeseries[i];
 		}
@@ -194,7 +185,7 @@ public:
 
 
 		std::vector<double> subsection(window_size);
-		for (int i = cur_pos; i <= window_end; i++){
+		for (int i = cur_pos; i <= window_end; i+= dilation){
 			double normalized_value;
 			if (TEST_NORMALIZE){
 				normalized_value = (timeseries[i] - mean_wd);
@@ -206,7 +197,7 @@ public:
 			}
 
 			// for (int j = (i - cur_pos)*word_length;j < (i - cur_pos)*word_length + word_length; j++){
-			subsection[i - cur_pos] = normalized_value;
+			subsection[(i - cur_pos)/dilation] = normalized_value;
 			// }
 		}
 		double paa_size = window_size * 1.0 / word_length;
@@ -255,7 +246,7 @@ public:
 		std::vector<std::string>  sax_seqc;
 		// sliding windows
 
-		for (int cur_pos = 0; cur_pos < ts_length - window_size + 1; cur_pos += step_size){
+		for (int cur_pos = 0; cur_pos < ts_length - (window_size-1)*dilation; cur_pos += step_size){
 
 
 

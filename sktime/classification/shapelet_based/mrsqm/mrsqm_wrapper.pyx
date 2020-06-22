@@ -21,6 +21,7 @@ from sklearn.naive_bayes import BernoulliNB
 cdef extern from "sqminer.h":
     cdef cppclass SQMiner:
         SQMiner(double)
+        void configure_alphabet(char, int)
         # void learn(vector[string] &, vector[double] &)
         # double brute_classify(string , double)
         # void print_model(int)
@@ -40,6 +41,10 @@ cdef class PySQM:
 
     def mine(self, vector[string] sequences, vector[int] labels):
         return self.thisptr.mine(sequences, labels)
+    
+    def configure_alphabet(self,first_char,int alphabet_size):
+        
+        self.thisptr.configure_alphabet(ord(first_char),alphabet_size)
 
     # def classify(self, string sequence):
     #     scr = self.thisptr.brute_classify(sequence, 0.0)
@@ -87,6 +92,7 @@ class MrSQMClassifier(BaseClassifier):
 
         self.selection = selection
         self.max_selection = max_selection
+     
 
 
 
@@ -94,10 +100,10 @@ class MrSQMClassifier(BaseClassifier):
     def transform_time_series(self, ts_x):
         multi_tssr = []   
 
-
-        # generate configuration if not predefined
+     
         if not self.config:
             self.config = []
+            
             min_ws = 16
             min_len = max_len = len(ts_x.iloc[0, 0])
             for a in ts_x.iloc[:, 0]:
@@ -105,31 +111,42 @@ class MrSQMClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            if min_ws < max_ws: 
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            ws_choices = [i for i in range(10,max_ws+1)]
+            wl_choices = [6,8,10,12,14,16]
+            alphabet_choices = [3,4,5,6]       
+            pars = []
+            
+            if max_ws > min_ws:
+                # pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2))]
+                for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws)/4)))): # to make sure it has the same number of reps
+                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
             else:
-                pars = [[max_ws, 16, 4]]
-
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+                # pars = [[max_ws, 16, 4]]
+            
             if 'sax' in self.symrep:
                 for p in pars:
                     self.config.append(
-                        {'method': 'sax', 'window': p[0], 'word': p[1], 'alphabet': p[2]})
+                        {'method': 'sax', 'window': p[0], 'word': p[1], 'alphabet': p[2], 
+                        # 'dilation': np.int32(2 ** np.random.uniform(0, np.log2((min_len - 1) / (p[0] - 1))))})
+                        'dilation': 1})
 
             if 'sfa' in self.symrep:
                 for p in pars:
                     self.config.append(
-                        {'method': 'sfa', 'window': p[0], 'word': 8, 'alphabet': p[2]})
+                        {'method': 'sfa', 'window': p[0], 'word': p[1], 'alphabet': p[2]})       
 
         
         for cfg in self.config:
             for i in range(ts_x.shape[1]):
                 tssr = []
 
-                if cfg['method'] == 'sax':  # convert time series to SAX
-                    ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'])
+                if cfg['method'] == 'sax':  # convert time series to SAX                    
+                    ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'], cfg['dilation'])
                     for ts in ts_x.iloc[:,i]:
                         sr = ps.timeseries2SAXseq(ts)
                         tssr.append(sr)
+                    
 
                 if cfg['method'] == 'sfa':  # convert time series to SFA
                     if (cfg['window'], cfg['word'], cfg['alphabet']) not in self.sfas:
@@ -144,6 +161,8 @@ class MrSQMClassifier(BaseClassifier):
                         tssr.append(sr)
 
                 multi_tssr.append(tssr)
+
+        
 
         return multi_tssr
 
@@ -174,8 +193,10 @@ class MrSQMClassifier(BaseClassifier):
         # X = self.__X_check(X)
 
         # transform time series to multiple symbolic representations
-        mr_seqs = self.transform_time_series(X)
 
+        mr_seqs = self.transform_time_series(X)
+        
+        # print(mr_seqs)
         self.classes_ = np.unique(y) #because sklearn also uses np.unique
 
         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
@@ -197,30 +218,42 @@ class MrSQMClassifier(BaseClassifier):
         # self.clf = BernoulliNB().fit(train_x,y)
         self.classes_ = self.clf.classes_ # shouldn't matter
     
-    def fit_random_selection(self, X, y, input_checks=True):
+    def fit_random_selection(self, X, y, ext_reps = None, input_checks=True):
     # '''
     # random selection after mining
     # '''
         # max_selected = self.selection * 3
 
         # transform time series to multiple symbolic representations
-        mr_seqs = self.transform_time_series(X)
-
         self.classes_ = np.unique(y) #because sklearn also uses np.unique
 
         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
 
         self.sequences = []
+        mr_seqs = []
 
-        for rep in mr_seqs:
-            miner = PySQM(self.max_selection)
-            mined = miner.mine(rep, int_y)       
-            # print(len(mined))     
-            random_selected = np.random.permutation(mined)[:self.selection].tolist()
-            # print(len(random_selected))
-            self.sequences.append(random_selected)
+        if X is not None:
+            mr_seqs = self.transform_time_series(X)   
 
+            for rep in mr_seqs:
+                miner = PySQM(self.max_selection)
+                miner.configure_alphabet(b'a',26)
+                mined = miner.mine(rep, int_y)       
+                # print(len(mined))     
+                random_selected = np.random.permutation(mined)[:self.selection].tolist()
+                # print(len(random_selected))
+                self.sequences.append(random_selected)
 
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)
+            for rep in ext_reps:
+                miner = PySQM(self.max_selection)
+                miner.configure_alphabet(b'!',100)
+                mined = miner.mine(rep, int_y)       
+                # print(len(mined))     
+                random_selected = np.random.permutation(mined)[:self.selection].tolist()
+                # print(len(random_selected))
+                self.sequences.append(random_selected)
     
         # first computing the feature vectors
         # then fit the new data to a logistic regression model
@@ -267,9 +300,14 @@ class MrSQMClassifier(BaseClassifier):
         test_x = self.__to_feature_space(mr_seqs)
         return self.clf.predict_proba(test_x) 
 
-    def predict(self, X, input_checks=True):        
+    def predict(self, X, ext_reps = None, input_checks=True):        
+        
+        mr_seqs = []
+        if X is not None:
+            mr_seqs = self.transform_time_series(X)
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)
 
-        mr_seqs = self.transform_time_series(X)
         test_x = self.__to_feature_space(mr_seqs)
         return self.clf.predict(test_x)
 

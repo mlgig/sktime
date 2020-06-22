@@ -35,7 +35,7 @@ struct pair_2nd_cmp_alt: public std::binary_function<bool, T1, T2> {
 class ENode{
 private:
 
-	char first_char = 'a';
+	char first_char = '!';
 	
 
 	void initialize_enode(string _ngram, int max_children){
@@ -49,7 +49,7 @@ private:
 
 	}
 public:
-	const static int MAX_CHILDREN = 26;
+	const static int MAX_CHILDREN = 100;
 	string ngram;
 
 	vector<int> loc;
