@@ -243,13 +243,33 @@ class MrSEQLClassifier(BaseClassifier):
         self.sfas = {}
         self._is_fitted = False
 
+    def create_pars(self, min_ws, max_ws, random_sampling=False):
+        
+        if random_sampling:
+            pars = []
+            ws_choices = [i for i in range(10,max_ws+1)]
+            wl_choices = [6,8,10,12,14,16]
+            alphabet_choices = [3,4,5,6] 
+            if max_ws > min_ws:                
+                for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws)/4)))): # to make sure it has the same number of reps
+                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+            else:
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+        else:           
+            if max_ws > min_ws:
+                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
+            else:
+                pars = [[max_ws, 16, 4]]
+        
+        return pars
+
     def _transform_time_series(self, ts_x):
         multi_tssr = []   
 
-
-        # generate configuration if not predefined
+     
         if not self.config:
             self.config = []
+            
             min_ws = 16
             min_len = max_len = len(ts_x.iloc[0, 0])
             for a in ts_x.iloc[:, 0]:
@@ -257,31 +277,31 @@ class MrSEQLClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            if min_ws < max_ws: 
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
-            else:
-                pars = [[max_ws, 16, 4]]
-
+            pars = self.create_pars(min_ws, max_ws, True)
+            
             if 'sax' in self.symrep:
                 for p in pars:
                     self.config.append(
-                        {'method': 'sax', 'window': p[0], 'word': p[1], 'alphabet': p[2]})
+                        {'method': 'sax', 'window': p[0], 'word': p[1], 'alphabet': p[2], 
+                        # 'dilation': np.int32(2 ** np.random.uniform(0, np.log2((min_len - 1) / (p[0] - 1))))})
+                        'dilation': 1})
 
             if 'sfa' in self.symrep:
                 for p in pars:
                     self.config.append(
-                        {'method': 'sfa', 'window': p[0], 'word': 8, 'alphabet': p[2]})
+                        {'method': 'sfa', 'window': p[0], 'word': p[1], 'alphabet': p[2]})       
 
         
         for cfg in self.config:
             for i in range(ts_x.shape[1]):
                 tssr = []
 
-                if cfg['method'] == 'sax':  # convert time series to SAX
-                    ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'])
+                if cfg['method'] == 'sax':  # convert time series to SAX                    
+                    ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'], cfg['dilation'])
                     for ts in ts_x.iloc[:,i]:
                         sr = ps.timeseries2SAXseq(ts)
                         tssr.append(sr)
+                    
 
                 if cfg['method'] == 'sfa':  # convert time series to SFA
                     if (cfg['window'], cfg['word'], cfg['alphabet']) not in self.sfas:
@@ -296,6 +316,8 @@ class MrSEQLClassifier(BaseClassifier):
                         tssr.append(sr)
 
                 multi_tssr.append(tssr)
+
+        
 
         return multi_tssr
     
@@ -353,7 +375,62 @@ class MrSEQLClassifier(BaseClassifier):
         self._is_fitted = True
         return self
 
-   
+    def fit_ext(self, X, y, ext_reps = None, input_checks=False):
+        """
+        Fit the model according to the given training time series data.
+        Parameters
+        ----------
+        X : Time series data.
+        y : Target vector relative to X.
+
+        Returns
+        -------
+        self
+            Fitted estimator.        
+        """
+        if input_checks:            
+            check_X_y(X,y)
+
+        # transform time series to multiple symbolic representations
+        mr_seqs = []
+        if X is not None:
+            mr_seqs = self._transform_time_series(X)
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)
+        
+        
+        
+
+        self.seql_clf.fit(mr_seqs,y)
+        self.classes_ = self.seql_clf.classes_
+        self.sequences = self.seql_clf.get_sequence_features()
+
+        # if seql is being used to select features
+        # first computing the feature vectors
+        # then fit the new data to a logistic regression model
+        if self.seql_mode == 'fs':
+            train_x = self._to_feature_space(mr_seqs)
+            self.ots_clf = LogisticRegression(
+                solver='newton-cg', multi_class='multinomial', class_weight='balanced').fit(train_x, y)
+            self.classes_ = self.ots_clf.classes_ 
+
+        self._is_fitted = True
+        return self
+
+    def predict_ext(self, X, ext_reps = None, input_checks=False):
+        if input_checks:            
+            check_X(X)
+
+        # transform time series to multiple symbolic representations
+        mr_seqs = []
+        if X is not None:
+            mr_seqs = self._transform_time_series(X)
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)
+
+        test_x = self._to_feature_space(mr_seqs)
+        return self.ots_clf.predict(test_x)
+
 
     def predict_proba(self, X, input_checks=True):
         """ 

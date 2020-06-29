@@ -20,8 +20,7 @@ from sklearn.naive_bayes import BernoulliNB
 
 cdef extern from "sqminer.h":
     cdef cppclass SQMiner:
-        SQMiner(double)
-        void configure_alphabet(char, int)
+        SQMiner(double)        
         # void learn(vector[string] &, vector[double] &)
         # double brute_classify(string , double)
         # void print_model(int)
@@ -40,11 +39,8 @@ cdef class PySQM:
         del self.thisptr
 
     def mine(self, vector[string] sequences, vector[int] labels):
-        return self.thisptr.mine(sequences, labels)
+        return self.thisptr.mine(sequences, labels)    
     
-    def configure_alphabet(self,first_char,int alphabet_size):
-        
-        self.thisptr.configure_alphabet(ord(first_char),alphabet_size)
 
     # def classify(self, string sequence):
     #     scr = self.thisptr.brute_classify(sequence, 0.0)
@@ -94,6 +90,25 @@ class MrSQMClassifier(BaseClassifier):
         self.max_selection = max_selection
      
 
+    def create_pars(self, min_ws, max_ws, random_sampling=False):
+        
+        if random_sampling:
+            pars = []
+            ws_choices = [i for i in range(10,max_ws+1)]
+            wl_choices = [6,8,10,12,14,16]
+            alphabet_choices = [3,4,5,6] 
+            if max_ws > min_ws:                
+                for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws)/4)))): # to make sure it has the same number of reps
+                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+            else:
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+        else:           
+            if max_ws > min_ws:
+                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
+            else:
+                pars = [[max_ws, 16, 4]]
+        
+        return pars
 
 
 
@@ -111,18 +126,7 @@ class MrSQMClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            ws_choices = [i for i in range(10,max_ws+1)]
-            wl_choices = [6,8,10,12,14,16]
-            alphabet_choices = [3,4,5,6]       
-            pars = []
-            
-            if max_ws > min_ws:
-                # pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)/2))]
-                for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws)/4)))): # to make sure it has the same number of reps
-                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
-            else:
-                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
-                # pars = [[max_ws, 16, 4]]
+            pars = self.create_pars(min_ws, max_ws, True)
             
             if 'sax' in self.symrep:
                 for p in pars:
@@ -233,31 +237,22 @@ class MrSQMClassifier(BaseClassifier):
         mr_seqs = []
 
         if X is not None:
-            mr_seqs = self.transform_time_series(X)   
-
-            for rep in mr_seqs:
-                miner = PySQM(self.max_selection)
-                miner.configure_alphabet(b'a',26)
-                mined = miner.mine(rep, int_y)       
-                # print(len(mined))     
-                random_selected = np.random.permutation(mined)[:self.selection].tolist()
-                # print(len(random_selected))
-                self.sequences.append(random_selected)
-
+            mr_seqs = self.transform_time_series(X)
         if ext_reps is not None:
             mr_seqs.extend(ext_reps)
-            for rep in ext_reps:
-                miner = PySQM(self.max_selection)
-                miner.configure_alphabet(b'!',100)
-                mined = miner.mine(rep, int_y)       
-                # print(len(mined))     
-                random_selected = np.random.permutation(mined)[:self.selection].tolist()
-                # print(len(random_selected))
-                self.sequences.append(random_selected)
+
+        for rep in mr_seqs:
+            miner = PySQM(self.max_selection)
+            
+            mined = miner.mine(rep, int_y)       
+            # print(len(mined))     
+            random_selected = np.random.permutation(mined)[:self.selection].tolist()
+            # print(len(random_selected))
+            self.sequences.append(random_selected)        
+        
     
         # first computing the feature vectors
-        # then fit the new data to a logistic regression model
-        
+        # then fit the new data to a logistic regression model        
         train_x = self.__to_feature_space(mr_seqs)
         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
         self.classes_ = self.clf.classes_ # shouldn't matter
