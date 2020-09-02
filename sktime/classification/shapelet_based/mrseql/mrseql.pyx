@@ -339,7 +339,7 @@ class MrSEQLClassifier(BaseClassifier):
     #         full_fm.append(fm)
 
     #     full_fm = np.hstack(full_fm)
-        return full_fm
+    #     return full_fm
     
     def _to_feature_space(self, mr_seqs):        
         full_fm = []
