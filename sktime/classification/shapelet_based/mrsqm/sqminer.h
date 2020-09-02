@@ -147,6 +147,7 @@ class NodeStore
 private:
 	vector<ENode *> store;
 	int capacity;
+	double default_threshold = 0.0;
 
 public:
 	NodeStore(int capacity)
@@ -154,8 +155,20 @@ public:
 		this->capacity = capacity;
 	}
 
+	NodeStore(int capacity, double threshold)
+	{
+		this->capacity = capacity;
+		this->default_threshold = threshold;
+	}
+
 	bool insert_node(ENode *node_to_insert)
 	{
+		// cout << node_to_insert->chi_square << " and " << this->threshold() << endl;
+
+		if (node_to_insert->chi_square < this->threshold())
+		{
+			return false;
+		}
 
 		if (node_to_insert->foot_print_covered)
 		{
@@ -191,7 +204,7 @@ public:
 		}
 		else
 		{
-			return 0.0;
+			return default_threshold;
 		}
 	}
 
@@ -310,7 +323,7 @@ private:
 	//vector<int> y;
 	LabelManager *ymgr;
 
-	double selection;
+	double selection;	
 
 	// prepare inverted index of all unigrams (unigram -> location)
 	ENode *prepare_inverted_index(vector<string> &sequences, vector<int> &y)
@@ -424,9 +437,9 @@ private:
 	bool can_prune_with_store(ENode *node)
 	{
 
-		compute_chi_square_score_and_bound(node);
-
+		compute_chi_square_score_and_bound(node);		
 		store.insert_node(node);
+		
 
 		if (node->bound <= store.threshold())
 		{
@@ -507,6 +520,24 @@ public:
 
 		this->selection = selection;
 	}
+
+	SQMiner(double selection, double threshold)
+	{
+		if (selection <= 0)
+		{ // brute force
+		}
+		else if (selection < 1)
+		{ // chi-squared test with p-value = selection
+		}
+		else
+		{ // top k sequences with k = int(selection)
+			store = NodeStore(int(selection), threshold);
+		}
+
+		this->selection = selection;
+		
+	}
+
 
 	vector<string> mine(vector<string> &sequences, vector<int> &y)
 	{
