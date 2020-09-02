@@ -192,6 +192,31 @@ class SEQLCLF:
 
 ###########################################################################
 
+######################### Trie Data Structure #########################
+
+cdef extern from "ftrie.cpp":
+    cdef cppclass SearchTrie:
+        SearchTrie(vector[string])
+        vector[int] search(string)
+
+
+
+cdef class PyFeatureTrie:
+    cdef SearchTrie *thisptr
+
+    def __cinit__(self, vector[string] sequences):
+        self.thisptr = new SearchTrie(sequences)
+    def __dealloc__(self):
+        del self.thisptr
+
+    def search(self, string sequence):
+        return self.thisptr.search(sequence)
+
+
+
+###########################################################################
+
+
 
 ######################### Mr-SEQL (main class) #########################
 
@@ -299,22 +324,36 @@ class MrSEQLClassifier(BaseClassifier):
 
         return multi_tssr
     
-    def _to_feature_space(self, mr_seqs):
-        # compute feature vectors
+    # def _to_feature_space(self, mr_seqs):
+    #     # compute feature vectors
+    #     full_fm = []
+
+    #     for rep, seq_features in zip(mr_seqs, self.sequences):
+                 
+    #         fm = np.zeros((len(rep), len(seq_features)))
+
+    #         for i, s in enumerate(rep):
+    #             for j, f in enumerate(seq_features):
+    #                 if f in s:
+    #                     fm[i, j] = 1
+    #         full_fm.append(fm)
+
+    #     full_fm = np.hstack(full_fm)
+        return full_fm
+    
+    def _to_feature_space(self, mr_seqs):        
         full_fm = []
 
-        for rep, seq_features in zip(mr_seqs, self.sequences):
-                 
-            fm = np.zeros((len(rep), len(seq_features)))
-
-            for i, s in enumerate(rep):
-                for j, f in enumerate(seq_features):
-                    if f in s:
-                        fm[i, j] = 1
+        for rep, seq_features in zip(mr_seqs, self.sequences):            
+            fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
+            ft = PyFeatureTrie(seq_features)
+            for i,s in enumerate(rep):
+                fm[i,:] = ft.search(s)
             full_fm.append(fm)
 
+  
         full_fm = np.hstack(full_fm)
-        return full_fm
+        return full_fm > 0
 
     def fit(self, X, y, input_checks=True):
         """
