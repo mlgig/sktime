@@ -372,36 +372,36 @@ class MrSQMClassifier(BaseClassifier):
 
 
     # represent data (in multiple reps form) in feature space
-    def __to_feature_space(self, mr_seqs):
-        logging.info("Computing feature vectors ...")
-        full_fm = []
-
-        for rep, seq_features in zip(mr_seqs, self.sequences):            
-            fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
-            for i,s in enumerate(rep):
-                for j,f in enumerate(seq_features):
-                    if f in s:
-                        fm[i,j] = 1
-            full_fm.append(fm)
-
-  
-        full_fm = np.hstack(full_fm)
-        return full_fm
-
     # def __to_feature_space(self, mr_seqs):
     #     logging.info("Computing feature vectors ...")
     #     full_fm = []
 
     #     for rep, seq_features in zip(mr_seqs, self.sequences):            
     #         fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
-    #         ft = PyFeatureTrie(seq_features)
     #         for i,s in enumerate(rep):
-    #             fm[i,:] = ft.search(s)
+    #             for j,f in enumerate(seq_features):
+    #                 if f in s:
+    #                     fm[i,j] = 1
     #         full_fm.append(fm)
 
   
     #     full_fm = np.hstack(full_fm)
-    #     return full_fm > 0
+    #     return full_fm
+
+    def __to_feature_space(self, mr_seqs):
+        logging.info("Computing feature vectors ...")
+        full_fm = []
+
+        for rep, seq_features in zip(mr_seqs, self.sequences):            
+            fm = np.zeros((len(rep), len(seq_features)),dtype = np.int32)
+            ft = PyFeatureTrie(seq_features)
+            for i,s in enumerate(rep):
+                fm[i,:] = ft.search(s)
+            full_fm.append(fm)
+
+  
+        full_fm = np.hstack(full_fm)
+        return full_fm > 0
 
 
     def fit(self, X, y, input_checks=True):
