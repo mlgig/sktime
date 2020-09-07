@@ -353,7 +353,7 @@ class MrSEQLClassifier(BaseClassifier):
 
   
         full_fm = np.hstack(full_fm)
-        return full_fm > 0
+        return full_fm
 
     def fit(self, X, y, input_checks=True):
         """
@@ -437,47 +437,67 @@ class MrSEQLClassifier(BaseClassifier):
         proba = self.predict_proba(X, False)
         return np.array([self.classes_[np.argmax(prob)] for prob in proba])
 
-    def map_sax_model(self, ts):
+    def get_saliency_map(self, X):
         """    For interpretation.
         Returns vectors of weights with the same length of the input time series.
         The weight of each point implies its contribution in the classification decision regarding the class.
 
         Parameters
         ----------
-        ts : A single time series.
+        X : An sktime time series dataframe.
 
         Returns
         -------
-        weighted_ts: ndarray of (number of classes, length of time series)
+        A dataframe of the same shape contains the saliency maps of all time series in X.
+        Each saliency map is an ndarray of (number of classes, length of time series)
 
         Note
         -------
-        Only supports univariate time series and SAX features.
+        Only supports SAX features. Other symbolic-type features (e.g., SFA) in the model are ignored.
         """
         self.check_is_fitted()
+        check_X(X)
 
         is_multiclass = len(self.classes_) > 2
 
+        # initiate dataframe to contain weight vectors
+        weighted_X = X.copy()
+        for i in range(weighted_X.shape[0]):
+            for j in range(weighted_X.shape[1]):
+                weighted_X.iloc[i,j] = np.zeros((len(self.classes_), len(X.iloc[i,j])))
+
         if self.seql_mode == 'fs':
 
-            weighted_ts = np.zeros((len(self.classes_), len(ts)))
+            fi = 0 #to keep track of the representation in logreg model
+            ri = 0 #index of representation
 
-            fi = 0
-            for cfg, features in zip(self.config, self.sequences):                
-                if cfg['method'] == 'sax':
+            for cfg in self.config:
+                if cfg['method'] == 'sax': # only works with sax features
                     ps = PySAX(cfg['window'], cfg['word'], cfg['alphabet'])
-                    if is_multiclass:
-                        for ci, cl in enumerate(self.classes_):
-                            weighted_ts[ci, :] += ps.map_weighted_patterns(
-                                ts, features, self.ots_clf.coef_[ci, fi:(fi+len(features))])
-                    else:
-                        weighted_ts[0, :] += ps.map_weighted_patterns(
-                            ts, features, self.ots_clf.coef_[0, fi:(fi+len(features))])
+                    for j in range(X.shape[1]):
+                        features = self.sequences[ri]
 
-                fi += len(features)
-            if not is_multiclass:
-                weighted_ts[1, :] = -weighted_ts[0, :]
-            return weighted_ts
+                        for i in range(X.shape[0]):
+                            ts = X.iloc[i,j]
+                            
+                            #weighted_ts = np.zeros((len(self.classes_), len(ts)))
+
+                            if is_multiclass:
+                                for ci, cl in enumerate(self.classes_):
+                                    weighted_X.iloc[i,j][ci, :] += ps.map_weighted_patterns(
+                                    ts, features, self.ots_clf.coef_[ci, fi:(fi+len(features))])
+                            else:
+                                weighted_X.iloc[i,j][0, :] += ps.map_weighted_patterns(
+                                ts, features, self.ots_clf.coef_[0, fi:(fi+len(features))])
+                                weighted_X.iloc[i,j][1, :] = -weighted_X.iloc[i,j][0, :]
+                        
+                        fi += len(features)
+                        ri += 1
+                else: # skip other symbolic features
+                    for j in range(X.shape[1]):                        
+                        fi += len(self.sequences[ri])
+                        ri += 1
+            return weighted_X
         else:
             print('The mapping only works on fs mode. In addition, only sax features will be mapped to the time series.')
             return None
