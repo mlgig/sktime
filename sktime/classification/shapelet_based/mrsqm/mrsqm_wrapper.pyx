@@ -129,6 +129,7 @@ class MrSQMClassifier(BaseClassifier):
         self.max_selection = max_selection
 
         # self.logger = SEQLLogger()
+        self.idf = []
 
         
      
@@ -146,10 +147,12 @@ class MrSQMClassifier(BaseClassifier):
             else:
                 pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
         else:           
-            if max_ws > min_ws:
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
-            else:
-                pars = [[max_ws, 16, 4]]
+            pars = [[2**w,8,4] for w in range(3,int(np.log2(max_ws) + 1))]
+            # if max_ws > min_ws:
+            #     pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
+            # else:
+            #     pars = [[max_ws, 16, 4]]
+            
         
         return pars
 
@@ -401,7 +404,30 @@ class MrSQMClassifier(BaseClassifier):
 
   
         full_fm = np.hstack(full_fm)
+
         return full_fm > 0
+
+
+        #normalize length
+        # fm_length = np.linalg.norm(full_fm, ord=2, axis=1, keepdims=True)
+        # fm_length[fm_length == 0] = 1
+        # normed_fm = full_fm/fm_length 
+        # return normed_fm
+
+
+
+        #tf-idf
+        # N = full_fm.shape[0]
+        # if len(self.idf) == 0:            
+        #     dft = (full_fm > 0).sum(axis = 0)
+        #     self.idf = np.log(N/dft)
+        
+        # sumf = full_fm.sum(axis=1,keepdims=True)
+        # sumf[sumf == 0] = 1
+        # tf = full_fm / sumf
+
+
+        # return tf #* self.idf
 
 
     def fit(self, X, y, input_checks=True):
