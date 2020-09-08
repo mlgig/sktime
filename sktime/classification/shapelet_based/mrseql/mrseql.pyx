@@ -353,7 +353,7 @@ class MrSEQLClassifier(BaseClassifier):
 
   
         full_fm = np.hstack(full_fm)
-        return full_fm
+        return full_fm > 0
 
     def fit(self, X, y, input_checks=True):
         """
