@@ -268,6 +268,9 @@ class MrSEQLClassifier(BaseClassifier):
         self.sfas = {}
         self._is_fitted = False
 
+    def _create_pars(self,maxws):
+        return [[2**(w/3), 8, 4] for w in range(9, 3*int(np.log2(maxws)) + 1)]
+
     def _transform_time_series(self, ts_x):
         multi_tssr = []   
 
@@ -282,10 +285,11 @@ class MrSEQLClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            if min_ws < max_ws: 
-                pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
-            else:
-                pars = [[max_ws, 16, 4]]
+            # if min_ws < max_ws: 
+            #     pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]
+            # else:
+            #     pars = [[max_ws, 16, 4]]
+            pars = self._create_pars(max_ws)
 
             if 'sax' in self.symrep:
                 for p in pars:
@@ -353,7 +357,7 @@ class MrSEQLClassifier(BaseClassifier):
 
   
         full_fm = np.hstack(full_fm)
-        return full_fm
+        return full_fm > 0
 
     def fit(self, X, y, input_checks=True):
         """
