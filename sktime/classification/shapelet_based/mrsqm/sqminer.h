@@ -298,6 +298,7 @@ private:
 		{
 			vector<int> count(unique_label_count(), 0);
 
+			// binary count
 			for (int l : locs)
 			{
 				if (l < 0)
@@ -307,6 +308,21 @@ private:
 					count[get_unique_label_index(lb)]++;
 				}
 			}
+
+			// frequency count
+			// int lb = get_unique_label_index(y[-locs[0] - 1]);
+			// for (int l : locs)
+			// {
+			// 	if (l < 0)
+			// 	{
+			// 		lb = get_unique_label_index(y[-l - 1]);
+			// 	}
+			// 	else
+			// 	{
+			// 		count[lb]++;
+			// 	}
+			// }
+
 			return count;
 		}
 	};
@@ -323,7 +339,7 @@ private:
 	//vector<int> y;
 	LabelManager *ymgr;
 
-	double selection;	
+	double selection;
 
 	// prepare inverted index of all unigrams (unigram -> location)
 	ENode *prepare_inverted_index(vector<string> &sequences, vector<int> &y)
@@ -437,9 +453,8 @@ private:
 	bool can_prune_with_store(ENode *node)
 	{
 
-		compute_chi_square_score_and_bound(node);		
+		compute_chi_square_score_and_bound(node);
 		store.insert_node(node);
-		
 
 		if (node->bound <= store.threshold())
 		{
@@ -535,9 +550,7 @@ public:
 		}
 
 		this->selection = selection;
-		
 	}
-
 
 	vector<string> mine(vector<string> &sequences, vector<int> &y)
 	{

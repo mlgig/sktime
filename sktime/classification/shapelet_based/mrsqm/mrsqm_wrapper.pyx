@@ -147,7 +147,8 @@ class MrSQMClassifier(BaseClassifier):
             else:
                 pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
         else:           
-            pars = [[2**w,8,4] for w in range(3,int(np.log2(max_ws) + 1))]
+            exprate = 3
+            pars = [[int(2**(w/exprate)),8,4] for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]
             # if max_ws > min_ws:
             #     pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
             # else:
@@ -416,18 +417,24 @@ class MrSQMClassifier(BaseClassifier):
 
 
 
-        #tf-idf
+        # #tf-idf
         # N = full_fm.shape[0]
         # if len(self.idf) == 0:            
         #     dft = (full_fm > 0).sum(axis = 0)
         #     self.idf = np.log(N/dft)
         
-        # sumf = full_fm.sum(axis=1,keepdims=True)
-        # sumf[sumf == 0] = 1
-        # tf = full_fm / sumf
+        # # sumf = full_fm.sum(axis=1,keepdims=True)
+        # # sumf[sumf == 0] = 1
+        # tfidf = np.log(full_fm + 1) * self.idf
+
+        # #normalize length
+        # fm_length = np.linalg.norm(tfidf, ord=2, axis=1, keepdims=True)
+        # fm_length[fm_length == 0] = 1
+        # normed_fm = tfidf/fm_length 
+        # # return normed_fm
 
 
-        # return tf #* self.idf
+        # return normed_fm
 
 
     def fit(self, X, y, input_checks=True):
@@ -482,7 +489,7 @@ class MrSQMClassifier(BaseClassifier):
             mr_seqs.extend(ext_reps)
 
         for rep in mr_seqs:
-            miner = PySQM(self.max_selection)
+            miner = PySQM(self.max_selection,0.0)
             
             mined = miner.mine(rep, int_y)       
             # print(len(mined))     
