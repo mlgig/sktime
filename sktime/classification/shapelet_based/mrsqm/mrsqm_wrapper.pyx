@@ -137,15 +137,21 @@ class MrSQMClassifier(BaseClassifier):
     def create_pars(self, min_ws, max_ws, random_sampling=False):
         
         if random_sampling:
-            pars = []
+            # pars = []
+            # ws_choices = [i for i in range(10,max_ws+1)]
+            # wl_choices = [6,8,10,12,14,16]
+            # alphabet_choices = [3,4,5,6] 
+            # if max_ws > min_ws:                
+            #     for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws))))): # to make sure it has the same number of reps
+            #         pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+            # else:
+            #     pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+
+            exprate = 3
+            pars = [[int(2**(w/exprate)),8,4] for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]
             ws_choices = [i for i in range(10,max_ws+1)]
             wl_choices = [6,8,10,12,14,16]
-            alphabet_choices = [3,4,5,6] 
-            if max_ws > min_ws:                
-                for w in range(min_ws, max_ws, np.max((1,int(np.sqrt(max_ws))))): # to make sure it has the same number of reps
-                    pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
-            else:
-                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+            alphabet_choices = [3,4,5,6]
         else:           
             exprate = 3
             pars = [[int(2**(w/exprate)),8,4] for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]
