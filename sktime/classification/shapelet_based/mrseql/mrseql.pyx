@@ -247,7 +247,7 @@ class MrSEQLClassifier(BaseClassifier):
 
     '''
 
-    def __init__(self, seql_mode='fs', symrep=('sax'), custom_config=None):
+    def __init__(self, seql_mode='fs', symrep=('sax'), custom_config=None, rate = 4):
 
         if 'sax' in symrep or 'sfa' in symrep:
             self.symrep = symrep
@@ -268,8 +268,17 @@ class MrSEQLClassifier(BaseClassifier):
         self.sfas = {}
         self._is_fitted = False
 
-    def _create_pars(self,maxws):
-        return [[2**(w/3), 8, 4] for w in range(9, 3*int(np.log2(maxws)) + 1)]
+        self.rate = rate
+
+    def _create_pars(self,max_ws):
+        pars = []
+        exprate = 2
+        ws_choices = [int(2**(w/self.rate)) for w in range(3*self.rate,self.rate*int(np.log2(max_ws))+ 1)]            
+        wl_choices = [6,8,10,12,14,16]
+        alphabet_choices = [3,4,5,6]
+        for w in range(3*self.rate,self.rate*int(np.log2(max_ws))+ 1):
+            pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
+        return pars
 
     def _transform_time_series(self, ts_x):
         multi_tssr = []   
