@@ -146,19 +146,20 @@ class MrSQMClassifier(BaseClassifier):
             #         pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
             # else:
             #     pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
-
-            exprate = 3
-            pars = [[int(2**(w/exprate)),8,4] for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]
-            ws_choices = [i for i in range(10,max_ws+1)]
+            pars = []
+            exprate = 2
+            ws_choices = [int(2**(w/exprate)) for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]            
             wl_choices = [6,8,10,12,14,16]
             alphabet_choices = [3,4,5,6]
+            for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1):
+                pars.append([np.random.choice(ws_choices) , np.random.choice(wl_choices), np.random.choice(alphabet_choices)])
         else:           
-            exprate = 3
+            exprate = 5
             pars = [[int(2**(w/exprate)),8,4] for w in range(3*exprate,exprate*int(np.log2(max_ws))+ 1)]
             # if max_ws > min_ws:
-            #     pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
+                # pars = [[w, 16, 4] for w in range(min_ws, max_ws, int(np.sqrt(max_ws)))]                
             # else:
-            #     pars = [[max_ws, 16, 4]]
+                # pars = [[max_ws, 16, 4]]
             
         
         return pars
@@ -333,7 +334,7 @@ class MrSQMClassifier(BaseClassifier):
                 max_len = max(max_len, len(a))
             max_ws = (min_len + max_len)//2
 
-            pars = self.create_pars(min_ws, max_ws, False)
+            pars = self.create_pars(min_ws, max_ws, True)
             
             if 'sax' in self.symrep:
                 for p in pars:
@@ -398,6 +399,7 @@ class MrSQMClassifier(BaseClassifier):
     #     full_fm = np.hstack(full_fm)
     #     return full_fm
 
+
     def __to_feature_space(self, mr_seqs):
         logging.info("Computing feature vectors ...")
         full_fm = []
@@ -442,15 +444,25 @@ class MrSQMClassifier(BaseClassifier):
 
         # return normed_fm
 
+    def transform(self, X, ext_reps = None, input_checks=True):        
 
-    def fit(self, X, y, input_checks=True):
+        mr_seqs = []
+
+        if X is not None:
+            mr_seqs = self.transform_time_series(X)
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)      
+        
+        return self.__to_feature_space(mr_seqs)
+
+    def fit(self, X, y, ext_reps = None, input_checks=True):
         
 
         # X = self.__X_check(X)
 
         # transform time series to multiple symbolic representations
 
-        mr_seqs = self.transform_time_series(X)
+        # mr_seqs = self.transform_time_series(X)
         
         # print(mr_seqs)
         self.classes_ = np.unique(y) #because sklearn also uses np.unique
@@ -458,6 +470,13 @@ class MrSQMClassifier(BaseClassifier):
         int_y = [np.where(self.classes_ == c)[0][0] for c in y]
 
         self.sequences = []
+
+        mr_seqs = []
+
+        if X is not None:
+            mr_seqs = self.transform_time_series(X)
+        if ext_reps is not None:
+            mr_seqs.extend(ext_reps)
 
         for rep in mr_seqs:
             miner = PySQM(self.selection,0.0)
@@ -474,6 +493,7 @@ class MrSQMClassifier(BaseClassifier):
         self.clf = LogisticRegression(solver='newton-cg',multi_class = 'multinomial', class_weight='balanced').fit(train_x, y)
         # self.clf = BernoulliNB().fit(train_x,y)
         self.classes_ = self.clf.classes_ # shouldn't matter
+    
     
     def fit_random_selection(self, X, y, ext_reps = None, input_checks=True):
     # '''
